@@ -18,7 +18,7 @@ class LoginPage extends Component {
       <div className="LoginPage">
         <div className="LoginPage-container">
           <h1>{title}</h1>
-          <p>...</p>
+          <p>I can login here!</p>
         </div>
       </div>
     );
