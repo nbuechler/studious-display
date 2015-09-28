@@ -1,3 +1,5 @@
+'use strict';
+
 import Client from 'react-engine/lib/client';
 import routes from '../shared/routes.js';
 
