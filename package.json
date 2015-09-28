@@ -1,0 +1,70 @@
+{
+  "name": "universal-js-boilerplate",
+  "version": "0.0.1",
+  "description": "A boilerplate to start universal (isomorphic) web applications",
+  "main": "./src/app/server/index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node --stage 0 -- ./src/app/server/index.js",
+    "build": "TARGET=build webpack",
+    "dev": "TARGET=dev webpack-dev-server --progress --colors --hot --inline --history-api-fallback --content-base www",
+    "deploy": "TARGET=build webpack -p -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/carlosazaustre/universal-js-boilerplate"
+  },
+  "keywords": [
+    "boilerplate",
+    "web development",
+    "frontend",
+    "javascript",
+    "es6",
+    "ecmascript 6",
+    "react",
+    "isomorphic"
+  ],
+  "author": "Carlos Azaustre <cazaustre@gmail.com> (https://carlosazaustre.es/blog)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/carlosazaustre/universal-js-boilerplate/issues"
+  },
+  "homepage": "https://github.com/carlosazaustre/universal-js-boilerplate",
+  "dependencies": {
+    "express": "^4.13.0",
+    "react": "^0.13.3",
+    "react-engine": "^1.7.0",
+    "react-router": "^0.13.3",
+    "serve-favicon": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel": "^5.6.14",
+    "babel-core": "^5.8.3",
+    "babel-eslint": "^3.1.20",
+    "babel-loader": "^5.3.2",
+    "babel-runtime": "^5.6.15",
+    "babelify": "^6.1.2",
+    "browserify": "^10.2.4",
+    "css-loader": "^0.15.5",
+    "eslint": "^0.24.0",
+    "eslint-plugin-react": "^2.6.4",
+    "esprima-fb": "^15001.1.0-dev-harmony-fb",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "gulp": "^3.9.0",
+    "gulp-eslint": "^0.15.0",
+    "gulp-jscs": "^1.6.0",
+    "gulp-minify-css": "^1.2.0",
+    "gulp-stylint": "^1.1.3",
+    "gulp-stylus": "^2.0.5",
+    "json-loader": "^0.5.2",
+    "nib": "^1.1.0",
+    "nodemon": "^1.3.7",
+    "react-hot-loader": "^1.2.8",
+    "style-loader": "^0.12.3",
+    "stylus-loader": "^1.2.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "webpack": "^1.10.5",
+    "webpack-dev-server": "^1.10.1",
+    "webpack-merge": "^0.1.2"
+  }
+}
