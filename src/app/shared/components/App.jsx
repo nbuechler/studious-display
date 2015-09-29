@@ -3,6 +3,7 @@
 import React from 'react';
 import { RouteHandler, Link } from 'react-router';
 import Layout from './Layout.jsx';
+import Thing from './Thing.jsx';
 
 class App extends React.Component {
 
@@ -27,6 +28,14 @@ class App extends React.Component {
         <main role="application">
           <RouteHandler {...this.props}/>
         </main>
+        <footer>
+          <Thing data={[
+            {label: 'A', value: 5},
+            {label: 'B', value: 6},
+            {label: 'F', value: 7}
+          ]}>
+          </Thing>
+        </footer>
       </Layout>
     );
   }

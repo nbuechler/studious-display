@@ -33,6 +33,7 @@
     "d3": "^3.5.6",
     "express": "^4.13.0",
     "react": "^0.13.3",
+    "react-d3": "^0.4.0",
     "react-engine": "^1.7.0",
     "react-router": "^0.13.3",
     "serve-favicon": "^2.3.0"

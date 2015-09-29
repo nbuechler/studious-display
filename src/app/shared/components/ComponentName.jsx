@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import d3 from 'd3';
 
 class ComponentName extends React.Component {
 
@@ -11,7 +10,6 @@ class ComponentName extends React.Component {
   }
 
   render () {
-    console.log(d3.version);
 
     return (
       <article className='ComponentName' onClick={ this.props.onClick }>
