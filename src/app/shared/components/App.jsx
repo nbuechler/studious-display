@@ -28,14 +28,9 @@ class App extends React.Component {
         <main role="application">
           <RouteHandler {...this.props}/>
         </main>
-        <footer>
-          <Thing data={[
-            {label: 'A', value: 5},
-            {label: 'B', value: 6},
-            {label: 'F', value: 7}
-          ]}>
-          </Thing>
-        </footer>
+        <section>
+          <Thing/>
+        </section>
       </Layout>
     );
   }
