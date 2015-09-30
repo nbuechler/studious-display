@@ -33,7 +33,7 @@ class PieChart extends React.Component {
                 style={{
                   fill: color[i % 5],
                   stroke: 'black',
-                  'stroke-width': '3px'
+                  strokeWidth: '3px'
                 }}
               />
               );
