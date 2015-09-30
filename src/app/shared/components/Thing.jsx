@@ -3,6 +3,18 @@
 import React from 'react';
 import d3 from 'd3';
 
+
+class Chart extends React.Component {
+    render () {
+      return (
+        <h1>Hellow!</h1>
+      );
+    }
+
+}
+
+
+
 class Thing extends React.Component {
 
 
@@ -19,7 +31,10 @@ class Thing extends React.Component {
   render () {
 
     return (
-      <div>hello</div>
+      <div>
+        <Chart/>
+      </div>
+
     );
 
   }
