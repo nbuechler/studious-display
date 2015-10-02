@@ -3,6 +3,7 @@
 import React from 'react';
 
 import PieChart from './d3charts/PieChart.jsx';
+import BarChart from './d3charts/BarChart.jsx';
 
 class Thing extends React.Component {
 
@@ -26,13 +27,17 @@ class Thing extends React.Component {
     ];
     var pieCharts = [];
     for (var i = 0; i < pies.length; i++) {
-      pieCharts.push(<PieChart key={pies[i].key} width={400} height={400} data={pies[i].data}/>);
+      pieCharts.push(<PieChart key={pies[i].key} width={300} height={300} data={pies[i].data}/>);
     }
     return (
-      <div style={{textAlign: 'center'}}>
-        {pieCharts}
+      <div>
+        <div style={{textAlign: 'center'}}>
+          <BarChart width={300} height={300} data={[14, 23, 22, 14, 30]}/>
+        </div>
+        <div style={{textAlign: 'center'}}>
+          {pieCharts}
+        </div>
       </div>
-
     );
 
   }
