@@ -5,12 +5,6 @@ import d3 from 'd3';
 import _ from 'underscore';
 
 class DataSeries extends React.Component {
-  getDefaultProps () {
-    return {
-      title: '',
-      data: []
-    };
-  }
   constructor (props) {
     super(props);
     this.state = { };
@@ -40,13 +34,6 @@ class DataSeries extends React.Component {
   }
 }
 class Bar extends React.Component {
-  getDefaultProps () {
-    return {
-      width: 0,
-      height: 0,
-      offset: 0
-    };
-  }
   constructor (props) {
     super(props);
     this.state = { };
@@ -65,7 +52,7 @@ class Wrapper extends React.Component {
     // var {props} = this;
     // var color = ['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30'];
     return (
-      <svg style={{border: '3px solid black', padding: '30px;'}} width={this.props.width} height={this.props.height}>{this.props.children}</svg>
+      <svg style={{border: '3px solid black', padding: '30px'}} width={this.props.width} height={this.props.height}>{this.props.children}</svg>
     );
 
   }
