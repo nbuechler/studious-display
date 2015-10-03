@@ -6,6 +6,8 @@ import engine from 'react-engine';
 import favicon from 'serve-favicon';
 import config from '../config';
 
+import proxy from 'proxy-express';
+
 const app = express();
 const port = config.app.port;
 
@@ -31,8 +33,10 @@ let components = [
   { id: 2, title: 'Itesm 2' },
   { id: 3, title: 'Item 3' }
 ];
+
+console.log(app.use(proxy('localhost:5000/remote/logs', '/hi')));
+
 app.get('*', (req, res) => {
-  console.log(req.url);
   res.render(req.url, {
     components: components,
     title: config.app.name
