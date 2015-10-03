@@ -32,6 +32,7 @@ let components = [
   { id: 3, title: 'Item 3' }
 ];
 app.get('*', (req, res) => {
+  console.log(req.url);
   res.render(req.url, {
     components: components,
     title: config.app.name
