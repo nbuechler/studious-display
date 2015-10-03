@@ -13,11 +13,12 @@ class Thing extends React.Component {
   }
   constructor (props) {
     super(props);
-    this.state = { };
+    this.state = { dummyData: this.props.dummyData };
   }
 
 
   render () {
+    console.log(this.state);
     var pies = [
       {key: 'P1', data: [2, 4, 5, 4, 7]},
       {key: 'P2', data: [3, 2, 9, 1, 8]},

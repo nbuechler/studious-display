@@ -34,11 +34,12 @@ let components = [
   { id: 3, title: 'Item 3' }
 ];
 
-console.log(app.use(proxy('localhost:5000/remote/logs', '/hi')));
+let dummyData = app.use(proxy('localhost:5000/dummy', '/hi'));
 
 app.get('*', (req, res) => {
   res.render(req.url, {
     components: components,
+    dummyData: dummyData,
     title: config.app.name
   });
 });
