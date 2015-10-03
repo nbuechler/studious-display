@@ -34,12 +34,78 @@ let components = [
   { id: 3, title: 'Item 3' }
 ];
 
-let dummyData = app.use(proxy('localhost:5000/dummy', '/hi'));
+let all = [
+    {
+      'pies': [
+        {
+          'data': [
+            2,
+            4,
+            5,
+            4,
+            7
+          ],
+          'key': 'P1'
+        },
+        {
+          'data': [
+            3,
+            2,
+            9,
+            1,
+            8
+          ],
+          'key': 'P2'
+        },
+        {
+          'data': [
+            3,
+            4,
+            0,
+            7,
+            8
+          ],
+          'key': 'P3'
+        },
+        {
+          'data': [
+            3,
+            5,
+            5,
+            0,
+            4
+          ],
+          'key': 'P4'
+        },
+        {
+          'data': [
+            3,
+            8,
+            3,
+            2,
+            3
+          ],
+          'key': 'P5'
+        }
+      ]
+    },
+    {
+      'logCounts': [
+        14,
+        23,
+        22,
+        14,
+        30
+      ]
+    }
+  ];
+
+app.use(proxy('localhost:5000/dummy', '/hi'));
 
 app.get('*', (req, res) => {
   res.render(req.url, {
     components: components,
-    dummyData: dummyData,
+    dummyData: all,
     title: config.app.name
   });
 });

@@ -29,7 +29,7 @@ class App extends React.Component {
           <RouteHandler {...this.props}/>
         </main>
         <section>
-          <Thing width={400} height={400} data={[1, 2, 3]} />
+          <Thing width={400} height={400} data={this.props.dummyData} />
         </section>
       </Layout>
     );
