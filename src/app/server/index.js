@@ -29,9 +29,7 @@ let faviconPath = path.join(__dirname, '..', '..', '..', 'build', 'public', 'fav
 app.use(favicon(faviconPath));
 
 let components = [
-  { id: 1, title: 'Item 1' },
-  { id: 2, title: 'Itesm 2' },
-  { id: 3, title: 'Item 3' }
+  { id: 1, title: 'This is a component, maybe I will put things in it' }
 ];
 
 let all = [
