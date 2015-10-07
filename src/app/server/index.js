@@ -100,6 +100,8 @@ let all = [
 
 app.use(proxy('localhost:5000/dummy', '/hi'));
 
+//thisiswhere the new apicalls would go if it makes sense to use this project.
+
 app.get('*', (req, res) => {
   res.render(req.url, {
     components: components,
