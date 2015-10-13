@@ -8,69 +8,85 @@ TODO: Add  neo4j for database. And, make it render data in a an overall analytic
 ##
 Please consider sharing this software as 'copylefted' as I would appreciate respecting this license:
 ##
+
 GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 Copyright (C) 2007 Free Software Foundation, Inc. http://fsf.org/ Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
 
 
 
-## The following is the information from the README file of the boilerplate used:
+#CREDITS to others sources:
+react-hot-boilerplate (https://github.com/gaearon/react-hot-boilerplate)
+Redux docs -- http://rackt.github.io/redux/docs/advanced/ExampleRedditAPI.html
 
-# UniversalJS Boilerplate
+The MIT License (MIT)
 
-![Universal JS Boilerplate](docs/header_universaljs.jpg)
+Copyright (c) 2014 Dan Abramov
 
-A boilerplate to quick start JavaScript Isomorphic Web Applications
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-## Technology Stack
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-* **[ES2015 / ECMAScript 6th Edition](https://babeljs.io/docs/learn-es2015/)** - the upcoming version of the ECMAScript standard.
-* **[Babel](https://babeljs.io/)** - Next generation JavaScript, today.
-* **[Browserify](http://browserify.org/)** - Browserify lets you require('modules') in the browser by bundling up all of your dependencies.
-* **[React](http://facebook.github.io/react/)** - A JavaScript library for building user interfaces.
-* **[React Router](http://rackt.github.io/react-router/)** - Complete routing solution designed specifically for React.js.
-* **[React Engine](https://github.com/paypal/react-engine)** - A composite render engine for isomorphic express apps to render both plain react views and react-router views.
-* **[Stylus](https://learnboost.github.io/stylus/)** - Expressive, dynamic, robust CSS
-* **[NodeJS](https://nodejs.org/)** - Platform built on Chrome's JavaScript runtime for easily building fast, scalable network applications.
-* **[Express](http://expressjs.com/)** - Fast, unopinionated, minimalist web framework for Node.js.
-* **[Gulp](http://gulpjs.com/)** - Automate and enhance your workflow.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
-## Requirements and Install
+#Below this line is the readme files from other repositories for reference.
 
-Node.js v0.10.33 installed at least.
+
+
+react-hot-boilerplate (https://github.com/gaearon/react-hot-boilerplate)
+=====================
+
+The minimal dev environment to enable live-editing React components.
+
+### Usage
 
 ```
-$ npm install -g gulp@3.9.0
-$ npm install -g babel browserify nodemon
-$ npm install
-$ npm run build
-$ npm start
+npm install
+npm start
+open http://localhost:3000
 ```
 
-And open your browser on `http://localhost:3000`
+Now edit `src/App.js`.  
+Your changes will appear without reloading the browser like in [this video](http://vimeo.com/100010922).
 
-## Folder structure
+### Linting
+
+This boilerplate project includes React-friendly ESLint configuration.
 
 ```
-.
-├── /build/                   # Transpiled and minifiqued output files.
-├── /docs/                    # Documentation about your project.
-├── /node_modules/            # Node Modules and 3rd-party libraries.
-├── /src/                     # Source code of the web application.  
-│   ├── /app/                 # Isomorphic App source code.
-│   │   ├── /client/          # Client-side startup script.
-│   │   ├── /server/          # Server-side startup script.
-│   │   ├── /shared/          # Shared components between Client-Server.
-│   │   │   ├── /components/  # React components.
-│   │   │   └── routes.js     # Shared routes between Client-Server.
-│   │   └── config.js         # App config (URLs, names, etc...).
-│   └── /styles/              # Stylesheets coding with Stylus Preprocessor.
-├── gulpfile.babel.js         # Config file for automated Builders.
-├── package.json              # App manifest and list of libraries installed.
-├── .editorconfig             # define and maintain consistent coding styles.
-├── .eslintrc                 # ECMAScript 6 and React linter.
-├── .jscsrc                   # JavaScript code styles
-└── .stylintc                 # Stylus CSS code style
+npm run lint
 ```
 
-## License
+### Using `0.0.0.0` as Host
 
-Open Source. [MIT](LICENSE) &copy; Carlos Azaustre
+You may want to change the host in `server.js` and `webpack.config.js` from `localhost` to `0.0.0.0` to allow access from same WiFi network. This is not enabled by default because it is reported to cause problems on Windows. This may also be useful if you're using a VM.
+
+### Missing Features
+
+This boilerplate is purposefully simple to show the minimal configuration for React Hot Loader. For a real project, you'll want to add a separate config for production with hot reloading disabled and minification enabled. You'll also want to add a router, styles and maybe combine dev server with an existing server. This is out of scope of this boilerplate, but you may want to look into [other starter kits](https://github.com/gaearon/react-hot-loader/blob/master/docs/README.md#starter-kits).
+
+### Dependencies
+
+* React
+* Webpack
+* [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
+* [babel-loader](https://github.com/babel/babel-loader)
+* [react-hot-loader](https://github.com/gaearon/react-hot-loader)
+
+### Resources
+
+* [Demo video](http://vimeo.com/100010922)
+* [react-hot-loader on Github](https://github.com/gaearon/react-hot-loader)
+* [Integrating JSX live reload into your workflow](http://gaearon.github.io/react-hot-loader/getstarted/)
+* [Troubleshooting guide](https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md)
+* Ping dan_abramov on Twitter or #reactjs IRC
