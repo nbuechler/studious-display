@@ -2,7 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { selectUser, fetchDataIfNeeded, invalidateUser } from '../actions/actions';
 import Picker from '../components/Picker';
-import Data from '../components/Data';
+import PieChart from '../components/d3charts/PieChart';
+import BarChart from '../components/d3charts/BarChart';
 
 class AsyncApp extends Component {
   constructor(props) {
@@ -64,7 +65,17 @@ class AsyncApp extends Component {
         }
         {data.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <Data data={data} />
+            <div style={{ textAlign: 'center' }}>
+              <BarChart data={data[1].logCounts} />
+            </div>
+            <br></br>
+            <div style={{ textAlign: 'center' }}>
+              <PieChart data={data[0].pies[0].data} />
+              <PieChart data={data[0].pies[1].data} />
+              <PieChart data={data[0].pies[2].data} />
+              <PieChart data={data[0].pies[3].data} />
+              <PieChart data={data[0].pies[4].data} />
+            </div>
           </div>
         }
       </div>
