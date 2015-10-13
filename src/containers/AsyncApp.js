@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { selectReddit, fetchPostsIfNeeded, invalidateReddit } from '../actions/actions';
+import { selectUser, fetchDataIfNeeded, invalidateUser } from '../actions/actions';
 import Picker from '../components/Picker';
-import Posts from '../components/Posts';
+import Data from '../components/Data';
 
 class AsyncApp extends Component {
   constructor(props) {
@@ -12,34 +12,34 @@ class AsyncApp extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, selectedReddit } = this.props;
-    dispatch(fetchPostsIfNeeded(selectedReddit));
+    const { dispatch, selectedUser } = this.props;
+    dispatch(fetchDataIfNeeded(selectedUser));
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedReddit !== this.props.selectedReddit) {
-      const { dispatch, selectedReddit } = nextProps;
-      dispatch(fetchPostsIfNeeded(selectedReddit));
+    if (nextProps.selectedUser !== this.props.selectedUser) {
+      const { dispatch, selectedUser } = nextProps;
+      dispatch(fetchDataIfNeeded(selectedUser));
     }
   }
 
-  handleChange(nextReddit) {
-    this.props.dispatch(selectReddit(nextReddit));
+  handleChange(nextUser) {
+    this.props.dispatch(selectUser(nextUser));
   }
 
   handleRefreshClick(e) {
     e.preventDefault();
 
-    const { dispatch, selectedReddit } = this.props;
-    dispatch(invalidateReddit(selectedReddit));
-    dispatch(fetchPostsIfNeeded(selectedReddit));
+    const { dispatch, selectedUser } = this.props;
+    dispatch(invalidateUser(selectedUser));
+    dispatch(fetchDataIfNeeded(selectedUser));
   }
 
   render () {
-    const { selectedReddit, posts, isFetching, lastUpdated } = this.props;
+    const { selectedUser, data, isFetching, lastUpdated } = this.props;
     return (
       <div>
-        <Picker value={selectedReddit}
+        <Picker value={selectedUser}
                 onChange={this.handleChange}
                 options={['dummy']} />
         <p>
@@ -56,15 +56,15 @@ class AsyncApp extends Component {
             </a>
           }
         </p>
-        {isFetching && posts.length === 0 &&
+        {isFetching && data.length === 0 &&
           <h2>Loading...</h2>
         }
-        {!isFetching && posts.length === 0 &&
+        {!isFetching && data.length === 0 &&
           <h2>Empty.</h2>
         }
-        {posts.length > 0 &&
+        {data.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
-            <Posts posts={posts} />
+            <Data data={data} />
           </div>
         }
       </div>
@@ -73,27 +73,27 @@ class AsyncApp extends Component {
 }
 
 AsyncApp.propTypes = {
-  selectedReddit: PropTypes.string.isRequired,
-  posts: PropTypes.array.isRequired,
+  selectedUser: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps(state) {
-  const { selectedReddit, postsByReddit } = state;
+  const { selectedUser, dataByUser } = state;
   const {
     isFetching,
     lastUpdated,
-    items: posts
-  } = postsByReddit[selectedReddit] || {
+    items: data
+  } = dataByUser[selectedUser] || {
     isFetching: true,
     items: []
   };
 
   return {
-    selectedReddit,
-    posts,
+    selectedUser,
+    data,
     isFetching,
     lastUpdated
   };

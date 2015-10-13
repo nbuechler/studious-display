@@ -1,38 +1,38 @@
 import { combineReducers } from 'redux';
 import {
-  SELECT_REDDIT, INVALIDATE_REDDIT,
-  REQUEST_POSTS, RECEIVE_POSTS
+  SELECT_USER, INVALIDATE_USER,
+  REQUEST_DATA, RECEIVE_DATA
 } from './actions/actions';
 
-function selectedReddit(state = 'dummy', action) {
+function selectedUser(state = 'dummy', action) {
   switch (action.type) {
-  case SELECT_REDDIT:
-    return action.reddit;
+  case SELECT_USER:
+    return action.user;
   default:
     return state;
   }
 }
 
-function posts(state = {
+function data(state = {
   isFetching: false,
   didInvalidate: false,
   items: []
 }, action) {
   switch (action.type) {
-  case INVALIDATE_REDDIT:
+  case INVALIDATE_USER:
     return Object.assign({}, state, {
       didInvalidate: true
     });
-  case REQUEST_POSTS:
+  case REQUEST_DATA:
     return Object.assign({}, state, {
       isFetching: true,
       didInvalidate: false
     });
-  case RECEIVE_POSTS:
+  case RECEIVE_DATA:
     return Object.assign({}, state, {
       isFetching: false,
       didInvalidate: false,
-      items: action.posts,
+      items: action.data,
       lastUpdated: action.receivedAt
     });
   default:
@@ -40,13 +40,13 @@ function posts(state = {
   }
 }
 
-function postsByReddit(state = { }, action) {
+function dataByUser(state = { }, action) {
   switch (action.type) {
-  case INVALIDATE_REDDIT:
-  case RECEIVE_POSTS:
-  case REQUEST_POSTS:
+  case INVALIDATE_USER:
+  case RECEIVE_DATA:
+  case REQUEST_DATA:
     return Object.assign({}, state, {
-      [action.reddit]: posts(state[action.reddit], action)
+      [action.user]: data(state[action.user], action)
     });
   default:
     return state;
@@ -54,8 +54,8 @@ function postsByReddit(state = { }, action) {
 }
 
 const rootReducer = combineReducers({
-  postsByReddit,
-  selectedReddit
+  dataByUser,
+  selectedUser
 });
 
 export default rootReducer;
