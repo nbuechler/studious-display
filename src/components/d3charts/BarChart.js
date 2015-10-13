@@ -2,7 +2,7 @@ import React from 'react';
 import d3 from 'd3';
 import _ from 'underscore';
 
-class DataSeries extends React.Component {
+export default class DataSeries extends React.Component {
   constructor (props) {
     super(props);
     this.state = { };
@@ -41,7 +41,7 @@ class Bar extends React.Component {
       <rect fill={this.props.color}
         width={this.props.width} height={this.props.height}
         x={this.props.offset} y={this.props.availableHeight - this.props.height}
-        style={{stroke: 'black', strokeWidth: '1px'}} />
+        style={{stroke: 'black', strokeWidth: '3px'}} />
     );
   }
 }
@@ -50,18 +50,18 @@ class Wrapper extends React.Component {
     // var {props} = this;
     // var color = ['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30'];
     return (
-      <svg style={{border: '3px solid black', padding: '30px'}} width={this.props.width} height={this.props.height}>{this.props.children}</svg>
+      <svg style={{border: '3px solid black', padding: '30px', background: '#222'}} width={this.props.width} height={this.props.height}>{this.props.children}</svg>
     );
 
   }
 
 }
 
-class BarChart extends React.Component {
+export default class BarChart extends React.Component {
 
   static defaultProps = {
-    width: 100,
-    height: 100
+    width: 500,
+    height: 500
   }
   constructor (props) {
     super(props);
@@ -78,5 +78,3 @@ class BarChart extends React.Component {
   }
 
 }
-
-export default BarChart;

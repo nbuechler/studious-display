@@ -1,65 +1,67 @@
 import fetch from 'isomorphic-fetch';
 
-export const REQUEST_POSTS = 'REQUEST_POSTS';
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const SELECT_REDDIT = 'SELECT_REDDIT';
-export const INVALIDATE_REDDIT = 'INVALIDATE_REDDIT';
+export const REQUEST_DATA = 'REQUEST_DATA';
+export const RECEIVE_DATA = 'RECEIVE_DATA';
+export const SELECT_USER = 'SELECT_USER';
+export const INVALIDATE_USER = 'INVALIDATE_USER';
 
-export function selectReddit(reddit) {
+export function selectUSER(user) {
   return {
-    type: SELECT_REDDIT,
-    reddit
+    type: SELECT_USER,
+    user
   };
 }
 
-export function invalidateReddit(reddit) {
+export function invalidateUser(user) {
   return {
-    type: INVALIDATE_REDDIT,
-    reddit
+    type: INVALIDATE_USER,
+    user
   };
 }
 
-function requestPosts(reddit) {
+function requestData(user) {
   return {
-    type: REQUEST_POSTS,
-    reddit
+    type: REQUEST_DATA,
+    user
   };
 }
 
 //This is the Map part
-function receivePosts(reddit, json) {
+function receiveData(user, json) {
+  console.log(json);
   return {
-    type: RECEIVE_POSTS,
-    reddit,
-    posts: json.data.children.map(child => child.data),
+    type: RECEIVE_DATA,
+    user,
+    data: json.all,
     receivedAt: Date.now()
   };
 }
 
-function fetchPosts(reddit) {
+function fetchData(user) {
   return dispatch => {
-    dispatch(requestPosts(reddit));
-    return fetch(`http://www.reddit.com/r/${reddit}.json`)
+    dispatch(requestData(user));
+    // return fetch(`http://www.user.com/r/${user}.json`)
+    return fetch(`http://127.0.0.1:5000/${user}`)
       .then(req => req.json())
-      .then(json => dispatch(receivePosts(reddit, json)));
-  }
+      .then(json => dispatch(receiveData(user, json)));
+  };
 }
 
-function shouldFetchPosts(state, reddit) {
-  const posts = state.postsByReddit[reddit];
-  if (!posts) {
+function shouldFetchData(state, user) {
+  const data = state.dataByUser[user];
+  if (!data) {
     return true;
-  } else if (posts.isFetching) {
+  } else if (data.isFetching) {
     return false;
   } else {
-    return posts.didInvalidate;
+    return data.didInvalidate;
   }
 }
 
-export function fetchPostsIfNeeded(reddit) {
+export function fetchDataIfNeeded(user) {
   return (dispatch, getState) => {
-    if (shouldFetchPosts(getState(), reddit)) {
-      return dispatch(fetchPosts(reddit));
+    if (shouldFetchData(getState(), user)) {
+      return dispatch(fetchData(user));
     }
   };
 }

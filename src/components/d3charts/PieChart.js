@@ -1,7 +1,7 @@
 import React from 'react';
 import d3 from 'd3';
 
-class PieChart extends React.Component {
+export default class PieChart extends React.Component {
 
   static defaultProps = {
     width: 100,
@@ -44,5 +44,3 @@ class PieChart extends React.Component {
   }
 
 }
-
-export default PieChart;
