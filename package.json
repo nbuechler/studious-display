@@ -13,12 +13,8 @@
   "keywords": [
     "react",
     "reactjs",
-    "boilerplate",
-    "hot",
-    "reload",
-    "hmr",
-    "live",
-    "edit",
+    "redux",
+    "d3",
     "webpack"
   ],
   "author": "Nathaniel Buechler <natebuechler@gmail.com> (http://github.com/nbuechler)",
