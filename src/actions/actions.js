@@ -28,10 +28,11 @@ function requestPosts(reddit) {
 
 //This is the Map part
 function receivePosts(reddit, json) {
+  console.log(json);
   return {
     type: RECEIVE_POSTS,
     reddit,
-    posts: json.data.children.map(child => child.data),
+    posts: json.all,
     receivedAt: Date.now()
   };
 }
@@ -39,10 +40,11 @@ function receivePosts(reddit, json) {
 function fetchPosts(reddit) {
   return dispatch => {
     dispatch(requestPosts(reddit));
-    return fetch(`http://www.reddit.com/r/${reddit}.json`)
+    // return fetch(`http://www.reddit.com/r/${reddit}.json`)
+    return fetch(`http://127.0.0.1:5000/${reddit}`)
       .then(req => req.json())
       .then(json => dispatch(receivePosts(reddit, json)));
-  }
+  };
 }
 
 function shouldFetchPosts(state, reddit) {

@@ -6,7 +6,7 @@ export default class Posts extends Component {
       <ul>
         {this.props.posts.map((post, i) =>
           // <li key={i}>{post.title + ' (Ups - ' + post.ups + ' )'}</li>
-          <li key={i}>{post.thumbnail}</li>
+          <li key={i}>{post}</li>
         )}
       </ul>
     );

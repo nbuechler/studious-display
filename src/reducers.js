@@ -4,7 +4,7 @@ import {
   REQUEST_POSTS, RECEIVE_POSTS
 } from './actions/actions';
 
-function selectedReddit(state = 'reactjs', action) {
+function selectedReddit(state = 'dummy', action) {
   switch (action.type) {
   case SELECT_REDDIT:
     return action.reddit;
