@@ -4,7 +4,7 @@ import {
   REQUEST_DATA, RECEIVE_DATA
 } from './actions/actions';
 
-function selectedUser(state = 'dummy', action) {
+function selectedUser(state = 'foo01', action) {
   switch (action.type) {
   case SELECT_USER:
     return action.user;
