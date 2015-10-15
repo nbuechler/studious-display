@@ -42,7 +42,7 @@ class AsyncApp extends Component {
       <div>
         <Picker value={selectedUser}
                 onChange={this.handleChange}
-                options={['dummy']} />
+                options={['foo01']} />
         <p>
           {lastUpdated &&
             <span>

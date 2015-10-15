@@ -41,7 +41,9 @@ function fetchData(user) {
   return dispatch => {
     dispatch(requestData(user));
     // return fetch(`http://www.user.com/r/${user}.json`)
-    return fetch(`http://127.0.0.1:5000/${user}`)
+    // return fetch(`http://127.0.0.1:5000/${user}`)
+
+    return fetch(`http://localhost:3001/${user}`)
       .then(req => req.json())
       .then(json => dispatch(receiveData(user, json)));
   };
