@@ -110,4 +110,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default (Display);
+export default connect(mapStateToProps)(Display);

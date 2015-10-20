@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 // @connect(
 //   state => ({user: state.auth.user}),
 //   authActions)
-export default class Login extends Component {
+class Login extends Component {
   static propTypes = {
     user: PropTypes.object,
     login: PropTypes.func,
@@ -23,8 +23,10 @@ export default class Login extends Component {
   render() {
     return (
       <div>
-      LoginPAge
+      This is a login page
       </div>
     );
   }
 }
+
+export default Login;

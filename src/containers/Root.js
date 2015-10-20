@@ -4,18 +4,17 @@ import configureStore from '../configureStore';
 import AsyncApp from './AsyncApp';
 
 import {IndexRoute, Route, Router} from 'react-router';
-import {
-    Display,
-    Home,
-    Login
-  } from '../containers';
+
+import  Home  from './Home/Home';
+import  Login  from './Login/Login';
+import  Display  from './Display/Display';
 
 
 const store = configureStore();
 
 export default class Root extends Component {
   render() {
-    console.log(Home);
+    // console.log(Login);
     return (
       <Provider store={store}>
         {
