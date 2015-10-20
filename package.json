@@ -1,6 +1,6 @@
 {
   "name": "react-hot-boilerplate",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ReactJS display for analytics",
   "scripts": {
     "start": "node server.js",
