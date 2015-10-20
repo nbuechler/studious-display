@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 
-export default class Home extends Component {
+class Home extends Component {
   render() {
-    <div>Hello</div>
+    return (
+      <div>Hello</div>
+    );
   }
 }
+
+export default Home
