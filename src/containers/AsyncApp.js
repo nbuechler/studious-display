@@ -1,3 +1,5 @@
+import '../css/bootstrap.css';
+
 import React, { Component, PropTypes } from 'react';
 // import { connect } from 'react-redux';
 import { selectUser, fetchDataIfNeeded, invalidateUser } from '../actions/actions';
@@ -37,6 +39,10 @@ class AsyncApp extends Component {
 
   render () {
     // const { selectedUser, data, isFetching, lastUpdated } = this.props;
+    /*
+     * The are the route that get defined are in <Root>.
+     * This is a component that is used as the routh path.
+     */
     return (
       <div>
         <h1>App</h1>

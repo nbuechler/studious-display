@@ -9,12 +9,14 @@ import  Home  from './Home/Home';
 import  Login  from './Login/Login';
 import  Display  from './Display/Display';
 
-
 const store = configureStore();
 
 export default class Root extends Component {
   render() {
     // console.log(Login);
+    /*
+     * These are the routes that get defined, and the component is a param.
+     */
     return (
       <Provider store={store}>
         {
