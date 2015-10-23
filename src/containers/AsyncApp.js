@@ -1,3 +1,6 @@
+import '../css/bootstrap.css';
+import { Button, Nav, Navbar, NavBrand, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
+
 import React, { Component, PropTypes } from 'react';
 // import { connect } from 'react-redux';
 import { selectUser, fetchDataIfNeeded, invalidateUser } from '../actions/actions';
@@ -37,14 +40,27 @@ class AsyncApp extends Component {
 
   render () {
     // const { selectedUser, data, isFetching, lastUpdated } = this.props;
+    /*
+     * The are the route that get defined are in <Root>.
+     * This is a component that is used as the routh path.
+     */
     return (
       <div>
+        <Navbar>
+          <NavBrand><IndexLink to="/">studious-display</IndexLink></NavBrand>
+          <Nav>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/display">Display</Link></li>
+            <NavDropdown title="Change me!" id="basic-nav-dropdown">
+              <li><Link to="/a">a</Link></li>
+              <li><Link to="/b">b</Link></li>
+              <li><Link to="/c">c</Link></li>
+              <MenuItem divider />
+              <li><Link to="/d">d</Link></li>
+            </NavDropdown>
+          </Nav>
+        </Navbar>
         <h1>App</h1>
-        <ul>
-          <li><IndexLink to="/">Home</IndexLink></li>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/display">Display</Link></li>
-        </ul>
         {this.props.children}
       </div>
     );
