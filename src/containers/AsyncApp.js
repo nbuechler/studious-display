@@ -61,10 +61,6 @@ class AsyncApp extends Component {
           </Nav>
         </Navbar>
         <h1>App</h1>
-        <ul>
-          <li></li>
-
-        </ul>
         {this.props.children}
       </div>
     );
