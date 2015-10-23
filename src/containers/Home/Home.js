@@ -6,7 +6,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <Button bsStyle="primary" bsSize="large"> hey! </Button>
+        <Button bsStyle="primary" bsSize="large"> hey!</Button>
       </div>
     );
   }

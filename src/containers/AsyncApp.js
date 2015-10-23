@@ -1,4 +1,5 @@
 import '../css/bootstrap.css';
+import { Button, Nav, Navbar, NavBrand, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
 
 import React, { Component, PropTypes } from 'react';
 // import { connect } from 'react-redux';
@@ -45,11 +46,24 @@ class AsyncApp extends Component {
      */
     return (
       <div>
+        <Navbar>
+          <NavBrand><IndexLink to="/">studious-display</IndexLink></NavBrand>
+          <Nav>
+            <li><Link to="/login">Login</Link></li>
+            <li><Link to="/display">Display</Link></li>
+            <NavDropdown title="Change me!" id="basic-nav-dropdown">
+              <li><Link to="/a">a</Link></li>
+              <li><Link to="/b">b</Link></li>
+              <li><Link to="/c">c</Link></li>
+              <MenuItem divider />
+              <li><Link to="/d">d</Link></li>
+            </NavDropdown>
+          </Nav>
+        </Navbar>
         <h1>App</h1>
         <ul>
-          <li><IndexLink to="/">Home</IndexLink></li>
-          <li><Link to="/login">Login</Link></li>
-          <li><Link to="/display">Display</Link></li>
+          <li></li>
+
         </ul>
         {this.props.children}
       </div>
