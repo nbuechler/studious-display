@@ -1,5 +1,11 @@
 import '../css/bootstrap.css';
-import { Button, Nav, Navbar, NavBrand, NavItem, MenuItem, NavDropdown } from 'react-bootstrap';
+import { Button,
+         Nav,
+         Navbar,
+         NavBrand,
+         NavItem,
+         MenuItem,
+         NavDropdown } from 'react-bootstrap';
 
 import React, { Component, PropTypes } from 'react';
 // import { connect } from 'react-redux';
@@ -60,8 +66,9 @@ class AsyncApp extends Component {
             </NavDropdown>
           </Nav>
         </Navbar>
-        <h1>App</h1>
-        {this.props.children}
+        <div style={{margin: '5%', padding: '5%'}}>
+          {this.props.children}
+        </div>
       </div>
     );
   }
