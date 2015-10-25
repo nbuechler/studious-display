@@ -8,13 +8,16 @@ import {connect} from 'react-redux';
 //   authActions)
 class Login extends Component {
   static propTypes = {
-
+    // user: PropTypes.object,
+    // login: PropTypes.func,
+    // logout: PropTypes.func
   }
 
   handleSubmit(event) {
     event.preventDefault();
     const input = this.refs.username;
     const pswd = this.refs.password;
+    // this.props.login(input.value);
     input.value = '';
     pswd.value = '';
   }
