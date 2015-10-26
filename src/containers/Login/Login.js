@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch';
+
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 // import DocumentMeta from 'react-document-meta';
@@ -18,6 +20,14 @@ class Login extends Component {
     const input = this.refs.username;
     const pswd = this.refs.password;
     // this.props.login(input.value);
+
+    fetch(`http://localhost:3000/postRemoteLogin`, {
+      method: 'post',
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      body: 'email=' + input.value + '&password=' + pswd.value + '&host=' + location.origin
+    });
     input.value = '';
     pswd.value = '';
   }
