@@ -4,15 +4,22 @@ import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
 class Login extends Component {
-
-  state = {
-    showError: false,
-    errorMessage: '',
+  constructor(props) {
+    super(props)
+    this.state = {
+      showError: false,
+      showSuccess: false,
+      message: 'hello',
+    }
   }
 
   handleSubmit = (e) => {
+    const self = this;
     const input = this.refs.username;
     const pswd = this.refs.password;
+
+    console.log(this, 'here;');
+
 
     fetch(`http://localhost:3000/postRemoteLogin`, {
 
@@ -34,26 +41,24 @@ class Login extends Component {
         if(data.customCode == 2001){
           window.location.href = 'http://localhost:3001/#/display';
         } else if (data.customCode == 4031) {
-          this.setState({ showError: true });
-          this.setState({ errorMessage: 'tr' });
+          self.setState({showError: true});
+          self.setState({message: 'lots of errors'});
         } else if (data.customCode == 4032) {
-          this.setState({ showError: true });
-          this.setState({ errorMessage: 'rt' });
+          self.setState({showError: true});
+          self.setState({message: data.msg});
         } else {
           console.error('Unable to login, try again later');
         }
       }).catch(function(error) {
         console.error('Request failed', error);
       });
-    // input.value = '';
-    // pswd.value = '';
   }
 
   render() {
     return (
       <div>
         <h1>Login</h1>
-        { this.state.showError ? this.state.errorMessage : null }
+        { this.state.showError ? this.state.message : null }
         <div>
           <form className="login-form" onSubmit={::this.handleSubmit}>
             <input className="form-control" type="text" ref="username" placeholder="Enter a username"/>
