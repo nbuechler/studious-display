@@ -2,21 +2,15 @@ import fetch from 'isomorphic-fetch';
 
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
-// import DocumentMeta from 'react-document-meta';
-// import * as authActions from 'redux/modules/auth';
 
-// @connect(
-//   state => ({user: state.auth.user}),
-//   authActions)
 class Login extends Component {
-  static propTypes = {
-    // user: PropTypes.object,
-    // login: PropTypes.func,
-    // logout: PropTypes.func
+
+  state = {
+    showError: false,
+    errorMessage: '',
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
+  handleSubmit = (e) => {
     const input = this.refs.username;
     const pswd = this.refs.password;
 
@@ -34,11 +28,22 @@ class Login extends Component {
       })
       .then(function(data) {
         console.log('Request succeeded with JSON response', data);
-        if(data.status == 'Success'){
+        //4031, errors
+        //4032, error msg
+        //2001, success msg
+        if(data.customCode == 2001){
           window.location.href = 'http://localhost:3001/#/display';
+        } else if (data.customCode == 4031) {
+          this.setState({ showError: true });
+          this.setState({ errorMessage: 'tr' });
+        } else if (data.customCode == 4032) {
+          this.setState({ showError: true });
+          this.setState({ errorMessage: 'rt' });
+        } else {
+          console.error('Unable to login, try again later');
         }
       }).catch(function(error) {
-        console.log('Request failed', error);
+        console.error('Request failed', error);
       });
     // input.value = '';
     // pswd.value = '';
@@ -48,7 +53,7 @@ class Login extends Component {
     return (
       <div>
         <h1>Login</h1>
-        {true &&
+        { this.state.showError ? this.state.errorMessage : null }
         <div>
           <form className="login-form" onSubmit={::this.handleSubmit}>
             <input className="form-control" type="text" ref="username" placeholder="Enter a username"/>
@@ -59,7 +64,6 @@ class Login extends Component {
             </button>
           </form>
         </div>
-        }
       </div>
     );
   }
