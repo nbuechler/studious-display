@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
-import { Alert } from 'react-bootstrap';
+import { Alert, Col, Row, Grid } from 'react-bootstrap';
 
 class Login extends Component {
   constructor(props) {
@@ -63,10 +63,21 @@ class Login extends Component {
         <h1>Login</h1>
         <div>
           <form className="login-form" onSubmit={::this.handleSubmit}>
-            <input className="form-control" type="text" ref="username" placeholder="Enter a username"/>
-            <br></br>
-            <input className="form-control" type="password" ref="password" placeholder="Enter a username"/>
-            <br></br>
+            <Grid>
+              <label>Username</label>
+              <Row>
+                <Col lg={12}>
+                  <input className="form-control" type="text" ref="username" placeholder="Enter a username"/>
+                </Col>
+              </Row>
+              <br></br>
+              <label>Password</label>
+              <Row>
+                <Col lg={12}>
+                  <input className="form-control" type="password" ref="password" placeholder="Enter a password"/>
+                </Col>
+              </Row>
+            </Grid>
             <button className="btn btn-success pull-right" onClick={::this.handleSubmit}><i className="fa fa-sign-in"/>{' '}Log In
             </button>
           </form>
