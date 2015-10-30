@@ -3,6 +3,8 @@ import fetch from 'isomorphic-fetch';
 import React, {Component, PropTypes} from 'react';
 import {connect} from 'react-redux';
 
+import { Alert } from 'react-bootstrap';
+
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -42,7 +44,7 @@ class Login extends Component {
           window.location.href = 'http://localhost:3001/#/display';
         } else if (data.customCode == 4031) {
           self.setState({showError: true});
-          self.setState({message: 'lots of errors'});
+          self.setState({message: data.errors[0].msg});
         } else if (data.customCode == 4032) {
           self.setState({showError: true});
           self.setState({message: data.msg});
@@ -57,8 +59,8 @@ class Login extends Component {
   render() {
     return (
       <div>
+        { this.state.showError ? <Alert style={{textAlign: 'center'}} className="alert-danger col-lg-4 pull-right">{this.state.message}</Alert> : null }
         <h1>Login</h1>
-        { this.state.showError ? this.state.message : null }
         <div>
           <form className="login-form" onSubmit={::this.handleSubmit}>
             <input className="form-control" type="text" ref="username" placeholder="Enter a username"/>
