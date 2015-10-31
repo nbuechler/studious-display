@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch';
+
 import '../css/bootstrap.css';
 import { Button,
          Nav,
@@ -44,27 +46,70 @@ class AsyncApp extends Component {
   //   dispatch(fetchDataIfNeeded(selectedUser));
   // }
 
+  handleLogout = (e) => {
+    const self = this;
+    const input = this.refs.username;
+    const pswd = this.refs.password;
+
+    fetch(`http://localhost:3000/postRemoteLogout`, {
+
+      method: 'post',
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      body: 'token=' + null
+      })
+      .then(status)
+      .then(function json(response) {
+        return response.json()
+      })
+      .then(function(data) {
+        console.log('Request succeeded with JSON response', data);
+        //4031, errors
+        //4032, error msg
+        //2001, success msg
+        if(data.customCode == 2001){
+          localStorage.setItem('lastSetMsg', data.msg);
+          localStorage.setItem('currentSession', 0);
+          window.location.href = 'http://localhost:3001/#/logout';
+        } else {
+          console.error('Unable to logout, try again later');
+        }
+      }).catch(function(error) {
+        console.error('Request failed', error);
+      });
+  }
+
   render () {
     // const { selectedUser, data, isFetching, lastUpdated } = this.props;
     /*
      * The are the route that get defined are in <Root>.
      * This is a component that is used as the routh path.
      */
+
+     var loginButton, navOptions;
+     if (localStorage.getItem('currentSession') == '0') {
+       navOptions = <Nav><li className="pull-right" ><Link to="/login">Login</Link></li></Nav>
+     } else {
+       loginButton =
+       navOptions = (<Nav>
+                     <li><Link to="/display">Display</Link></li>
+                      <NavDropdown title="Change me!" id="basic-nav-dropdown">
+                       <li><Link to="/a">a</Link></li>
+                       <li><Link to="/b">b</Link></li>
+                       <li><Link to="/c">c</Link></li>
+                       <MenuItem divider />
+                       <li><Link to="/d">d</Link></li>
+                     </NavDropdown>
+                     <li className="pull-right" onClick={::this.handleLogout}><Link to="/logout">Logout</Link></li>
+                   </Nav>)
+     }
+
     return (
       <div>
         <Navbar>
           <NavBrand><IndexLink to="/">studious-display</IndexLink></NavBrand>
-          <Nav>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/display">Display</Link></li>
-            <NavDropdown title="Change me!" id="basic-nav-dropdown">
-              <li><Link to="/a">a</Link></li>
-              <li><Link to="/b">b</Link></li>
-              <li><Link to="/c">c</Link></li>
-              <MenuItem divider />
-              <li><Link to="/d">d</Link></li>
-            </NavDropdown>
-          </Nav>
+          {navOptions}
         </Navbar>
         <div style={{margin: '5%', padding: '5%'}}>
           {this.props.children}
