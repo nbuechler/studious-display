@@ -42,6 +42,7 @@ class Login extends Component {
         //2001, success msg
         if(data.customCode == 2001){
           window.location.href = 'http://localhost:3001/#/display';
+          localStorage.setItem('currentSession', 1);
         } else if (data.customCode == 4031) {
           self.setState({showError: true});
           self.setState({message: data.errors[0].msg});
@@ -78,7 +79,7 @@ class Login extends Component {
                 </Col>
               </Row>
             </Grid>
-            <button className="btn btn-success pull-right" onClick={::this.handleSubmit}><i className="fa fa-sign-in"/>{' '}Log In
+            <button className="btn btn-success pull-right" onClick={::this.handleSubmit}><i className="fa fa-sign-in"/>Log In
             </button>
           </form>
         </div>
