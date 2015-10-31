@@ -1,3 +1,5 @@
+import fetch from 'isomorphic-fetch';
+
 import '../css/bootstrap.css';
 import { Button,
          Nav,
@@ -44,6 +46,44 @@ class AsyncApp extends Component {
   //   dispatch(fetchDataIfNeeded(selectedUser));
   // }
 
+  handleLogout = (e) => {
+    const self = this;
+    const input = this.refs.username;
+    const pswd = this.refs.password;
+
+    fetch(`http://localhost:3000/postRemoteLogout`, {
+
+      method: 'post',
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
+      },
+      body: 'email=' + 'input.value' + '&password=' + 'pswd.value'
+      })
+      .then(status)
+      .then(function json(response) {
+        return response.json()
+      })
+      .then(function(data) {
+        console.log('Request succeeded with JSON response', data);
+        //4031, errors
+        //4032, error msg
+        //2001, success msg
+        if(data.customCode == 2001){
+          // window.location.href = 'http://localhost:3001/#/display';
+        } else if (data.customCode == 4031) {
+          self.setState({showError: true});
+          self.setState({message: data.errors[0].msg});
+        } else if (data.customCode == 4032) {
+          self.setState({showError: true});
+          self.setState({message: data.msg});
+        } else {
+          console.error('Unable to login, try again later');
+        }
+      }).catch(function(error) {
+        console.error('Request failed', error);
+      });
+  }
+
   render () {
     // const { selectedUser, data, isFetching, lastUpdated } = this.props;
     /*
@@ -56,6 +96,7 @@ class AsyncApp extends Component {
           <NavBrand><IndexLink to="/">studious-display</IndexLink></NavBrand>
           <Nav>
             <li><Link to="/login">Login</Link></li>
+            <li onClick={::this.handleLogout}><Link to="/logout">Logout</Link></li>
             <li><Link to="/display">Display</Link></li>
             <NavDropdown title="Change me!" id="basic-nav-dropdown">
               <li><Link to="/a">a</Link></li>
