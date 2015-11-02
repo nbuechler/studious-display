@@ -112,7 +112,7 @@ class AsyncApp extends Component {
     return (
       <div>
         <Navbar className="navbar-inverse">
-          <NavBrand></NavBrand>
+          <NavBrand><Link to="/">studous-display</Link></NavBrand>
           {navOptions}
         </Navbar>
         <div style={{margin: '5%', padding: '5%'}}>
