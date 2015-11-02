@@ -20,9 +20,6 @@ class Login extends Component {
     const input = this.refs.username;
     const pswd = this.refs.password;
 
-    console.log(this, 'here;');
-
-
     fetch(`http://localhost:3000/postRemoteLogin`, {
 
       method: 'post',
@@ -67,19 +64,19 @@ class Login extends Component {
             <Grid>
               <label>Username</label>
               <Row>
-                <Col lg={12}>
+                <Col xs={6} sm={6} md={6} lg={9}>
                   <input className="form-control" type="text" ref="username" placeholder="Enter a username"/>
                 </Col>
               </Row>
               <br></br>
               <label>Password</label>
               <Row>
-                <Col lg={12}>
+                <Col xs={6} sm={6} md={6} lg={9}>
                   <input className="form-control" type="password" ref="password" placeholder="Enter a password"/>
                 </Col>
               </Row>
             </Grid>
-            <button className="btn btn-success pull-right" onClick={::this.handleSubmit}><i className="fa fa-sign-in"/>Log In
+            <button type="submit" className="btn btn-success pull-right" onClick={::this.handleSubmit}><i className="fa fa-sign-in"/>Log In
             </button>
           </form>
         </div>
