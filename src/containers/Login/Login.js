@@ -76,8 +76,8 @@ class Login extends Component {
                 </Col>
               </Row>
             </Grid>
-            <button type="submit" className="btn btn-success pull-right" onClick={::this.handleSubmit}><i className="fa fa-sign-in"/>Log In
-            </button>
+            <a type="submit" className="btn btn-success pull-right" onClick={::this.handleSubmit}><i className="fa fa-sign-in"/>Log In
+            </a>
           </form>
         </div>
       </div>
