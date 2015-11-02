@@ -90,15 +90,14 @@ class AsyncApp extends Component {
      var loginButton, navOptions;
      if (localStorage.getItem('currentSession') == '0') {
        navOptions = <Nav>
-                      <li><a href="http://evgroio.herokuapp.com/">evgroio</a></li>
                     </Nav>
        loginButton = <Nav right>
+                      <li><a href="http://evgroio.herokuapp.com/">evgroio</a></li>
                       <li><Link to="/login">Login</Link></li>
                      </Nav>
 
      } else {
        navOptions = (<Nav>
-                     <li><a href="http://evgroio.herokuapp.com/">evgroio</a></li>
                      <li><Link to="/display">Display</Link></li>
                       <NavDropdown title="Change me!" id="basic-nav-dropdown">
                        <li><Link to="/a">a</Link></li>
@@ -109,6 +108,7 @@ class AsyncApp extends Component {
                      </NavDropdown>
                    </Nav>)
        loginButton = <Nav right>
+                      <li><a href="http://evgroio.herokuapp.com/">evgroio</a></li>
                       <li onClick={::this.handleLogout}><Link to="/logout">Logout</Link></li>
                      </Nav>
      }
