@@ -90,13 +90,14 @@ class AsyncApp extends Component {
      var loginButton, navOptions;
      if (localStorage.getItem('currentSession') == '0') {
        navOptions = <Nav>
-                      <li className="pull-right" ><Link to="/login">Login</Link></li>
-                      <li><a href="http://evgroio.herokuapp.com/">evgroio</a></li>
                     </Nav>
+       loginButton = <Nav right>
+                      <li><a href="http://evgroio.herokuapp.com/">evgroio</a></li>
+                      <li><Link to="/login">Login</Link></li>
+                     </Nav>
+
      } else {
-       loginButton =
        navOptions = (<Nav>
-                     <li><a href="http://evgroio.herokuapp.com/">evgroio</a></li>
                      <li><Link to="/display">Display</Link></li>
                       <NavDropdown title="Change me!" id="basic-nav-dropdown">
                        <li><Link to="/a">a</Link></li>
@@ -105,15 +106,19 @@ class AsyncApp extends Component {
                        <MenuItem divider />
                        <li><Link to="/d">d</Link></li>
                      </NavDropdown>
-                     <li className="pull-right" onClick={::this.handleLogout}><Link to="/logout">Logout</Link></li>
                    </Nav>)
+       loginButton = <Nav right>
+                      <li><a href="http://evgroio.herokuapp.com/">evgroio</a></li>
+                      <li onClick={::this.handleLogout}><Link to="/logout">Logout</Link></li>
+                     </Nav>
      }
 
     return (
       <div>
         <Navbar className="navbar-inverse">
-          <NavBrand></NavBrand>
+          <NavBrand><Link to="/">studous-display</Link></NavBrand>
           {navOptions}
+          {loginButton}
         </Navbar>
         <div style={{margin: '5%', padding: '5%'}}>
           {this.props.children}
