@@ -93,7 +93,8 @@ class AsyncApp extends Component {
                     </Nav>
        loginButton = <Nav right>
                       <li><a href="http://evgroio.herokuapp.com/">evgroio</a></li>
-                      <li><Link to="/login">Login</Link></li>
+                      <li><Link to="/signup">Sign Up</Link></li>
+                      <li><Link to="/login">Sign In</Link></li>
                      </Nav>
 
      } else {
@@ -109,7 +110,7 @@ class AsyncApp extends Component {
                    </Nav>)
        loginButton = <Nav right>
                       <li><a href="http://evgroio.herokuapp.com/">evgroio</a></li>
-                      <li onClick={::this.handleLogout}><Link to="/logout">Logout</Link></li>
+                      <li onClick={::this.handleLogout}><Link to="/logout">Sign out</Link></li>
                      </Nav>
      }
 

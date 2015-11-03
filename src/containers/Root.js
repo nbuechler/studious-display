@@ -6,6 +6,7 @@ import AsyncApp from './AsyncApp';
 import {IndexRoute, Route, Router} from 'react-router';
 
 import  Home  from './Home/Home';
+import  Signup  from './Signup/Signup';
 import  Login  from './Login/Login';
 import  Logout  from './Logout/Logout';
 import  Display  from './Display/Display';
@@ -24,6 +25,7 @@ export default class Root extends Component {
           <Router>
             <Route path="/" component={AsyncApp}>
               <IndexRoute component={Home}/>
+              <Route path="/signup" component={Signup}/>
               <Route path="/login" component={Login}/>
               <Route path="/logout" component={Logout}/>
               <Route path="/display" component={Display}/>

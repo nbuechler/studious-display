@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import { Alert, Col, Row, Grid } from 'react-bootstrap';
 
-class Login extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -58,7 +58,7 @@ class Login extends Component {
     return (
       <div>
         { this.state.showError ? <Alert style={{textAlign: 'center'}} className="alert-danger col-lg-4 pull-right">{this.state.message}</Alert> : null }
-        <h1>Sign In</h1>
+        <h1>Sign Up</h1>
         <div>
           <form className="login-form" onSubmit={::this.handleSubmit}>
             <Grid>
@@ -76,7 +76,7 @@ class Login extends Component {
                 </Col>
               </Row>
             </Grid>
-            <a type="submit" className="btn btn-success pull-right" onClick={::this.handleSubmit}><i className="fa fa-sign-in"/>Sign In
+            <a type="submit" className="btn btn-success pull-right" onClick={::this.handleSubmit}><i className="fa fa-sign-in"/>Sign Up
             </a>
           </form>
         </div>
@@ -85,4 +85,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Signup;
