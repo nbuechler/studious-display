@@ -93,6 +93,7 @@ class AsyncApp extends Component {
                     </Nav>
        loginButton = <Nav right>
                       <li><a href="http://evgroio.herokuapp.com/">evgroio</a></li>
+                      <li><Link to="/signup">Sign Up</Link></li>
                       <li><Link to="/login">Sign In</Link></li>
                      </Nav>
 

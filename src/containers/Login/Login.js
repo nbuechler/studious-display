@@ -58,7 +58,7 @@ class Login extends Component {
     return (
       <div>
         { this.state.showError ? <Alert style={{textAlign: 'center'}} className="alert-danger col-lg-4 pull-right">{this.state.message}</Alert> : null }
-        <h1>Sign in</h1>
+        <h1>Sign In</h1>
         <div>
           <form className="login-form" onSubmit={::this.handleSubmit}>
             <Grid>
