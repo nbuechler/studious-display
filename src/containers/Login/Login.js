@@ -58,7 +58,7 @@ class Login extends Component {
     return (
       <div>
         { this.state.showError ? <Alert style={{textAlign: 'center'}} className="alert-danger col-lg-4 pull-right">{this.state.message}</Alert> : null }
-        <h1>Login</h1>
+        <h1>Sign in</h1>
         <div>
           <form className="login-form" onSubmit={::this.handleSubmit}>
             <Grid>
@@ -76,7 +76,7 @@ class Login extends Component {
                 </Col>
               </Row>
             </Grid>
-            <a type="submit" className="btn btn-success pull-right" onClick={::this.handleSubmit}><i className="fa fa-sign-in"/>Log In
+            <a type="submit" className="btn btn-success pull-right" onClick={::this.handleSubmit}><i className="fa fa-sign-in"/>Sign In
             </a>
           </form>
         </div>
