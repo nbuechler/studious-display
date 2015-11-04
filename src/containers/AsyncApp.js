@@ -121,7 +121,7 @@ class AsyncApp extends Component {
           {navOptions}
           {loginButton}
         </Navbar>
-        <div style={{margin: '5%', padding: '5%'}}>
+        <div className="container" style={{marginTop: '5%'}}>
           {this.props.children}
         </div>
       </div>
