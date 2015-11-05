@@ -19,14 +19,15 @@ class Signup extends Component {
     const self = this;
     const input = this.refs.username;
     const pswd = this.refs.password;
+    const confirmPswd = this.refs.confirmPswd;
 
-    fetch(`http://localhost:3000/postRemoteLogin`, {
+    fetch(`http://localhost:3000/postRemoteSignup`, {
 
       method: 'post',
       headers: {
         'Content-type': 'application/x-www-form-urlencoded; charset=UTF-8'
       },
-      body: 'email=' + input.value + '&password=' + pswd.value
+      body: 'email=' + input.value + '&password=' + pswd.value + '&confirmPassword=' + confirmPswd.value
       })
       .then(status)
       .then(function json(response) {
@@ -73,6 +74,13 @@ class Signup extends Component {
               <Row>
                 <Col xs={6} sm={6} md={6} lg={9}>
                   <input className="form-control" type="password" ref="password" placeholder="Enter a password"/>
+                </Col>
+              </Row>
+              <br></br>
+              <label>Confirm Password</label>
+              <Row>
+                <Col xs={6} sm={6} md={6} lg={9}>
+                  <input className="form-control" type="password" ref="confirmPswd" placeholder="Confirm your password"/>
                 </Col>
               </Row>
             </Grid>
