@@ -37,6 +37,9 @@ class Login extends Component {
         //4031, errors
         //4032, error msg
         //2001, success msg
+        /**
+         * TODO: It may be worth considering creating a service for this to handle all error codes... but later.
+         */
         if(data.customCode == 2001){
           window.location.href = 'http://localhost:3001/#/display';
           localStorage.setItem('currentSession', 1);
