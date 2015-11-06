@@ -15,6 +15,10 @@ const store = configureStore();
 
 export default class Root extends Component {
   render() {
+    window.addEventListener('unload', function(){
+     localStorage.setItem('currentSession', 0);
+     localStorage.setItem('lastSetMsg', null);
+    });
     // console.log(Login);
     /*
      * These are the routes that get defined, and the component is a param.
