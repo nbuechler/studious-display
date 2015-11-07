@@ -50,7 +50,7 @@ class Wrapper extends React.Component {
     // var {props} = this;
     // var color = ['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30'];
     return (
-      <svg style={{border: '3px solid black', padding: '30px', background: '#222'}} width={this.props.width} height={this.props.height}>{this.props.children}</svg>
+      <svg style={{border: '0px solid black', padding: '0px', background: '#222'}} width={this.props.width} height={this.props.height}>{this.props.children}</svg>
     );
 
   }
