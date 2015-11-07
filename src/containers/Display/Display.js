@@ -39,23 +39,31 @@ class Display extends Component {
   render () {
     const { selectedUser, data, isFetching, lastUpdated } = this.props;
     return (
-      <div>
+      <div style={{paddingBottom: '100px'}}>
+        <h1>Welcome Back!</h1>
+
+        <hr></hr>
         <Picker value={selectedUser}
                 onChange={this.handleChange}
                 options={['foo01']} />
         <p>
+            <br></br>
           {lastUpdated &&
             <span>
               Last updated at {new Date(lastUpdated).toLocaleTimeString()}.
               {' '}
             </span>
           }
+            <br></br>
+            <br></br>
           {!isFetching &&
             <a href='#'
+               className='btn btn-default'
                onClick={this.handleRefreshClick}>
               Refresh
             </a>
           }
+            <hr></hr>
         </p>
         {isFetching && data.length === 0 &&
           <h2>Loading...</h2>
