@@ -43,10 +43,14 @@ class Display extends Component {
         <h1>Welcome Back!</h1>
 
         <hr></hr>
+        {data.length > 0 &&
         <Picker value={selectedUser}
                 onChange={this.handleChange}
-                options={['foo01']} />
-        <p>
+                options={['foo01']}
+                descriptionPrimary={data[2].description_primary}
+                descriptionSecondary={data[3].description_secondary} />
+        }
+          <p style={{borderTop: 'solid #BBB 1px', margin: '50px'}}>
             <br></br>
           {lastUpdated &&
             <span>
@@ -63,7 +67,6 @@ class Display extends Component {
               Refresh
             </a>
           }
-            <hr></hr>
         </p>
         {isFetching && data.length === 0 &&
           <h2>Loading...</h2>

@@ -1,10 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 
-import { Grid, Row, Col } from 'react-bootstrap';
+import { Grid, Row, Col, Panel } from 'react-bootstrap';
 
 export default class Picker extends Component {
   render () {
     const { value, onChange, options } = this.props;
+
+    const title = (
+      <h3>Description</h3>
+    );
 
     return (
       <Grid>
@@ -15,10 +19,11 @@ export default class Picker extends Component {
         </Row>
         <Row>
           <Col xs={12} sm={12} md={6} className='pull-left'>
-            <div className='well'>
-              <label>Description:</label>
-              <p>This is a description about the graph and it should eventually be pretty dynamically generated.</p>
-              <p>This is another line for the description about the graph and it should eventually be pretty dynamically generated.</p>
+            <div>
+              <Panel header={title}>
+                <p>{this.props.descriptionPrimary}</p>
+                <p>{this.props.descriptionSecondary}</p>
+              </Panel>
             </div>
           </Col>
           <Col xs={12} sm={12} md={4} className='pull-right'>
