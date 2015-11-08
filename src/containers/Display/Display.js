@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { selectUser, fetchDataIfNeeded, invalidateUser } from '../../actions/actions';
+import { selectDataset, fetchDataIfNeeded, invalidateDataset } from '../../actions/actions';
 import Picker from '../../components/Picker';
 import PieChart from '../../components/d3charts/PieChart';
 import BarChart from '../../components/d3charts/BarChart';
@@ -13,40 +13,40 @@ class Display extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, selectedUser } = this.props;
-    dispatch(fetchDataIfNeeded(selectedUser));
+    const { dispatch, selectedDataset } = this.props;
+    dispatch(fetchDataIfNeeded(selectedDataset));
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedUser !== this.props.selectedUser) {
-      const { dispatch, selectedUser } = nextProps;
-      dispatch(fetchDataIfNeeded(selectedUser));
+    if (nextProps.selectedDataset !== this.props.selectedDataset) {
+      const { dispatch, selectedDataset } = nextProps;
+      dispatch(fetchDataIfNeeded(selectedDataset));
     }
   }
 
-  handleChange(nextUser) {
-    this.props.dispatch(selectUser(nextUser));
+  handleChange(nextDataset) {
+    this.props.dispatch(selectDataset(nextDataset));
   }
 
   handleRefreshClick(e) {
     e.preventDefault();
 
-    const { dispatch, selectedUser } = this.props;
-    dispatch(invalidateUser(selectedUser));
-    dispatch(fetchDataIfNeeded(selectedUser));
+    const { dispatch, selectedDataset } = this.props;
+    dispatch(invalidateDataset(selectedDataset));
+    dispatch(fetchDataIfNeeded(selectedDataset));
   }
 
   render () {
-    const { selectedUser, data, isFetching, lastUpdated } = this.props;
+    const { selectedDataset, data, isFetching, lastUpdated } = this.props;
     return (
       <div style={{paddingBottom: '100px'}}>
         <h1>Welcome Back!</h1>
 
         <hr></hr>
         {data.length > 0 &&
-        <Picker value={selectedUser}
+        <Picker value={selectedDataset}
                 onChange={this.handleChange}
-                options={['foo01']}
+                options={['foo01', 'foo02']}
                 descriptionPrimary={data[2].description_primary}
                 descriptionSecondary={data[3].description_secondary} />
         }
@@ -95,7 +95,7 @@ class Display extends Component {
 }
 
 Display.propTypes = {
-  selectedUser: PropTypes.string.isRequired,
+  selectedDataset: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
@@ -103,18 +103,18 @@ Display.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { selectedUser, dataByUser } = state;
+  const { selectedDataset, dataByDataset } = state;
   const {
     isFetching,
     lastUpdated,
     items: data
-  } = dataByUser[selectedUser] || {
+  } = dataByDataset[selectedDataset] || {
     isFetching: true,
     items: []
   };
 
   return {
-    selectedUser,
+    selectedDataset,
     data,
     isFetching,
     lastUpdated
