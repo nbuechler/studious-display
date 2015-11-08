@@ -17,8 +17,8 @@ export default class Picker extends Component {
           <Col xs={12} sm={12} md={6} className='pull-left'>
             <div className='well'>
               <label>Description:</label>
-              <p>This is a description about the graph and it should eventually be pretty dynamically generated.</p>
-              <p>This is another line for the description about the graph and it should eventually be pretty dynamically generated.</p>
+              <p>{this.props.descriptionPrimary}</p>
+              <p>{this.props.descriptionSecondary}</p>
             </div>
           </Col>
           <Col xs={12} sm={12} md={4} className='pull-right'>
