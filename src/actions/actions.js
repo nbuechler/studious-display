@@ -2,55 +2,55 @@ import fetch from 'isomorphic-fetch';
 
 export const REQUEST_DATA = 'REQUEST_DATA';
 export const RECEIVE_DATA = 'RECEIVE_DATA';
-export const SELECT_USER = 'SELECT_USER';
-export const INVALIDATE_USER = 'INVALIDATE_USER';
+export const SELECT_DATASET = 'SELECT_DATASET';
+export const INVALIDATE_DATASET = 'INVALIDATE_DATASET';
 
-export function selectUSER(user) {
+export function selectDataset(dataset) {
   return {
-    type: SELECT_USER,
-    user
+    type: SELECT_DATASET,
+    dataset
   };
 }
 
-export function invalidateUser(user) {
+export function invalidateDataset(dataset) {
   return {
-    type: INVALIDATE_USER,
-    user
+    type: INVALIDATE_DATASET,
+    dataset
   };
 }
 
-function requestData(user) {
+function requestData(dataset) {
   return {
     type: REQUEST_DATA,
-    user
+    dataset
   };
 }
 
 //This is the Map part
-function receiveData(user, json) {
+function receiveData(dataset, json) {
   console.log(json);
   return {
     type: RECEIVE_DATA,
-    user,
+    dataset,
     data: json.all,
     receivedAt: Date.now()
   };
 }
 
-function fetchData(user) {
+function fetchData(dataset) {
   return dispatch => {
-    dispatch(requestData(user));
+    dispatch(requestData(dataset));
     // return fetch(`http://www.user.com/r/${user}.json`)
     // return fetch(`http://127.0.0.1:5000/${user}`)
 
-    return fetch(`http://localhost:3000/${user}`)
+    return fetch(`http://localhost:3000/${dataset}`)
       .then(req => req.json())
-      .then(json => dispatch(receiveData(user, json)));
+      .then(json => dispatch(receiveData(dataset, json)));
   };
 }
 
-function shouldFetchData(state, user) {
-  const data = state.dataByUser[user];
+function shouldFetchData(state, dataset) {
+  const data = state.dataByDataset[dataset];
   if (!data) {
     return true;
   } else if (data.isFetching) {
@@ -60,10 +60,10 @@ function shouldFetchData(state, user) {
   }
 }
 
-export function fetchDataIfNeeded(user) {
+export function fetchDataIfNeeded(dataset) {
   return (dispatch, getState) => {
-    if (shouldFetchData(getState(), user)) {
-      return dispatch(fetchData(user));
+    if (shouldFetchData(getState(), dataset)) {
+      return dispatch(fetchData(dataset));
     }
   };
 }
