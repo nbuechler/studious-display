@@ -38,6 +38,13 @@ class Display extends Component {
 
   render () {
     const { selectedDataset, data, isFetching, lastUpdated } = this.props;
+
+    var pieCharts = [];
+    if (data[0] != null) {
+      for (var i = 0; i < data[0].pies.length; i++) {
+          pieCharts.push(<PieChart data={data[0].pies[i].data} />);
+      }
+    }
     return (
       <div style={{paddingBottom: '100px'}}>
         <h1>Welcome Back!</h1>
@@ -81,11 +88,7 @@ class Display extends Component {
             </div>
             <br></br>
             <div style={{ textAlign: 'center' }}>
-              <PieChart data={data[0].pies[0].data} />
-              <PieChart data={data[0].pies[1].data} />
-              <PieChart data={data[0].pies[2].data} />
-              <PieChart data={data[0].pies[3].data} />
-              <PieChart data={data[0].pies[4].data} />
+              {pieCharts}
             </div>
           </div>
         }
