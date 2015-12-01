@@ -43,7 +43,11 @@ function fetchData(dataset) {
     // return fetch(`http://www.user.com/r/${user}.json`)
     // return fetch(`http://127.0.0.1:5000/${user}`)
 
-    return fetch(`http://localhost:3000/${dataset}`)
+    var options = {
+      credentials: localStorage.getItem('credentials')
+    }
+
+    return fetch(`http://localhost:3000/${dataset}/?credentials=` + options.credentials)
       .then(req => req.json())
       .then(json => dispatch(receiveData(dataset, json)));
   };
