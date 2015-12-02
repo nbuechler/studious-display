@@ -4,7 +4,7 @@ import {
   REQUEST_DATA, RECEIVE_DATA
 } from './actions/actions';
 
-function selectedDataset(state = 'foo02', action) {
+function selectedDataset(state = 'logsOverview', action) {
   switch (action.type) {
   case SELECT_DATASET:
     return action.dataset;

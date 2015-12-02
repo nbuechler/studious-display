@@ -14,7 +14,9 @@ export default class Picker extends Component {
       <Grid>
         <Row>
           <Col xs={12} sm={12} md={6}>
-            <h1 className='alert alert-success' style={{textAlign: 'center'}}>{value.toUpperCase()}</h1>
+            <h1 className='alert alert-success' style={{textAlign: 'center'}}>
+              {this.props.title}
+            </h1>
           </Col>
         </Row>
         <Row>
@@ -33,8 +35,8 @@ export default class Picker extends Component {
                       className='form-control'
                       style={{minWidth: '300px', background: '#111', border: 'white solid 1px'}}>
                 {options.map(option =>
-                  <option value={option} key={option}>
-                    {option}
+                  <option value={this.props.apiOptions[option]} key={this.props.apiOptions[option]}>
+                    {this.props.displayOptions[option]}
                   </option>)
                 }
               </select>
