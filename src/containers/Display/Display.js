@@ -53,9 +53,12 @@ class Display extends Component {
         {data.length > 0 &&
         <Picker value={selectedDataset}
                 onChange={this.handleChange}
-                options={['foo01', 'foo02']}
+                options={[0, 1]}
+                apiOptions={['logsOverview', 'foo02']}
+                displayOptions={['View all logs', 'foo02']}
                 descriptionPrimary={data[2].description_primary}
-                descriptionSecondary={data[3].description_secondary} />
+                descriptionSecondary={data[3].description_secondary}
+                title={data[4].title} />
         }
           <p style={{borderTop: 'solid #BBB 1px', margin: '50px'}}>
             <br></br>
