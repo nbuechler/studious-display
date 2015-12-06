@@ -44,7 +44,7 @@ class Signup extends Component {
         if(data.customCode == 2001){
           localStorage.setItem('currentSession', 1);
           localStorage.setItem('credentials', data._id);
-          window.location.href = 'http://localhost:3001/#/display';
+          window.location.href = 'http://localhost:3001/#/logDisplay';
         } else if (data.customCode == 4031) {
           self.setState({showError: true});
           self.setState({message: data.errors[0].msg});

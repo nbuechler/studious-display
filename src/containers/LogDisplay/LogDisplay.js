@@ -47,7 +47,7 @@ class Display extends Component {
     }
     return (
       <div style={{paddingBottom: '100px'}}>
-        <h1>Welcome Back!</h1>
+        <h1>Log Perspective</h1>
 
         <hr></hr>
         {data.length > 0 &&

@@ -62,16 +62,15 @@ class AsyncApp extends Component {
        navOptions = <Nav>
                     </Nav>
        loginButton = <Nav right>
-                      <li><a href="http://evgroio.herokuapp.com/">evgroio</a></li>
+                      <li><a href="http://localhost:2000/">log-grower</a></li>
                       <li><Link to="/signup">Sign Up</Link></li>
                       <li><Link to="/login">Sign In</Link></li>
                      </Nav>
 
      } else {
        navOptions = (<Nav>
-                     <li><Link to="/display">Display</Link></li>
-                      <NavDropdown title="Change me!" id="basic-nav-dropdown">
-                       <li><Link to="/a">a</Link></li>
+                      <NavDropdown title="Perspectives" id="basic-nav-dropdown">
+                       <li><Link to="/logDisplay">Log Perspective</Link></li>
                        <li><Link to="/b">b</Link></li>
                        <li><Link to="/c">c</Link></li>
                        <MenuItem divider />
@@ -79,7 +78,7 @@ class AsyncApp extends Component {
                      </NavDropdown>
                    </Nav>)
        loginButton = <Nav right>
-                      <li><a href="http://evgroio.herokuapp.com/">evgroio</a></li>
+                      <li><a href="http://localhost:2000/">log-grower</a></li>
                       <li onClick={::this.handleLogout}><Link to="/logout">Sign out</Link></li>
                      </Nav>
      }
