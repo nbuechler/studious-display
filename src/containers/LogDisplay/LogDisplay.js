@@ -13,14 +13,14 @@ class Display extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, selectedDataset } = this.props;
-    dispatch(fetchDataIfNeeded(selectedDataset));
+    const { dispatch, selectedLogDataset } = this.props;
+    dispatch(fetchDataIfNeeded(selectedLogDataset));
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedDataset !== this.props.selectedDataset) {
-      const { dispatch, selectedDataset } = nextProps;
-      dispatch(fetchDataIfNeeded(selectedDataset));
+    if (nextProps.selectedLogDataset !== this.props.selectedLogDataset) {
+      const { dispatch, selectedLogDataset } = nextProps;
+      dispatch(fetchDataIfNeeded(selectedLogDataset));
     }
   }
 
@@ -31,13 +31,13 @@ class Display extends Component {
   handleRefreshClick(e) {
     e.preventDefault();
 
-    const { dispatch, selectedDataset } = this.props;
-    dispatch(invalidateDataset(selectedDataset));
-    dispatch(fetchDataIfNeeded(selectedDataset));
+    const { dispatch, selectedLogDataset } = this.props;
+    dispatch(invalidateDataset(selectedLogDataset));
+    dispatch(fetchDataIfNeeded(selectedLogDataset));
   }
 
   render () {
-    const { selectedDataset, data, isFetching, lastUpdated } = this.props;
+    const { selectedLogDataset, data, isFetching, lastUpdated } = this.props;
 
     var pieCharts = [];
     if (data[0] != null) {
@@ -47,13 +47,13 @@ class Display extends Component {
     }
     return (
       <div style={{paddingBottom: '100px'}}>
-        <h1>Welcome Back!</h1>
+        <h1>Log Perspective</h1>
 
         <hr></hr>
         {data.length > 0 &&
-        <Picker value={selectedDataset}
+        <Picker value={selectedLogDataset}
                 onChange={this.handleChange}
-                options={[0, 1]}
+                options={['0', '1']}
                 apiOptions={['logsOverview', 'foo02']}
                 displayOptions={['View all logs', 'foo02']}
                 descriptionPrimary={data[2].description_primary}
@@ -101,7 +101,7 @@ class Display extends Component {
 }
 
 Display.propTypes = {
-  selectedDataset: PropTypes.string.isRequired,
+  selectedLogDataset: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
@@ -109,18 +109,18 @@ Display.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { selectedDataset, dataByDataset } = state;
+  const { selectedLogDataset, dataByDataset } = state;
   const {
     isFetching,
     lastUpdated,
     items: data
-  } = dataByDataset[selectedDataset] || {
+  } = dataByDataset[selectedLogDataset] || {
     isFetching: true,
     items: []
   };
 
   return {
-    selectedDataset,
+    selectedLogDataset,
     data,
     isFetching,
     lastUpdated

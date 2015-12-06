@@ -4,10 +4,28 @@ import {
   REQUEST_DATA, RECEIVE_DATA
 } from './actions/actions';
 
-function selectedDataset(state = 'logsOverview', action) {
+function selectedLogDataset(state = 'logsOverview', action) {
   switch (action.type) {
   case SELECT_DATASET:
-    return action.dataset;
+    return action.dataset; // these need to be smarter, maybe?
+  default:
+    return state;
+  }
+}
+
+function selectedExperienceDataset(state = 'experiencesOverview', action) {
+  switch (action.type) {
+  case SELECT_DATASET:
+    return action.dataset; // these need to be smarter, maybe?
+  default:
+    return state;
+  }
+}
+
+function selectedActivityDataset(state = 'activitiesOverview', action) {
+  switch (action.type) {
+  case SELECT_DATASET:
+    return action.dataset; // these need to be smarter, maybe?
   default:
     return state;
   }
@@ -55,7 +73,9 @@ function dataByDataset(state = { }, action) {
 
 const rootReducer = combineReducers({
   dataByDataset,
-  selectedDataset
+  selectedLogDataset,
+  selectedExperienceDataset,
+  selectedActivityDataset
 });
 
 export default rootReducer;
