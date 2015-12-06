@@ -13,14 +13,14 @@ class Display extends Component {
   }
 
   componentDidMount() {
-    const { dispatch, selectedDataset } = this.props;
-    dispatch(fetchDataIfNeeded(selectedDataset));
+    const { dispatch, selectedActivityDataset } = this.props;
+    dispatch(fetchDataIfNeeded(selectedActivityDataset));
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedDataset !== this.props.selectedDataset) {
-      const { dispatch, selectedDataset } = nextProps;
-      dispatch(fetchDataIfNeeded(selectedDataset));
+    if (nextProps.selectedActivityDataset !== this.props.selectedActivityDataset) {
+      const { dispatch, selectedActivityDataset } = nextProps;
+      dispatch(fetchDataIfNeeded(selectedActivityDataset));
     }
   }
 
@@ -31,13 +31,13 @@ class Display extends Component {
   handleRefreshClick(e) {
     e.preventDefault();
 
-    const { dispatch, selectedDataset } = this.props;
-    dispatch(invalidateDataset(selectedDataset));
-    dispatch(fetchDataIfNeeded(selectedDataset));
+    const { dispatch, selectedActivityDataset } = this.props;
+    dispatch(invalidateDataset(selectedActivityDataset));
+    dispatch(fetchDataIfNeeded(selectedActivityDataset));
   }
 
   render () {
-    const { selectedDataset, data, isFetching, lastUpdated } = this.props;
+    const { selectedActivityDataset, data, isFetching, lastUpdated } = this.props;
 
     var pieCharts = [];
     if (data[0] != null) {
@@ -51,7 +51,7 @@ class Display extends Component {
 
         <hr></hr>
         {data.length > 0 &&
-        <Picker value={selectedDataset}
+        <Picker value={selectedActivityDataset}
                 onChange={this.handleChange}
                 options={['0', '1']}
                 apiOptions={['activitiesOverview', 'foo02']}
@@ -102,7 +102,7 @@ class Display extends Component {
 }
 
 Display.propTypes = {
-  selectedDataset: PropTypes.string.isRequired,
+  selectedActivityDataset: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
   isFetching: PropTypes.bool.isRequired,
   lastUpdated: PropTypes.number,
@@ -110,18 +110,18 @@ Display.propTypes = {
 };
 
 function mapStateToProps(state) {
-  const { selectedDataset, dataByDataset } = state;
+  const { selectedActivityDataset, dataByDataset } = state;
   const {
     isFetching,
     lastUpdated,
     items: data
-  } = dataByDataset[selectedDataset] || {
+  } = dataByDataset[selectedActivityDataset] || {
     isFetching: true,
     items: []
   };
 
   return {
-    selectedDataset,
+    selectedActivityDataset,
     data,
     isFetching,
     lastUpdated
