@@ -39,12 +39,6 @@ class Display extends Component {
   render () {
     const { selectedActivityDataset, data, isFetching, lastUpdated } = this.props;
 
-    var pieCharts = [];
-    if (data[0] != null) {
-      for (var i = 0; i < data[0].pies.length; i++) {
-          pieCharts.push(<PieChart data={data[0].pies[i].data} />);
-      }
-    }
     return (
       <div style={{paddingBottom: '100px'}}>
         <h1>Activity Perspective</h1>
