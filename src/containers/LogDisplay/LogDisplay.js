@@ -53,7 +53,7 @@ class Display extends Component {
         {data.length > 0 &&
         <Picker value={selectedDataset}
                 onChange={this.handleChange}
-                options={[0, 1]}
+                options={['0', '1']}
                 apiOptions={['logsOverview', 'foo02']}
                 displayOptions={['View all logs', 'foo02']}
                 descriptionPrimary={data[2].description_primary}
