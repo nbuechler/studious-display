@@ -70,11 +70,11 @@ class AsyncApp extends Component {
      } else {
        navOptions = (<Nav>
                       <NavDropdown title="Perspectives" id="basic-nav-dropdown">
-                       <li><Link to="/logDisplay">Log Perspective</Link></li>
-                       <li><Link to="/b">b</Link></li>
-                       <li><Link to="/c">c</Link></li>
+                       <MenuItem>Choose a perspective</MenuItem>
                        <MenuItem divider />
-                       <li><Link to="/d">d</Link></li>
+                       <li><Link to="/logDisplay">Log Perspective</Link></li>
+                       <li><Link to="/experienceDisplay">Experience Perspective</Link></li>
+                       <li><Link to="/activityDisplay">Activitiy Perspective</Link></li>
                      </NavDropdown>
                    </Nav>)
        loginButton = <Nav right>
