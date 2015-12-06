@@ -7,7 +7,7 @@ import {
 function selectedLogDataset(state = 'logsOverview', action) {
   switch (action.type) {
   case SELECT_DATASET:
-    return action.dataset;
+    return action.dataset; // these need to be smarter, maybe?
   default:
     return state;
   }
@@ -16,7 +16,7 @@ function selectedLogDataset(state = 'logsOverview', action) {
 function selectedExperienceDataset(state = 'experiencesOverview', action) {
   switch (action.type) {
   case SELECT_DATASET:
-    return action.dataset;
+    return action.dataset; // these need to be smarter, maybe?
   default:
     return state;
   }
@@ -25,7 +25,7 @@ function selectedExperienceDataset(state = 'experiencesOverview', action) {
 function selectedActivityDataset(state = 'activitiesOverview', action) {
   switch (action.type) {
   case SELECT_DATASET:
-    return action.dataset;
+    return action.dataset; // these need to be smarter, maybe?
   default:
     return state;
   }
