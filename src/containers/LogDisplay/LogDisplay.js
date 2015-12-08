@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { selectDataset, fetchDataIfNeeded, invalidateDataset } from '../../actions/actions';
+import { selectLogDataset, fetchDataIfNeeded, invalidateDataset } from '../../actions/actions';
 import Picker from '../../components/Picker';
 import PieChart from '../../components/d3charts/PieChart';
 import BarChart from '../../components/d3charts/BarChart';
@@ -25,7 +25,7 @@ class Display extends Component {
   }
 
   handleChange(nextDataset) {
-    this.props.dispatch(selectDataset(nextDataset));
+    this.props.dispatch(selectLogDataset(nextDataset));
   }
 
   handleRefreshClick(e) {
