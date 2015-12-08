@@ -70,7 +70,7 @@ class AsyncApp extends Component {
      } else {
        navOptions = (<Nav>
                       <NavDropdown title="Perspectives" id="basic-nav-dropdown">
-                       <MenuItem>Choose a perspective</MenuItem>
+                       <li header className='dropdown-header' style={{textAlign: 'center'}}>Choose a perspective</li>
                        <MenuItem divider />
                        <li><Link to="/logDisplay">Log Perspective</Link></li>
                        <li><Link to="/experienceDisplay">Experience Perspective</Link></li>
