@@ -1,12 +1,13 @@
 import { combineReducers } from 'redux';
 import {
-  SELECT_DATASET, INVALIDATE_DATASET,
+  SELECT_LOG_DATASET, SELECT_EXPERIENCE_DATASET,
+  SELECT_ACTIVITY_DATASET, INVALIDATE_DATASET,
   REQUEST_DATA, RECEIVE_DATA
 } from './actions/actions';
 
 function selectedLogDataset(state = 'logsOverview', action) {
   switch (action.type) {
-  case SELECT_DATASET:
+  case SELECT_LOG_DATASET:
     return action.dataset; // these need to be smarter, maybe?
   default:
     return state;
@@ -15,7 +16,7 @@ function selectedLogDataset(state = 'logsOverview', action) {
 
 function selectedExperienceDataset(state = 'experiencesOverview', action) {
   switch (action.type) {
-  case SELECT_DATASET:
+  case SELECT_EXPERIENCE_DATASET:
     return action.dataset; // these need to be smarter, maybe?
   default:
     return state;
@@ -24,7 +25,7 @@ function selectedExperienceDataset(state = 'experiencesOverview', action) {
 
 function selectedActivityDataset(state = 'activitiesOverview', action) {
   switch (action.type) {
-  case SELECT_DATASET:
+  case SELECT_ACTIVITY_DATASET:
     return action.dataset; // these need to be smarter, maybe?
   default:
     return state;
