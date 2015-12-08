@@ -2,12 +2,28 @@ import fetch from 'isomorphic-fetch';
 
 export const REQUEST_DATA = 'REQUEST_DATA';
 export const RECEIVE_DATA = 'RECEIVE_DATA';
-export const SELECT_DATASET = 'SELECT_DATASET';
+export const SELECT_LOG_DATASET = 'SELECT_LOG_DATASET';
+export const SELECT_EXPERIENCE_DATASET = 'SELECT_EXPERIENCE_DATASET';
+export const SELECT_ACTIVITY_DATASET = 'SELECT_ACTIVITY_DATASET';
 export const INVALIDATE_DATASET = 'INVALIDATE_DATASET';
 
-export function selectDataset(dataset) {
+export function selectLogDataset(dataset) {
   return {
-    type: SELECT_DATASET,
+    type: SELECT_LOG_DATASET,
+    dataset
+  };
+}
+
+export function selectExperienceDataset(dataset) {
+  return {
+    type: SELECT_EXPERIENCE_DATASET,
+    dataset
+  };
+}
+
+export function selectActivityDataset(dataset) {
+  return {
+    type: SELECT_ACTIVITY_DATASET,
     dataset
   };
 }
