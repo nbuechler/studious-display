@@ -81,12 +81,11 @@ class Display extends Component {
         {data.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <div style={{ textAlign: 'center' }}>
-              Nothing to display
+              <BarChart width={1000} height={100} data={data[1].secondCounts} />
             </div>
             <br></br>
             <div style={{ textAlign: 'center' }}>
-              //Viz goes here
-              Nothing to display
+
             </div>
           </div>
         }
