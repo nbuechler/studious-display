@@ -4,7 +4,7 @@ import _ from 'underscore';
 
 import Bar from '../d3components/Bar';
 
-export default class DataSeries extends React.Component {
+export default class FiveColorDataSeries extends React.Component {
   constructor (props) {
     super(props);
     this.state = { };
@@ -20,11 +20,11 @@ export default class DataSeries extends React.Component {
       .domain(d3.range(this.props.data.length))
       .rangeRoundBands([0, this.props.width], 0.05);
 
-    var color = '#AAA';
+    var color = ['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30'];
 
     var bars = _.map(this.props.data, function(point, i) {
       return (
-        <Bar height={yScale(point)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} color={color} key={i} />
+        <Bar height={yScale(point)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} color={color[i % 5]} key={i} />
       );
     });
 
