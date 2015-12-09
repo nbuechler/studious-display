@@ -2,7 +2,7 @@ import React from 'react';
 import d3 from 'd3';
 import _ from 'underscore';
 
-import DataSeries from '../d3components/DataSeries';
+import FiveColorDataSeries from '../d3components/FiveColorDataSeries';
 import Wrapper from '../d3components/Wrapper';
 
 export default class BarChart extends React.Component {
@@ -19,7 +19,7 @@ export default class BarChart extends React.Component {
   render () {
     return (
       <Wrapper width={this.props.width} height={this.props.height}>
-        <DataSeries data={this.props.data} width={this.props.width} height={this.props.height}/>
+        <FiveColorDataSeries data={this.props.data} width={this.props.width} height={this.props.height}/>
       </Wrapper>
     );
 
