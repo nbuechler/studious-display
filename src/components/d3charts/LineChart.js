@@ -18,8 +18,8 @@ export default class BarChart extends React.Component {
 
   render () {
     return (
-      <Wrapper border={false} width={this.props.width} height={this.props.height}>
-        <DataSeries chart={'bar'} data={this.props.data} width={this.props.width} height={this.props.height}/>
+      <Wrapper border={true} width={this.props.width} height={this.props.height}>
+        <DataSeries chart={'line'} data={this.props.data} width={this.props.width} height={this.props.height}/>
       </Wrapper>
     );
 
