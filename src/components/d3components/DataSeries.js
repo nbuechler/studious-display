@@ -31,19 +31,19 @@ export default class DataSeries extends React.Component {
      */
     switch (this.props.chart) {
       case 'bar':
-      var bars = _.map(this.props.data, function(point, i) {
-        return (
-          <Bar height={yScale(point)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} color={color} key={i} />
-        );
-      });
+        var bars = _.map(this.props.data, function(point, i) {
+          return (
+            <Bar height={yScale(point)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} color={color} key={i} />
+          );
+        });
 
-      return (
-        <g>{bars}</g>
-      );
-    default:
-      return (
-        <Empty height={this.props.height} width={this.props.width}></Empty>
-      );
+        return (
+          <g>{bars}</g>
+        );
+      default:
+        return (
+          <Empty height={this.props.height} width={this.props.width}></Empty>
+        );
     }
   }
 }
