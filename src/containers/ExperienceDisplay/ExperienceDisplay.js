@@ -4,6 +4,7 @@ import { selectExperienceDataset, fetchDataIfNeeded, invalidateDataset } from '.
 import Picker from '../../components/Picker';
 import PieChart from '../../components/d3charts/PieChart';
 import BarChart from '../../components/d3charts/BarChart';
+import LineChart from '../../components/d3charts/LineChart';
 
 class Display extends Component {
   constructor(props) {
@@ -81,7 +82,7 @@ class Display extends Component {
         {data.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <div style={{ textAlign: 'center' }}>
-              <BarChart width={1000} height={100} data={data[1].secondCounts} />
+              <LineChart width={1000} height={100} data={data[1].secondCounts} />
             </div>
             <br></br>
             <div style={{ textAlign: 'center' }}>

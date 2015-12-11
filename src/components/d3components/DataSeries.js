@@ -3,6 +3,8 @@ import d3 from 'd3';
 import _ from 'underscore';
 
 import Bar from '../d3components/Bar';
+import Point from '../d3components/Point';
+import Line from '../d3components/Line';
 import Empty from '../d3components/Empty';
 
 export default class DataSeries extends React.Component {
@@ -30,7 +32,17 @@ export default class DataSeries extends React.Component {
      * like dependency injection.
      */
     switch (this.props.chart) {
-      case 'bar':
+      case 'bar': //chart
+        var bars = _.map(this.props.data, function(point, i) {
+          return (
+            <Bar height={yScale(point)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} color={color} key={i} />
+          );
+        });
+
+        return (
+          <g>{bars}</g>
+        );
+      case 'line': //chart
         var bars = _.map(this.props.data, function(point, i) {
           return (
             <Bar height={yScale(point)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} color={color} key={i} />
