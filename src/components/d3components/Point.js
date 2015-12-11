@@ -9,10 +9,12 @@ export default class Point extends React.Component {
   }
   render () {
     return (
-      <rect fill={this.props.color}
-        width={this.props.width} height={this.props.height}
-        x={this.props.offset} y={this.props.availableHeight - this.props.height}
-        style={{stroke: 'black', strokeWidth: '3px'}} />
+      <circle fill={this.props.color}
+        r={this.props.r}
+        cx={this.props.offset + this.props.width/2}
+        cy={this.props.availableHeight - this.props.height}
+        stroke={this.props.stroke}
+        style={{strokeWidth: '3px'}} />
     );
   }
 }

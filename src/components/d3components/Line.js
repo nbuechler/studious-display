@@ -9,9 +9,12 @@ export default class Line extends React.Component {
   }
   render () {
     return (
-      <rect fill={this.props.color}
+      <line fill={this.props.color}
         width={this.props.width} height={this.props.height}
-        x={this.props.offset} y={this.props.availableHeight - this.props.height}
+        x1={this.props.x1 + this.props.width/2}
+        x2={this.props.x2 + this.props.width/2}
+        y1={this.props.availableHeight - this.props.y1}
+        y2={this.props.availableHeight - this.props.y2}
         style={{stroke: 'black', strokeWidth: '3px'}} />
     );
   }
