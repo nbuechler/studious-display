@@ -9,7 +9,7 @@ export default class Point extends React.Component {
   }
   render () {
     return (
-      <circle fill={this.props.color}
+      <circle fill={this.props.fillColor}
         r={this.props.r}
         cx={this.props.offset + this.props.width/2}
         cy={this.props.availableHeight - this.props.height}
