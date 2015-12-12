@@ -19,7 +19,9 @@ export default class BarChart extends React.Component {
   render () {
     return (
       <Wrapper border={false} width={this.props.width} height={this.props.height}>
-        <DataSeries chart={'bar'} data={this.props.data} width={this.props.width} height={this.props.height}/>
+        <DataSeries distinctColors={this.props.distinctColors} fillColors={this.props.fillColors}
+          chart={'bar'} modulus={this.props.modulus}
+          data={this.props.data} width={this.props.width} height={this.props.height}/>
       </Wrapper>
     );
 
