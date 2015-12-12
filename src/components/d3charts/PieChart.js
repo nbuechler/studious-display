@@ -17,7 +17,7 @@ export default class PieChart extends React.Component {
     var radius = Math.min(width, height) / 2;
     var layout = d3.layout.pie()(data);
     var arcGen = d3.svg.arc()
-      .innerRadius(radius * 0.2)
+      .innerRadius(radius * 0.0)
       .outerRadius(radius * 0.9);
     var color = ['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30'];
     return (
