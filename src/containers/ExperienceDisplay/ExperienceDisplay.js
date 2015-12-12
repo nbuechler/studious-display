@@ -82,7 +82,13 @@ class Display extends Component {
         {data.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <div style={{ textAlign: 'center' }}>
-              <LineChart width={1000} height={100} data={data[1].secondCounts} />
+              <LineChart
+                distinctColors={false}
+                modulus={5}
+                fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
+                width={1000}
+                height={100}
+                data={data[1].secondCounts} />
             </div>
             <br></br>
             <div style={{ textAlign: 'center' }}>

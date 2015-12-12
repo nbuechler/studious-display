@@ -9,7 +9,7 @@ export default class Line extends React.Component {
   }
   render () {
     return (
-      <line fill={this.props.color}
+      <line fill={this.props.fillColor}
         width={this.props.width} height={this.props.height}
         x1={this.props.x1 + this.props.width/2}
         x2={this.props.x2 + this.props.width/2}

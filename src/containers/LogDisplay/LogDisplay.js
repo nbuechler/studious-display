@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { selectLogDataset, fetchDataIfNeeded, invalidateDataset } from '../../actions/actions';
 import Picker from '../../components/Picker';
 import PieChart from '../../components/d3charts/PieChart';
-import FiveColorBarChart from '../../components/d3charts/FiveColorBarChart';
+import BarChart from '../../components/d3charts/BarChart';
 
 class Display extends Component {
   constructor(props) {
@@ -87,7 +87,11 @@ class Display extends Component {
         {data.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <div style={{ textAlign: 'center' }}>
-              <FiveColorBarChart data={data[1].logCounts} />
+              <BarChart
+                distinctColors={true}
+                modulus={5}
+                fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
+                data={data[1].logCounts} />
             </div>
             <br></br>
             <div style={{ textAlign: 'center' }}>
