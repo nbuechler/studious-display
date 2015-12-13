@@ -24,7 +24,8 @@ export default class DataSeries extends React.Component {
       .rangeRoundBands([0, this.props.width], 0.05);
 
     var fillColors = this.props.fillColors,
-        stroke = 'black';
+        stroke = 'black',
+        strokeAlt = 'white';
 
     /**
      * The return statement needs to know what chart to apply the DataSeries to.
@@ -33,6 +34,7 @@ export default class DataSeries extends React.Component {
      * like dependency injection.
      */
     var computedColor = '#AAA',
+        computedColorAlt = '#222',
         distinctColors = this.props.distinctColors,
         modulus = this.props.modulus;
 
@@ -55,8 +57,6 @@ export default class DataSeries extends React.Component {
           <g>{bars}</g>
         );
       case 'line': //chart
-
-
         var points = _.map(this.props.data, function(dataPoint, i) {
           if (distinctColors){
             computedColor = fillColors[i % modulus];
@@ -65,8 +65,6 @@ export default class DataSeries extends React.Component {
             <Point height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} r={'10px'} availableHeight={props.height} stroke={stroke} fillColor={computedColor} key={i} />
           );
         });
-
-
         var lines = _.map(this.props.data, function(dataPoint, i) {
           if (distinctColors){
             computedColor = fillColors[i % modulus];
@@ -86,6 +84,21 @@ export default class DataSeries extends React.Component {
             {points},
           </g>
         );
+        case 'scatter': //chart
+          var points = _.map(this.props.data, function(dataPoint, i) {
+            if (distinctColors){
+              computedColor = fillColors[i % modulus];
+            }
+            return (
+              <Point height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} r={'5px'} availableHeight={props.height} stroke={strokeAlt} fillColor={computedColorAlt} key={i} />
+            );
+          });
+
+          return (
+            <g>
+              {points},
+            </g>
+          );
       default:
         return (
           <Empty height={this.props.height} width={this.props.width}></Empty>

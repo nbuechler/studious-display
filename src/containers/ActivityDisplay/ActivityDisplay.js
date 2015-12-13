@@ -81,12 +81,11 @@ class Display extends Component {
         {data.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <div style={{ textAlign: 'center' }}>
-              Nothing to display
-            </div>
-            <br></br>
-            <div style={{ textAlign: 'center' }}>
-              //Viz goes here
-              Nothing to display
+              <BarChart
+                distinctColors={false}
+                modulus={1}
+                fillColors={['none']}
+                data={data[1].importanceCounts} />
             </div>
           </div>
         }
