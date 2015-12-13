@@ -4,7 +4,7 @@ import { selectExperienceDataset, fetchDataIfNeeded, invalidateDataset } from '.
 import Picker from '../../components/Picker';
 import PieChart from '../../components/d3charts/PieChart';
 import BarChart from '../../components/d3charts/BarChart';
-import LineChart from '../../components/d3charts/LineChart';
+import ScatterPlot from '../../components/d3charts/ScatterPlot';
 
 class Display extends Component {
   constructor(props) {
@@ -82,7 +82,7 @@ class Display extends Component {
         {data.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <div style={{ textAlign: 'center' }}>
-              <LineChart
+              <ScatterPlot
                 distinctColors={false}
                 modulus={5}
                 fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
