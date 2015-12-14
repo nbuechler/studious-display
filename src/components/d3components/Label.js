@@ -2,7 +2,7 @@ import React from 'react';
 import d3 from 'd3';
 import _ from 'underscore';
 
-export default class ToolTip extends React.Component {
+export default class Label extends React.Component {
   constructor (props) {
     super(props);
     this.state = { };
