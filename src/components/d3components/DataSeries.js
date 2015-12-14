@@ -2,6 +2,8 @@ import React from 'react';
 import d3 from 'd3';
 import _ from 'underscore';
 
+import ToolTip from '../d3components/ToolTip';
+import Label from '../d3components/Label';
 import Bar from '../d3components/Bar';
 import Point from '../d3components/Point';
 import Line from '../d3components/Line';
@@ -38,6 +40,13 @@ export default class DataSeries extends React.Component {
         distinctColors = this.props.distinctColors,
         modulus = this.props.modulus;
 
+    var buffers = {
+      'top': 30,
+      'bottom': 30,
+      'left': 30,
+      'right': 30,
+    }
+
     var tempStore = {};
         tempStore.data = this.props.data;
 
@@ -49,12 +58,35 @@ export default class DataSeries extends React.Component {
             computedColor = fillColors[i % modulus];
           }
           return (
-            <Bar height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
+            <Bar id={i} height={yScale(dataPoint) - buffers.top} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
+          );
+        });
+
+        var labels = _.map(this.props.data, function(dataPoint, i) {
+          if (distinctColors){
+            computedColor = fillColors[i % modulus];
+          }
+          return (
+            <Label id={i} buffers={buffers} mainText={dataPoint}
+              height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
+          );
+        });
+
+        var tips = _.map(this.props.data, function(dataPoint, i) {
+          if (distinctColors){
+            computedColor = fillColors[i % modulus];
+          }
+          return (
+            <ToolTip id={i} buffers={buffers} mainText={dataPoint} visibility={'hidden'}
+              height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
           );
         });
 
         return (
-          <g>{bars}</g>
+          <g>
+            {bars}
+            {labels}
+          </g>
         );
       case 'line': //chart
         var points = _.map(this.props.data, function(dataPoint, i) {
@@ -62,7 +94,7 @@ export default class DataSeries extends React.Component {
             computedColor = fillColors[i % modulus];
           }
           return (
-            <Point height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} r={'10px'} availableHeight={props.height} stroke={stroke} fillColor={computedColor} key={i} />
+            <Point id={i} height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} r={'10px'} availableHeight={props.height} stroke={stroke} fillColor={computedColor} key={i} />
           );
         });
         var lines = _.map(this.props.data, function(dataPoint, i) {
@@ -70,7 +102,7 @@ export default class DataSeries extends React.Component {
             computedColor = fillColors[i % modulus];
           }
           return (
-            <Line
+            <Line id={i}
               height={yScale(dataPoint)} width={xScale.rangeBand()} availableHeight={props.height}
               y2={yScale(dataPoint)} y1={yScale(tempStore.data[i-1])}
               x2={xScale(i)} x1={xScale(i-1)}
@@ -81,7 +113,7 @@ export default class DataSeries extends React.Component {
         return (
           <g>
             {lines.slice(1, lines.length)}
-            {points},
+            {points}
           </g>
         );
         case 'scatter': //chart
@@ -90,13 +122,13 @@ export default class DataSeries extends React.Component {
               computedColor = fillColors[i % modulus];
             }
             return (
-              <Point height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} r={'5px'} availableHeight={props.height} stroke={strokeAlt} fillColor={computedColorAlt} key={i} />
+              <Point id={i} height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} r={'5px'} availableHeight={props.height} stroke={strokeAlt} fillColor={computedColorAlt} key={i} />
             );
           });
 
           return (
             <g>
-              {points},
+              {points}
             </g>
           );
       default:
