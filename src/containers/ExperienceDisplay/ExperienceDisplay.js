@@ -4,6 +4,7 @@ import { selectExperienceDataset, fetchDataIfNeeded, invalidateDataset } from '.
 import Picker from '../../components/Picker';
 import PieChart from '../../components/d3charts/PieChart';
 import BarChart from '../../components/d3charts/BarChart';
+import LineChart from '../../components/d3charts/LineChart';
 import ScatterPlot from '../../components/d3charts/ScatterPlot';
 
 class Display extends Component {
