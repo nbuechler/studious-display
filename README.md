@@ -3,7 +3,7 @@ Displaying studious information and analytics
 
 ##
 ##Notes:
-TODO: Add  neo4j for database. And, make it render data in a an overall analytical and useful manner.
+TODO: A neo4j database connection exists in an inceptor. And, make it render data in a an overall analytical and useful manner.
 
 ##
 Please consider sharing this software as 'copylefted' as I would appreciate respecting this license:
