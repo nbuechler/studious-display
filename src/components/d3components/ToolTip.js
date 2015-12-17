@@ -41,7 +41,7 @@ export default class ToolTip extends React.Component {
     }
 
     return (
-      <g style={{visibility: '', fontWeight: 900, textAlign: 'center'}}>
+      <g style={{visibility: this.props.visibility, fontWeight: 900, textAlign: 'center'}}>
         <rect width={ttRectWidth} height={ttRectHeight} fill="#111" opacity="0.9" stroke="black" strokeWidth="3px"
               x={this.props.offset + this.props.width/2 - ttRectWidth/2} y={this.props.availableHeight/2 - 30} >
         </rect>
