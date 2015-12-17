@@ -79,7 +79,8 @@ export default class DataSeries extends React.Component {
             computedColor = fillColors[i % modulus];
           }
           return (
-            <ToolTip id={i} dataLength={tempStore.dataLength} buffers={buffers} mainText={dataPoint} visibility={'hidden'}
+            <ToolTip id={i} dataLength={tempStore.dataLength} buffers={buffers}
+              mainText={dataPoint} ttRectWidth={'50'} ttRectHeight={'50'}  visibility={'hidden'}
               height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
           );
         });
@@ -132,9 +133,21 @@ export default class DataSeries extends React.Component {
             );
           });
 
+          var tips = _.map(this.props.data, function(dataPoint, i) {
+            if (distinctColors){
+              computedColor = fillColors[i % modulus];
+            }
+            return (
+              <ToolTip id={i} dataLength={tempStore.dataLength} buffers={buffers}
+                mainText={dataPoint} ttRectWidth={'50'} ttRectHeight={'50'}  visibility={'hidden'}
+                height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
+            );
+          });
+
           return (
             <g>
               {points}
+              {tips}
             </g>
           );
       default:
