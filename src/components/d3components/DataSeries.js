@@ -80,7 +80,7 @@ export default class DataSeries extends React.Component {
           }
           return (
             <ToolTip id={i} dataLength={tempStore.dataLength} buffers={buffers}
-              mainText={dataPoint} visibility={'hidden'}
+              mainText={dataPoint} ttRectWidth={'50'} ttRectHeight={'50'}  visibility={'hidden'}
               height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
           );
         });

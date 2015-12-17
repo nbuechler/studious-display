@@ -8,8 +8,8 @@ export default class ToolTip extends React.Component {
     this.state = { };
   }
   render () {
-    var ttRectWidth= 50,
-        ttRectHeight= 50;
+    var ttRectWidth= this.props.ttRectWidth,
+        ttRectHeight= this.props.ttRectHeight;
 
     var textElement = '';
 
