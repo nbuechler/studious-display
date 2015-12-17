@@ -14,7 +14,11 @@ export default class ToolTip extends React.Component {
 
     var textElement = '';
 
-    if(this.props.mainText > 99999){
+    if(this.props.mainText > 999999){
+      textElement = <text id={this.props.tipId} x={scaleShift - ttRectWidth/2 + 13}
+                          y={this.props.availableHeight/2}
+                          fill={'lightGreen'}>{Math.round(this.props.mainText/1000000) + 'M'}</text>;
+    } else if(this.props.mainText > 99999){
       textElement = <text id={this.props.tipId} x={scaleShift - ttRectWidth/2 + 8}
                           y={this.props.availableHeight/2}
                           fill={'lightGreen'}>{'0.' + Math.round(this.props.mainText/100000) + 'M'}</text>;
