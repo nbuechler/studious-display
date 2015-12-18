@@ -39,10 +39,47 @@ class Display extends Component {
   render () {
     const { selectedLogDataset, data, isFetching, lastUpdated } = this.props;
 
-    var pieCharts = [];
-    if (data[0] != null) {
-      for (var i = 0; i < data[0].pies.length; i++) {
-          pieCharts.push(<PieChart data={data[0].pies[i].data} />);
+    var primaryArea = '',
+        secondaryArea = '';
+
+    if (this.props.data.length > 0) {
+      switch (this.props.selectedLogDataset) {
+        case 'logsOverview':
+          //Primary Area
+          primaryArea = <BarChart
+                          distinctColors={true}
+                          modulus={5}
+                          fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
+                          data={this.props.data[1].logCounts} />
+
+          //Secondary Area
+          var pieCharts = [];
+          if (this.props.data[0] != null) {
+            for (var i = 0; i < this.props.data[0].pies.length; i++) {
+                pieCharts.push(<PieChart data={data[0].pies[i].data} />);
+            }
+          }
+          secondaryArea = pieCharts;
+          break;
+        case 'characterLengths':
+          var barCharts = [];
+          if (this.props.data[0] != null) {
+            for (var j = 0; j < this.props.data[1].characterLengthCounts.length; j++) {
+                barCharts.push(<BarChart
+                                distinctColors={true}
+                                modulus={5}
+                                fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
+                                data={this.props.data[1].characterLengthCounts[j]} />
+                              );
+            }
+          }
+          primaryArea = barCharts;
+          break;
+        case 'wordLengths':
+
+          break;
+        default:
+          break;
       }
     }
     return (
@@ -53,9 +90,9 @@ class Display extends Component {
         {data.length > 0 &&
         <Picker value={selectedLogDataset}
                 onChange={this.handleChange}
-                options={['0', '1']}
-                apiOptions={['logsOverview', 'foo02']}
-                displayOptions={['View all logs', 'foo02']}
+                options={['0', '1', '2']}
+                apiOptions={['logsOverview', 'characterLengths', 'wordLengths']}
+                displayOptions={['View all logs', 'Character Lengths', 'Word Lengths']}
                 descriptionPrimary={data[2].description_primary}
                 descriptionSecondary={data[3].description_secondary}
                 title={data[4].title} />
@@ -87,16 +124,12 @@ class Display extends Component {
         {data.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <div style={{ textAlign: 'center' }}>
-              <BarChart
-                distinctColors={true}
-                modulus={5}
-                fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
-                data={data[1].logCounts} />
+                {primaryArea}
             </div>
             <br></br>
-            <div style={{ textAlign: 'center' }}>
-              {pieCharts}
-            </div>
+              <div style={{ textAlign: 'center' }}>
+                {secondaryArea}
+              </div>
           </div>
         }
       </div>
