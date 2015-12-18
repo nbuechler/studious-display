@@ -66,6 +66,10 @@ class Display extends Component {
           if (this.props.data[0] != null) {
             for (var j = 0; j < this.props.data[1].characterLengthCounts.length; j++) {
                 barCharts.push(<BarChart
+                                width={'100'}
+                                height={'100'}
+                                border={'true'}
+                                borderWeight={1}
                                 distinctColors={true}
                                 modulus={5}
                                 fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
@@ -76,7 +80,22 @@ class Display extends Component {
           primaryArea = barCharts;
           break;
         case 'wordLengths':
-
+          var barCharts = [];
+          if (this.props.data[0] != null) {
+            for (var j = 0; j < this.props.data[1].wordLengthCounts.length; j++) {
+                barCharts.push(<BarChart
+                                width={'100'}
+                                height={'100'}
+                                border={'true'}
+                                borderWeight={1}
+                                distinctColors={true}
+                                modulus={5}
+                                fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
+                                data={this.props.data[1].wordLengthCounts[j]} />
+                              );
+            }
+          }
+          primaryArea = barCharts;
           break;
         default:
           break;

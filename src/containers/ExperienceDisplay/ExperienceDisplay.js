@@ -84,6 +84,8 @@ class Display extends Component {
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <div style={{ textAlign: 'center' }}>
               <ScatterPlot
+                border={'true'}
+                borderWeight={3}
                 distinctColors={false}
                 modulus={5}
                 fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
