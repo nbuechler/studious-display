@@ -39,6 +39,26 @@ class Display extends Component {
   render () {
     const { selectedActivityDataset, data, isFetching, lastUpdated } = this.props;
 
+    var primaryArea = '',
+        secondaryArea = '';
+
+    if (this.props.data.length > 0) {
+      switch (this.props.selectedActivityDataset) {
+        case 'activitiesOverview':
+          //Primary Area
+          primaryArea = <BarChart
+                          distinctColors={false}
+                          modulus={1}
+                          fillColors={['none']}
+                          data={data[1].importanceCounts} />
+
+          //Secondary Area
+          secondaryArea = <div></div>;
+          break;
+        default:
+          break;
+      }
+    }
     return (
       <div style={{paddingBottom: '100px'}}>
         <h1>Activity Perspective</h1>
@@ -81,12 +101,12 @@ class Display extends Component {
         {data.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <div style={{ textAlign: 'center' }}>
-              <BarChart
-                distinctColors={false}
-                modulus={1}
-                fillColors={['none']}
-                data={data[1].importanceCounts} />
+                {primaryArea}
             </div>
+            <br></br>
+              <div style={{ textAlign: 'center' }}>
+                {secondaryArea}
+              </div>
           </div>
         }
       </div>
