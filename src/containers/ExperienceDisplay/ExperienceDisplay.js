@@ -61,6 +61,35 @@ class Display extends Component {
           //Secondary Area
           secondaryArea = <div></div>;
           break;
+        case 'experiencesStatistics':
+            primaryArea = [];
+            //Primary Area
+            primaryArea.push(
+                            <ScatterPlot
+                              border={'true'}
+                              borderWeight={3}
+                              distinctColors={false}
+                              modulus={5}
+                              fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
+                              width={1000}
+                              height={100}
+                              data={data[1].secondCounts} />
+                            )
+
+            primaryArea.push(
+                            <LineChart
+                              distinctColors={false}
+                              modulus={1}
+                              fillColors={['none']}
+                              width={1000}
+                              height={100}
+                              border={'true'}
+                              borderWeight={3}
+                              data={data[1].wordLengths} />
+                            )
+
+            //Secondary Area
+            secondaryArea = <div></div>;
         default:
           break;
       }
@@ -74,8 +103,8 @@ class Display extends Component {
         <Picker value={selectedExperienceDataset}
                 onChange={this.handleChange}
                 options={['0', '1']}
-                apiOptions={['experiencesOverview', 'foo02']}
-                displayOptions={['View all experiences', 'foo02']}
+                apiOptions={['experiencesOverview', 'experiencesStatistics']}
+                displayOptions={['View all experiences', 'Experiences Statistics']}
                 descriptionPrimary={data[2].description_primary}
                 descriptionSecondary={data[3].description_secondary}
                 title={data[4].title} />

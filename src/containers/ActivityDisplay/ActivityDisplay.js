@@ -4,6 +4,7 @@ import { selectActivityDataset, fetchDataIfNeeded, invalidateDataset } from '../
 import Picker from '../../components/Picker';
 import PieChart from '../../components/d3charts/PieChart';
 import BarChart from '../../components/d3charts/BarChart';
+import LineChart from '../../components/d3charts/LineChart';
 
 class Display extends Component {
   constructor(props) {
@@ -55,6 +56,25 @@ class Display extends Component {
           //Secondary Area
           secondaryArea = <div></div>;
           break;
+        case 'activitiesStatistics':
+            //Primary Area
+            primaryArea = [];
+
+            primaryArea.push(
+                            <LineChart
+                              distinctColors={false}
+                              modulus={1}
+                              fillColors={['none']}
+                              width={1000}
+                              height={100}
+                              border={'true'}
+                              borderWeight={3}
+                              data={data[1].wordLengths} />
+                            )
+
+            //Secondary Area
+            secondaryArea = <div></div>;
+            break;
         default:
           break;
       }
@@ -68,8 +88,8 @@ class Display extends Component {
         <Picker value={selectedActivityDataset}
                 onChange={this.handleChange}
                 options={['0', '1']}
-                apiOptions={['activitiesOverview', 'foo02']}
-                displayOptions={['View all activities', 'foo02']}
+                apiOptions={['activitiesOverview', 'activitiesStatistics']}
+                displayOptions={['View all activities', 'Activities Statistics']}
                 descriptionPrimary={data[2].description_primary}
                 descriptionSecondary={data[3].description_secondary}
                 title={data[4].title} />
