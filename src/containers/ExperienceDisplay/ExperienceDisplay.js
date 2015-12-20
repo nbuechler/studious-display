@@ -1,11 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { selectExperienceDataset, fetchDataIfNeeded, invalidateDataset } from '../../actions/actions';
+
 import Picker from '../../components/Picker';
 import PieChart from '../../components/d3charts/PieChart';
 import BarChart from '../../components/d3charts/BarChart';
 import LineChart from '../../components/d3charts/LineChart';
 import ScatterPlot from '../../components/d3charts/ScatterPlot';
+
+import { Table } from 'react-bootstrap'
 
 class Display extends Component {
   constructor(props) {
@@ -63,6 +66,7 @@ class Display extends Component {
           break;
         case 'experiencesStatistics':
             primaryArea = [];
+            secondaryArea = [];
             //Primary Area
             primaryArea.push(
                             <ScatterPlot
@@ -89,7 +93,93 @@ class Display extends Component {
                             )
 
             //Secondary Area
-            secondaryArea = <div></div>;
+            secondaryArea.push(
+                              <Table style={{width: '500px', margin: 'auto', textAlign: 'center'}} striped bordered condensed hover>
+                                <thead>
+                                  <tr>
+                                    <th style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}>Key Statistics</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Total Experiences</td>
+                                    <td>{data[1].totals.totalExperiences}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Total Seconds</td>
+                                    <td>{data[1].totals.totalSeconds}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Total Words</td>
+                                    <td>{data[1].totals.totalWords}</td>
+                                  </tr>
+                                  <tr><td style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}></td></tr>
+                                  <tr>
+                                    <td>Average Seconds</td>
+                                    <td>{data[1].averages.avgSeconds}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Average Words</td>
+                                    <td>{data[1].averages.avgWords}</td>
+                                  </tr>
+                                  <tr><td style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}></td></tr>
+                                  <tr>
+                                    <td>Private</td>
+                                    <td>{data[1].privacyCounts[0]}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Public</td>
+                                    <td>{data[1].privacyCounts[1]}</td>
+                                  </tr>
+                                  <tr><td style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}></td></tr>
+                                  <tr>
+                                    <td>I</td>
+                                    <td>{data[1].pronouns.singular1stPerson}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>You</td>
+                                    <td>{data[1].pronouns.singular2ndPerson}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>He</td>
+                                    <td>{data[1].pronouns.masculine3rdPerson}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>She</td>
+                                    <td>{data[1].pronouns.femine3rdPerson}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>It</td>
+                                    <td>{data[1].pronouns.neuter3rdPerson}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>You all</td>
+                                    <td>{data[1].pronouns.plural2ndPerson}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>We</td>
+                                    <td>{data[1].pronouns.plural1stPerson}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>They</td>
+                                    <td>{data[1].pronouns.plural3rdPerson}</td>
+                                  </tr>
+                                  <tr><td style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}></td></tr>
+                                  <tr>
+                                    <td>Before</td>
+                                    <td>{data[1].experienceTimes.before}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>While</td>
+                                    <td>{data[1].experienceTimes.while}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>After</td>
+                                    <td>{data[1].experienceTimes.after}</td>
+                                  </tr>
+                                </tbody>
+                              </Table>
+                            )
         default:
           break;
       }
