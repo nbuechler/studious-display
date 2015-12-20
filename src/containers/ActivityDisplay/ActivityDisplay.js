@@ -1,10 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { selectActivityDataset, fetchDataIfNeeded, invalidateDataset } from '../../actions/actions';
+
 import Picker from '../../components/Picker';
 import PieChart from '../../components/d3charts/PieChart';
 import BarChart from '../../components/d3charts/BarChart';
 import LineChart from '../../components/d3charts/LineChart';
+
+import { Table } from 'react-bootstrap'
 
 class Display extends Component {
   constructor(props) {
@@ -57,9 +60,9 @@ class Display extends Component {
           secondaryArea = <div></div>;
           break;
         case 'activitiesStatistics':
-            //Primary Area
             primaryArea = [];
-
+            secondaryArea = [];
+            //Primary Area
             primaryArea.push(
                             <LineChart
                               distinctColors={false}
@@ -73,8 +76,47 @@ class Display extends Component {
                             )
 
             //Secondary Area
-            secondaryArea = <div></div>;
-            break;
+            secondaryArea.push(
+                              <Table style={{width: '500px', margin: 'auto', textAlign: 'center'}} striped bordered condensed hover>
+                                <thead>
+                                  <tr>
+                                    <th style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}>Key Statistics</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>Total Activities</td>
+                                    <td>{data[1].totals.totalActivities}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Total Importance</td>
+                                    <td>{data[1].totals.totalImportance}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Total Words</td>
+                                    <td>{data[1].totals.totalWords}</td>
+                                  </tr>
+                                  <tr><td style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}></td></tr>
+                                  <tr>
+                                    <td>Average Importance</td>
+                                    <td>{data[1].averages.avgImportance}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Average Words</td>
+                                    <td>{data[1].averages.avgWords}</td>
+                                  </tr>
+                                  <tr><td style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}></td></tr>
+                                  <tr>
+                                    <td>Private</td>
+                                    <td>{data[1].privacyCounts[0]}</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Public</td>
+                                    <td>{data[1].privacyCounts[1]}</td>
+                                  </tr>
+                                </tbody>
+                              </Table>
+                            )
         default:
           break;
       }
