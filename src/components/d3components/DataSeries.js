@@ -97,11 +97,12 @@ export default class DataSeries extends React.Component {
             computedColor = fillColors[i % modulus];
           }
           return (
-            <Point id={i} dataLength={tempStore.dataLength}
+            <Point id={i} dataLength={tempStore.dataLength} isLineChart={1}
               height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} r={'10px'}
               availableHeight={props.height} stroke={stroke} fillColor={computedColor} key={i} />
           );
         });
+
         var lines = _.map(this.props.data, function(dataPoint, i) {
           if (distinctColors){
             computedColor = fillColors[i % modulus];
@@ -115,41 +116,53 @@ export default class DataSeries extends React.Component {
           );
         });
 
+        var tips = _.map(this.props.data, function(dataPoint, i) {
+          if (distinctColors){
+            computedColor = fillColors[i % modulus];
+          }
+          return (
+            <ToolTip id={i} dataLength={tempStore.dataLength} buffers={buffers}
+              mainText={dataPoint} ttRectWidth={'50'} ttRectHeight={'50'}  visibility={'hidden'}
+              height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
+          );
+        });
+
         return (
           <g>
             {lines.slice(1, lines.length)}
             {points}
+            {tips}
           </g>
         );
-        case 'scatter': //chart
-          var points = _.map(this.props.data, function(dataPoint, i) {
-            if (distinctColors){
-              computedColor = fillColors[i % modulus];
-            }
-            return (
-              <Point id={i} dataLength={tempStore.dataLength}
-                height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} r={'5px'}
-                availableHeight={props.height} stroke={strokeAlt} fillColor={computedColorAlt} key={i} />
-            );
-          });
-
-          var tips = _.map(this.props.data, function(dataPoint, i) {
-            if (distinctColors){
-              computedColor = fillColors[i % modulus];
-            }
-            return (
-              <ToolTip id={i} dataLength={tempStore.dataLength} buffers={buffers}
-                mainText={dataPoint} ttRectWidth={'50'} ttRectHeight={'50'}  visibility={'hidden'}
-                height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
-            );
-          });
-
+      case 'scatter': //chart
+        var points = _.map(this.props.data, function(dataPoint, i) {
+          if (distinctColors){
+            computedColor = fillColors[i % modulus];
+          }
           return (
-            <g>
-              {points}
-              {tips}
-            </g>
+            <Point id={i} dataLength={tempStore.dataLength}
+              height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} r={'5px'}
+              availableHeight={props.height} stroke={strokeAlt} fillColor={computedColorAlt} key={i} />
           );
+        });
+
+        var tips = _.map(this.props.data, function(dataPoint, i) {
+          if (distinctColors){
+            computedColor = fillColors[i % modulus];
+          }
+          return (
+            <ToolTip id={i} dataLength={tempStore.dataLength} buffers={buffers}
+              mainText={dataPoint} ttRectWidth={'50'} ttRectHeight={'50'}  visibility={'hidden'}
+              height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
+          );
+        });
+
+        return (
+          <g>
+            {points}
+            {tips}
+          </g>
+        );
       default:
         return (
           <Empty height={this.props.height} width={this.props.width}></Empty>

@@ -9,16 +9,19 @@ export default class Point extends React.Component {
     this.state = { };
   }
   _handleOver(d) {
-    /*
-     * Assumption: the dataLength is always half the size of the array of children
-     */
-    ReactDOM.findDOMNode(this).parentElement.children[this.props.dataLength + d].style.visibility = 'visible';
+    if(d.isLineChart == 1) {
+    console.log(  ReactDOM.findDOMNode(this).parentElement.children[d.id + this.props.dataLength * 2 - 1]);
+      ReactDOM.findDOMNode(this).parentElement.children[d.id + this.props.dataLength * 2 - 1].style.visibility = 'visible';
+    } else {
+      ReactDOM.findDOMNode(this).parentElement.children[this.props.dataLength + d.id].style.visibility = 'visible';
+    }
   }
   _handleOut(d) {
-    /*
-     * Assumption: the dataLength is always half the size of the array of children
-     */
-    ReactDOM.findDOMNode(this).parentElement.children[this.props.dataLength + d].style.visibility = 'hidden';
+    if(d.isLineChart == 1) {
+      ReactDOM.findDOMNode(this).parentElement.children[d.id + this.props.dataLength * 2 - 1].style.visibility = 'hidden';
+    } else {
+      ReactDOM.findDOMNode(this).parentElement.children[this.props.dataLength + d.id].style.visibility = 'hidden';
+    }
   }
   render () {
     return (
@@ -28,8 +31,8 @@ export default class Point extends React.Component {
         cy={this.props.availableHeight - this.props.height}
         stroke={this.props.stroke}
         style={{strokeWidth: '3px'}}
-        onMouseOver={this._handleOver.bind(this, this.props.id)}
-        onMouseOut={this._handleOut.bind(this, this.props.id)}
+        onMouseOver={this._handleOver.bind(this, this.props)}
+        onMouseOut={this._handleOut.bind(this, this.props)}
         />
     );
   }
