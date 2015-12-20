@@ -51,6 +51,8 @@ export default class DataSeries extends React.Component {
         tempStore.data = this.props.data;
         tempStore.dataLength = this.props.data.length
 
+    var title = <text fill="white" fontSize="20px" x={5} y= "18">{this.props.title ? this.props.title : ''}</text>;
+
     switch (this.props.chart) {
       case 'bar': //chart
         var bars = _.map(this.props.data, function(dataPoint, i) {
@@ -89,6 +91,7 @@ export default class DataSeries extends React.Component {
           <g>
             {bars}
             {tips}
+            {title}
           </g>
         );
       case 'line': //chart
@@ -132,6 +135,7 @@ export default class DataSeries extends React.Component {
             {lines.slice(1, lines.length)}
             {points}
             {tips}
+            {title}
           </g>
         );
       case 'scatter': //chart
@@ -161,6 +165,7 @@ export default class DataSeries extends React.Component {
           <g>
             {points}
             {tips}
+            {title}
           </g>
         );
       default:
