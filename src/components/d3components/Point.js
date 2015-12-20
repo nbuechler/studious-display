@@ -10,7 +10,6 @@ export default class Point extends React.Component {
   }
   _handleOver(d) {
     if(d.isLineChart == 1) {
-    console.log(  ReactDOM.findDOMNode(this).parentElement.children[d.id + this.props.dataLength * 2 - 1]);
       ReactDOM.findDOMNode(this).parentElement.children[d.id + this.props.dataLength * 2 - 1].style.visibility = 'visible';
     } else {
       ReactDOM.findDOMNode(this).parentElement.children[this.props.dataLength + d.id].style.visibility = 'visible';
