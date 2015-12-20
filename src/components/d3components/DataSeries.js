@@ -41,10 +41,10 @@ export default class DataSeries extends React.Component {
         modulus = this.props.modulus;
 
     var buffers = {
-      'top': 30,
-      'bottom': 30,
-      'left': 30,
-      'right': 30,
+      'top': .95,
+      'bottom': .00,
+      'left': .05,
+      'right': .05,
     }
 
     var tempStore = {};
@@ -59,7 +59,7 @@ export default class DataSeries extends React.Component {
           }
           return (
             <Bar id={i} dataLength={tempStore.dataLength}
-              height={yScale(dataPoint) - buffers.top} width={xScale.rangeBand()}
+              height={yScale(dataPoint * buffers.top)} width={xScale.rangeBand()}
               offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
           );
         });
