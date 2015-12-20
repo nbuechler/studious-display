@@ -47,6 +47,7 @@ class Display extends Component {
         case 'logsOverview':
           //Primary Area
           primaryArea = <BarChart
+                          title={'Category Totals for each Log'}
                           distinctColors={true}
                           modulus={5}
                           fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
@@ -66,6 +67,7 @@ class Display extends Component {
           if (this.props.data[0] != null) {
             for (var j = 0; j < this.props.data[1].characterLengthCounts.length; j++) {
                 barCharts.push(<BarChart
+                                title={''}
                                 width={'100'}
                                 height={'100'}
                                 border={'true'}
@@ -84,6 +86,7 @@ class Display extends Component {
           if (this.props.data[0] != null) {
             for (var j = 0; j < this.props.data[1].wordLengthCounts.length; j++) {
                 barCharts.push(<BarChart
+                                title={''}
                                 width={'100'}
                                 height={'100'}
                                 border={'true'}

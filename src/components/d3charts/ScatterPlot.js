@@ -20,7 +20,7 @@ export default class ScatterPlot extends React.Component {
     return (
       <Wrapper border={true} borderWeight={this.props.borderWeight} width={this.props.width} height={this.props.height}>
         <DataSeries distinctColors={this.props.distinctColors} fillColors={this.props.fillColors}
-          chart={'scatter'} modulus={this.props.modulus}
+          chart={'scatter'} modulus={this.props.modulus} title={this.props.title}
           data={this.props.data} width={this.props.width} height={this.props.height}/>
       </Wrapper>
     );

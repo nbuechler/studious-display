@@ -41,15 +41,17 @@ export default class DataSeries extends React.Component {
         modulus = this.props.modulus;
 
     var buffers = {
-      'top': 30,
-      'bottom': 30,
-      'left': 30,
-      'right': 30,
+      'top': .95,
+      'bottom': .00,
+      'left': .05,
+      'right': .05,
     }
 
     var tempStore = {};
         tempStore.data = this.props.data;
         tempStore.dataLength = this.props.data.length
+
+    var title = <text fill="white" fontSize="20px" x={5} y= "18">{this.props.title ? this.props.title : ''}</text>;
 
     switch (this.props.chart) {
       case 'bar': //chart
@@ -59,7 +61,7 @@ export default class DataSeries extends React.Component {
           }
           return (
             <Bar id={i} dataLength={tempStore.dataLength}
-              height={yScale(dataPoint) - buffers.top} width={xScale.rangeBand()}
+              height={yScale(dataPoint * buffers.top)} width={xScale.rangeBand()}
               offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
           );
         });
@@ -89,6 +91,7 @@ export default class DataSeries extends React.Component {
           <g>
             {bars}
             {tips}
+            {title}
           </g>
         );
       case 'line': //chart
@@ -97,11 +100,12 @@ export default class DataSeries extends React.Component {
             computedColor = fillColors[i % modulus];
           }
           return (
-            <Point id={i} dataLength={tempStore.dataLength}
+            <Point id={i} dataLength={tempStore.dataLength} isLineChart={1}
               height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} r={'10px'}
               availableHeight={props.height} stroke={stroke} fillColor={computedColor} key={i} />
           );
         });
+
         var lines = _.map(this.props.data, function(dataPoint, i) {
           if (distinctColors){
             computedColor = fillColors[i % modulus];
@@ -115,41 +119,55 @@ export default class DataSeries extends React.Component {
           );
         });
 
+        var tips = _.map(this.props.data, function(dataPoint, i) {
+          if (distinctColors){
+            computedColor = fillColors[i % modulus];
+          }
+          return (
+            <ToolTip id={i} dataLength={tempStore.dataLength} buffers={buffers}
+              mainText={dataPoint} ttRectWidth={'50'} ttRectHeight={'50'}  visibility={'hidden'}
+              height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
+          );
+        });
+
         return (
           <g>
             {lines.slice(1, lines.length)}
             {points}
+            {tips}
+            {title}
           </g>
         );
-        case 'scatter': //chart
-          var points = _.map(this.props.data, function(dataPoint, i) {
-            if (distinctColors){
-              computedColor = fillColors[i % modulus];
-            }
-            return (
-              <Point id={i} dataLength={tempStore.dataLength}
-                height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} r={'5px'}
-                availableHeight={props.height} stroke={strokeAlt} fillColor={computedColorAlt} key={i} />
-            );
-          });
-
-          var tips = _.map(this.props.data, function(dataPoint, i) {
-            if (distinctColors){
-              computedColor = fillColors[i % modulus];
-            }
-            return (
-              <ToolTip id={i} dataLength={tempStore.dataLength} buffers={buffers}
-                mainText={dataPoint} ttRectWidth={'50'} ttRectHeight={'50'}  visibility={'hidden'}
-                height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
-            );
-          });
-
+      case 'scatter': //chart
+        var points = _.map(this.props.data, function(dataPoint, i) {
+          if (distinctColors){
+            computedColor = fillColors[i % modulus];
+          }
           return (
-            <g>
-              {points}
-              {tips}
-            </g>
+            <Point id={i} dataLength={tempStore.dataLength}
+              height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} r={'5px'}
+              availableHeight={props.height} stroke={strokeAlt} fillColor={computedColorAlt} key={i} />
           );
+        });
+
+        var tips = _.map(this.props.data, function(dataPoint, i) {
+          if (distinctColors){
+            computedColor = fillColors[i % modulus];
+          }
+          return (
+            <ToolTip id={i} dataLength={tempStore.dataLength} buffers={buffers}
+              mainText={dataPoint} ttRectWidth={'50'} ttRectHeight={'50'}  visibility={'hidden'}
+              height={yScale(dataPoint)} width={xScale.rangeBand()} offset={xScale(i)} availableHeight={props.height} fillColor={computedColor} key={i} />
+          );
+        });
+
+        return (
+          <g>
+            {points}
+            {tips}
+            {title}
+          </g>
+        );
       default:
         return (
           <Empty height={this.props.height} width={this.props.width}></Empty>
