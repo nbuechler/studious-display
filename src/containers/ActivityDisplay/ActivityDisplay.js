@@ -51,6 +51,7 @@ class Display extends Component {
         case 'activitiesOverview':
           //Primary Area
           primaryArea = <BarChart
+                          title={'Importance for each Activity'}
                           distinctColors={false}
                           modulus={1}
                           fillColors={['none']}
@@ -65,6 +66,7 @@ class Display extends Component {
             //Primary Area
             primaryArea.push(
                             <LineChart
+                              title={'Word Length for each Activity'}
                               distinctColors={false}
                               modulus={1}
                               fillColors={['none']}

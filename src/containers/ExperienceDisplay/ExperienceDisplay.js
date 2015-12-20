@@ -52,6 +52,7 @@ class Display extends Component {
         case 'experiencesOverview':
           //Primary Area
           primaryArea = <ScatterPlot
+                          title={'Total Seconds for each Experience'}
                           border={'true'}
                           borderWeight={3}
                           distinctColors={false}
@@ -70,6 +71,7 @@ class Display extends Component {
             //Primary Area
             primaryArea.push(
                             <ScatterPlot
+                              title={'Total Seconds for each Experience'}
                               border={'true'}
                               borderWeight={3}
                               distinctColors={false}
@@ -82,6 +84,7 @@ class Display extends Component {
 
             primaryArea.push(
                             <LineChart
+                              title={'Word Length for each Experience'}
                               distinctColors={false}
                               modulus={1}
                               fillColors={['none']}
