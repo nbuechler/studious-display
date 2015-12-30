@@ -7,7 +7,7 @@ import PieChart from '../../components/d3charts/PieChart';
 import BarChart from '../../components/d3charts/BarChart';
 import LineChart from '../../components/d3charts/LineChart';
 
-import { Table } from 'react-bootstrap'
+import { Table } from 'react-bootstrap';
 
 class Display extends Component {
   constructor(props) {

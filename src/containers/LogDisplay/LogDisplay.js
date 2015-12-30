@@ -5,6 +5,8 @@ import Picker from '../../components/Picker';
 import PieChart from '../../components/d3charts/PieChart';
 import BarChart from '../../components/d3charts/BarChart';
 
+import { Table } from 'react-bootstrap';
+
 class Display extends Component {
   constructor(props) {
     super(props);
@@ -100,6 +102,39 @@ class Display extends Component {
           }
           primaryArea = barCharts;
           break;
+        case 'logHasWord':
+        //Primary Area
+        primaryArea = ''
+        secondaryArea = [];
+        //Secondary Area
+        secondaryArea.push(
+                          <Table style={{width: '500px', margin: 'auto', textAlign: 'center'}} striped bordered condensed hover>
+                            <thead>
+                              <tr>
+                                <th style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}>Key Statistics</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Total Links</td>
+                                <td>{data[4].totalLinks}</td>
+                              </tr>
+                              <tr>
+                                <td>Total Nodes</td>
+                                <td>{data[5].totalNodes}</td>
+                              </tr>
+                              <tr>
+                                <td>Total Log Nodes</td>
+                                <td>{data[6].totalLogs}</td>
+                              </tr>
+                              <tr>
+                                <td>Total Words</td>
+                                <td>{data[7].totalWords}</td>
+                              </tr>
+                            </tbody>
+                          </Table>
+                        )
+          break;
         default:
           break;
       }
@@ -112,9 +147,9 @@ class Display extends Component {
         {data.length > 0 &&
         <Picker value={selectedLogDataset}
                 onChange={this.handleChange}
-                options={['0', '1', '2']}
-                apiOptions={['logsOverview', 'characterLengths', 'wordLengths']}
-                displayOptions={['View all logs', 'Character Lengths', 'Word Lengths']}
+                options={['0', '1', '2', '3']}
+                apiOptions={['logsOverview', 'characterLengths', 'wordLengths', 'logHasWord']}
+                displayOptions={['View all logs', 'Character Lengths', 'Word Lengths', 'Log Clusters']}
                 descriptionPrimary={data[2].description_primary}
                 descriptionSecondary={data[3].description_secondary}
                 title={data[4].title} />

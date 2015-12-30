@@ -8,7 +8,7 @@ import BarChart from '../../components/d3charts/BarChart';
 import LineChart from '../../components/d3charts/LineChart';
 import ScatterPlot from '../../components/d3charts/ScatterPlot';
 
-import { Table } from 'react-bootstrap'
+import { Table } from 'react-bootstrap';
 
 class Display extends Component {
   constructor(props) {
