@@ -100,6 +100,8 @@ class Display extends Component {
           }
           primaryArea = barCharts;
           break;
+        case 'logHasWord':
+          break;
         default:
           break;
       }
@@ -112,9 +114,9 @@ class Display extends Component {
         {data.length > 0 &&
         <Picker value={selectedLogDataset}
                 onChange={this.handleChange}
-                options={['0', '1', '2']}
-                apiOptions={['logsOverview', 'characterLengths', 'wordLengths']}
-                displayOptions={['View all logs', 'Character Lengths', 'Word Lengths']}
+                options={['0', '1', '2', '3']}
+                apiOptions={['logsOverview', 'characterLengths', 'wordLengths', 'logHasWord']}
+                displayOptions={['View all logs', 'Character Lengths', 'Word Lengths', 'Log Clusters']}
                 descriptionPrimary={data[2].description_primary}
                 descriptionSecondary={data[3].description_secondary}
                 title={data[4].title} />
