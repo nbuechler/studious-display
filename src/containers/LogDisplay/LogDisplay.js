@@ -117,19 +117,19 @@ class Display extends Component {
                             <tbody>
                               <tr>
                                 <td>Total Links</td>
-                                <td>{data[4].totalLinks}</td>
+                                <td>{data[9].totalLinks}</td>
                               </tr>
                               <tr>
                                 <td>Total Nodes</td>
-                                <td>{data[5].totalNodes}</td>
+                                <td>{data[10].totalNodes}</td>
                               </tr>
                               <tr>
                                 <td>Total Log Nodes</td>
-                                <td>{data[6].totalLogs}</td>
+                                <td>{data[11].totalLogs}</td>
                               </tr>
                               <tr>
                                 <td>Total Words</td>
-                                <td>{data[7].totalWords}</td>
+                                <td>{data[12].totalWords}</td>
                               </tr>
                             </tbody>
                           </Table>
