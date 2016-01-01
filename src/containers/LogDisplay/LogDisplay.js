@@ -4,6 +4,7 @@ import { selectLogDataset, fetchDataIfNeeded, invalidateDataset } from '../../ac
 import Picker from '../../components/Picker';
 import PieChart from '../../components/d3charts/PieChart';
 import BarChart from '../../components/d3charts/BarChart';
+import ForceChart from '../../components/d3charts/ForceChart';
 
 import { Table } from 'react-bootstrap';
 
@@ -104,7 +105,16 @@ class Display extends Component {
           break;
         case 'logHasWord':
         //Primary Area
-        primaryArea = ''
+        primaryArea = <ForceChart
+                        title={''}
+                        width={'800'}
+                        height={'800'}
+                        border={'true'}
+                        borderWeight={1}
+                        distinctColors={false}
+                        modulus={5}
+                        fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
+                        data={this.props.data} />
         secondaryArea = [];
         //Secondary Area
         secondaryArea.push(
