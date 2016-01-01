@@ -6,6 +6,7 @@ import ToolTip from '../d3components/ToolTip';
 import Label from '../d3components/Label';
 import Bar from '../d3components/Bar';
 import Point from '../d3components/Point';
+import Node from '../d3components/Node';
 import Line from '../d3components/Line';
 import Empty from '../d3components/Empty';
 
@@ -172,8 +173,22 @@ export default class DataSeries extends React.Component {
         );
         break;
       case 'force': //chart
+        var nodes = _.map(this.props.nodes(), function(dataPoint, i) { //Nodes
+          if (distinctColors){
+            computedColor = fillColors[i % modulus];
+          }
+          return (
+            <Node id={i} dataLength={tempStore.dataLength}
+              cx={dataPoint.x} cy={dataPoint.y} r={'10px'}
+              stroke={strokeAlt} fillColor={computedColorAlt} key={i} />
+          );
+        });
+
         return (
-          <Empty height={this.props.height} width={this.props.width}></Empty>
+          <g>
+            {nodes}
+            {title}
+          </g>
         );
         break;
       default:
