@@ -171,6 +171,11 @@ export default class DataSeries extends React.Component {
           </g>
         );
         break;
+      case 'force': //chart
+        return (
+          <Empty height={this.props.height} width={this.props.width}></Empty>
+        );
+        break;
       default:
         return (
           <Empty height={this.props.height} width={this.props.width}></Empty>
