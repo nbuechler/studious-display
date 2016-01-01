@@ -94,6 +94,7 @@ export default class DataSeries extends React.Component {
             {title}
           </g>
         );
+        break;
       case 'line': //chart
         var points = _.map(this.props.data, function(dataPoint, i) {
           if (distinctColors){
@@ -138,6 +139,7 @@ export default class DataSeries extends React.Component {
             {title}
           </g>
         );
+        break;
       case 'scatter': //chart
         var points = _.map(this.props.data, function(dataPoint, i) {
           if (distinctColors){
@@ -168,10 +170,12 @@ export default class DataSeries extends React.Component {
             {title}
           </g>
         );
+        break;
       default:
         return (
           <Empty height={this.props.height} width={this.props.width}></Empty>
         );
+        break;
     }
   }
 }
