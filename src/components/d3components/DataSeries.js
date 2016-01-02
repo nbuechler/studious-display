@@ -180,10 +180,13 @@ export default class DataSeries extends React.Component {
 
         self = this;
 
-        this.props.force.on('tick', function (tick, b, c) {
-          console.log('tick', tick);
-          self.forceUpdate();
+        /**
+         * Each tick is a STATE of the force directed graph, and remember that this is in the REACT 'state'
+         */
 
+        this.props.force.on('tick', function (tick, b, c) {
+          // console.log('tick', tick);
+          self.forceUpdate();
         })
 
 
