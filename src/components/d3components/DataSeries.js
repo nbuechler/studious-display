@@ -174,32 +174,54 @@ export default class DataSeries extends React.Component {
         );
         break;
       case 'force': //chart
-        var nodes = _.map(this.props.nodes(), function(dataPoint, i) { //Nodes
-          if (distinctColors){
-            computedColor = fillColors[i % modulus];
-          }
-          return (
-            <Node id={i} dataLength={tempStore.dataLength}
-              cx={dataPoint.x} cy={dataPoint.y} r={'10px'}
-              stroke={strokeAlt} fillColor={computedColorAlt} key={i} />
-          );
-        });
 
-        var links = _.map(this.props.links(), function(dataPoint, i) { //Nodes
-          if (distinctColors){
-            computedColor = fillColors[i % modulus];
-          }
+        var theNodes = this.props.force.nodes()
+        var theLinks = this.props.force.links()
+
+        self = this;
+
+        this.props.force.on('tick', function (tick, b, c) {
+          console.log('tick', tick);
+          self.forceUpdate();
+
+        })
+
+
+        var drawNodes = function () {
+          var nodes = theNodes.map(function (node, i) { //Nodes
+            return (
+              <Node id={i} dataLength={tempStore.dataLength}
+                cx={node.x} cy={node.y} r={'10px'}
+                stroke={strokeAlt} fillColor={computedColorAlt} key={i} />
+            );
+          });
+          return (<g>
+
+            {nodes}
+          </g>
+          )
+        }
+
+        var drawLinks = function () {
+          var links = theLinks.map(function (link, i) { //Links
+            return (
+              <Link id={i} dataLength={tempStore.dataLength}
+                y2={link.source.y} y1={link.target.y}
+                x2={link.source.x} x1={link.target.x} />
+            );
+          });
           return (
-            <Link id={i} dataLength={tempStore.dataLength}
-              y2={dataPoint.source.y} y1={dataPoint.target.y}
-              x2={dataPoint.source.x} x1={dataPoint.target.x} />
-          );
-        });
+            <g>
+
+            {links}
+            </g>
+          )
+        }
 
         return (
           <g>
-            {links}
-            {nodes}
+            {drawLinks()}
+            {drawNodes()}
             {title}
           </g>
         );

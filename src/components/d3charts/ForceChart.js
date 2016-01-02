@@ -31,9 +31,9 @@ export default class ForceChart extends React.Component {
       .links(this.props.data[5].allLinks)
       .nodes(this.props.data[6].allNodes)
       .charge(function(d){
-        return -30;
+        return -140;
       })
-      .linkDistance(30)
+      .linkDistance(60)
       .size([this.props.width, this.props.height]);
 
       force.start();
@@ -46,24 +46,11 @@ export default class ForceChart extends React.Component {
 
     console.log(this.force=force);
 
-    force.on('tick', function (tick, b, c) {
-      // console.log(tickCount, force);
-      tickCount++
-      if(tickCount == 290){
-        console.log(tickCount == 290);
+    self =this;
 
-      }
-    })
 
 
     return (
-          // console.log('tick', force.nodes()[0].px, force.links()[0]);
-
-
-
-
-
-
       <ForceMiddle  border={this.props.border} borderWeight={this.props.borderWeight}
         width={this.props.width} height={this.props.height}distinctColors={this.props.distinctColors} fillColors={this.props.fillColors}
         chart={'force'} modulus={this.props.modulus} title={this.props.title}
