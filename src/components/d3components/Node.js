@@ -8,15 +8,36 @@ export default class Node extends React.Component {
     super(props);
     this.state = { };
   }
+
+
   render () {
+    var node = '';
+
+    switch (this.props.nodeType) {
+      case 'log':
+      node = <circle  fill={'white'}
+                      r={this.props.r + 'px'}
+                      cx={this.props.cx}
+                      cy={this.props.cy}
+                      stroke={this.props.stroke}
+                      style={{strokeWidth: '3px'}}
+                      />
+        break;
+      case 'word':
+      node = <circle  fill={this.props.fillColor}
+                      r={this.props.r * ('.' + this.props.characters) + 'px'}
+                      cx={this.props.cx}
+                      cy={this.props.cy}
+                      stroke={this.props.stroke}
+                      style={{strokeWidth: '3px'}}
+                      />
+        break;
+      default:
+        break;
+    }
+
     return (
-      <circle fill={this.props.fillColor}
-        r={this.props.r}
-        cx={this.props.cx}
-        cy={this.props.cy}
-        stroke={this.props.stroke}
-        style={{strokeWidth: '3px'}}
-        />
+      node
     );
   }
 }

@@ -194,14 +194,15 @@ export default class DataSeries extends React.Component {
           var nodes = theNodes.map(function (node, i) { //Nodes
             return (
               <Node id={i} dataLength={tempStore.dataLength}
-                cx={node.x} cy={node.y} r={'10px'}
-                stroke={strokeAlt} fillColor={computedColorAlt} key={i} />
+                cx={node.x} cy={node.y} r={'10'}
+                stroke={strokeAlt} fillColor={computedColorAlt} key={i}
+                nodeType={node.nodeType} characters={node.characters} />
             );
           });
-          return (<g>
-
-            {nodes}
-          </g>
+          return (
+            <g>
+              {nodes}
+            </g>
           )
         }
 
@@ -215,8 +216,7 @@ export default class DataSeries extends React.Component {
           });
           return (
             <g>
-
-            {links}
+              {links}
             </g>
           )
         }
