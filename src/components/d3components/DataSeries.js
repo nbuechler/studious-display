@@ -7,6 +7,7 @@ import Label from '../d3components/Label';
 import Bar from '../d3components/Bar';
 import Point from '../d3components/Point';
 import Node from '../d3components/Node';
+import Link from '../d3components/Link';
 import Line from '../d3components/Line';
 import Empty from '../d3components/Empty';
 
@@ -189,7 +190,7 @@ export default class DataSeries extends React.Component {
             computedColor = fillColors[i % modulus];
           }
           return (
-            <Line id={i} dataLength={tempStore.dataLength}
+            <Link id={i} dataLength={tempStore.dataLength}
               y2={dataPoint.source.y} y1={dataPoint.target.y}
               x2={dataPoint.source.x} x1={dataPoint.target.x} />
           );
@@ -197,8 +198,8 @@ export default class DataSeries extends React.Component {
 
         return (
           <g>
-            {nodes}
             {links}
+            {nodes}
             {title}
           </g>
         );
