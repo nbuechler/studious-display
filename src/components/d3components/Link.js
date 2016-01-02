@@ -11,11 +11,11 @@ export default class Link extends React.Component {
   render () {
     return (
       <line fill={this.props.fillColor}
-        x1={this.props.x1 + this.props.width/2}
-        x2={this.props.x2 + this.props.width/2}
-        y1={this.props.availableHeight - this.props.y1}
-        y2={this.props.availableHeight - this.props.y2}
-        style={{stroke: 'white', strokeWidth: '3px'}} />
+        x1={this.props.x1}
+        x2={this.props.x2}
+        y1={this.props.y1}
+        y2={this.props.y2}
+        style={{stroke: 'gray', strokeWidth: '3px'}} />
     );
   }
 }

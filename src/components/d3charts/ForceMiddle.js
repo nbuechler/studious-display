@@ -17,8 +17,6 @@ export default class ForceMiddle extends React.Component {
   }
 
   render () {
-    var charge = -100;
-    var defaultRadius = 5;
 
     return (
       <Wrapper border={this.props.border} borderWeight={this.props.borderWeight} width={this.props.width} height={this.props.height}>
