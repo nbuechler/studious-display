@@ -10,9 +10,21 @@ export default class Node extends React.Component {
   }
 
   _handleOver(d) {
-    console.log(d);
+    var forceTipDOM = ReactDOM.findDOMNode(this).parentElement.parentElement.children[3];
+
+    forceTipDOM.children[1].innerHTML = 'pooppooppooppooppoop';
+    forceTipDOM.children[1].setAttribute('x', d.cx + 20);
+    forceTipDOM.children[1].setAttribute('y', d.cy + 20);
+    forceTipDOM.children[1].setAttribute('visibility', 'visible');
+
+    console.log(forceTipDOM.children[1], d);
   }
   _handleOut(d) {
+    var forceTipDOM = ReactDOM.findDOMNode(this).parentElement.parentElement.children[3];
+
+    forceTipDOM.children[1].innerHTML = 'Hello world!';
+    forceTipDOM.children[1].setAttribute('visibility', 'hidden');
+
     console.log(d);
   }
 
