@@ -184,9 +184,21 @@ export default class DataSeries extends React.Component {
           );
         });
 
+        var links = _.map(this.props.links(), function(dataPoint, i) { //Nodes
+          if (distinctColors){
+            computedColor = fillColors[i % modulus];
+          }
+          return (
+            <Line id={i} dataLength={tempStore.dataLength}
+              y2={dataPoint.source.y} y1={dataPoint.target.y}
+              x2={dataPoint.source.x} x1={dataPoint.target.x} />
+          );
+        });
+
         return (
           <g>
             {nodes}
+            {links}
             {title}
           </g>
         );
