@@ -36,25 +36,14 @@ export default class ForceChart extends React.Component {
       .linkDistance(60)
       .size([this.props.width, this.props.height]);
 
+      //start the force
       force.start();
-      for (var i = 0; i < data; ++i) force.tick();
-
-    var forceMiddle = <ForceMiddle  border={true} borderWeight={1}
-      width={800} height={800} distinctColors={false} fillColors={false}
-      chart={'force'} modulus={5} title={''}
-      data={data} force={force}/>
-
-    console.log(this.force=force);
-
-    self =this;
-
-
 
     return (
       <ForceMiddle  border={this.props.border} borderWeight={this.props.borderWeight}
         width={this.props.width} height={this.props.height}distinctColors={this.props.distinctColors} fillColors={this.props.fillColors}
         chart={'force'} modulus={this.props.modulus} title={this.props.title}
-        data={this.props.data} force={this.force}/>
+        data={this.props.data} force={force}/>
     );
 
   }
