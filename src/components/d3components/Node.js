@@ -10,20 +10,31 @@ export default class Node extends React.Component {
   }
 
   _handleOver(d) {
+    var shifter = 30; // This gets the whole tooltip away from the node
+
     var forceTipDOM = ReactDOM.findDOMNode(this).parentElement.parentElement.children[3];
 
-    forceTipDOM.children[1].innerHTML = 'pooppooppooppooppoop';
-    forceTipDOM.children[1].setAttribute('x', d.cx + 20);
-    forceTipDOM.children[1].setAttribute('y', d.cy + 20);
+    // Change Text
+    forceTipDOM.children[1].innerHTML = d.nodeType.charAt(0).toUpperCase() + d.nodeType.slice(1);
+    forceTipDOM.children[1].setAttribute('x', d.cx + 10 + shifter);
+    forceTipDOM.children[1].setAttribute('y', d.cy + 20 + shifter);
     forceTipDOM.children[1].setAttribute('visibility', 'visible');
+
+    // Change Rectangle Element
+    forceTipDOM.children[0].setAttribute('x', d.cx + shifter);
+    forceTipDOM.children[0].setAttribute('y', d.cy + shifter);
+    forceTipDOM.children[0].setAttribute('visibility', 'visible');
 
     console.log(forceTipDOM.children[1], d);
   }
   _handleOut(d) {
     var forceTipDOM = ReactDOM.findDOMNode(this).parentElement.parentElement.children[3];
 
-    forceTipDOM.children[1].innerHTML = 'Hello world!';
+    // Change Text
     forceTipDOM.children[1].setAttribute('visibility', 'hidden');
+
+    // Change Rectangle Element
+    forceTipDOM.children[0].setAttribute('visibility', 'hidden');
 
     console.log(d);
   }

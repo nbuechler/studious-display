@@ -15,7 +15,7 @@ export default class ForceTip extends React.Component {
 
       textElement = <text id={this.props.tipId} x={'400'}
                           y={this.props.availableHeight/2}
-                          fill={'lightGreen'}>Hello world!</text>;
+                          fill={'lightGreen'}>Error</text>;
 
     return (
       <g style={{visibility: this.props.visibility, fontWeight: 900, textAlign: 'center'}}>
