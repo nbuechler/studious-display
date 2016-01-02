@@ -9,6 +9,12 @@ export default class Node extends React.Component {
     this.state = { };
   }
 
+  _handleOver(d) {
+    console.log(d);
+  }
+  _handleOut(d) {
+    console.log(d);
+  }
 
   render () {
     var node = '';
@@ -21,6 +27,8 @@ export default class Node extends React.Component {
                       cy={this.props.cy}
                       stroke={this.props.stroke}
                       style={{strokeWidth: '3px'}}
+                      onMouseOver={this._handleOver.bind(this, this.props)}
+                      onMouseOut={this._handleOut.bind(this, this.props)}
                       />
         break;
       case 'word':
@@ -30,6 +38,8 @@ export default class Node extends React.Component {
                       cy={this.props.cy}
                       stroke={this.props.stroke}
                       style={{strokeWidth: '3px'}}
+                      onMouseOver={this._handleOver.bind(this, this.props)}
+                      onMouseOut={this._handleOut.bind(this, this.props)}
                       />
         break;
       default:
