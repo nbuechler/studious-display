@@ -47,29 +47,34 @@ export default class Node extends React.Component {
 
   render () {
     var node = '';
+    var nodeColor = '#111';
+    if (this.props.privacy) {
+      nodeColor = 'white';
+    }
 
     switch (this.props.nodeType) {
       case 'log':
-      node = <circle  fill={'white'}
-                      r={this.props.r + 'px'}
-                      cx={this.props.cx}
-                      cy={this.props.cy}
-                      stroke={this.props.stroke}
-                      style={{strokeWidth: '3px'}}
-                      onMouseOver={this._handleOver.bind(this, this.props)}
-                      onMouseOut={this._handleOut.bind(this, this.props)}
-                      />
+
+        node = <circle  fill={nodeColor}
+                        r={this.props.r + 'px'}
+                        cx={this.props.cx}
+                        cy={this.props.cy}
+                        stroke={nodeColor}
+                        style={{strokeWidth: '3px'}}
+                        onMouseOver={this._handleOver.bind(this, this.props)}
+                        onMouseOut={this._handleOut.bind(this, this.props)}
+                        />
         break;
       case 'word':
-      node = <circle  fill={this.props.fillColor}
-                      r={this.props.r * ('.' + this.props.characters) + 'px'}
-                      cx={this.props.cx}
-                      cy={this.props.cy}
-                      stroke={this.props.stroke}
-                      style={{strokeWidth: '3px'}}
-                      onMouseOver={this._handleOver.bind(this, this.props)}
-                      onMouseOut={this._handleOut.bind(this, this.props)}
-                      />
+        node = <circle  fill={this.props.fillColor}
+                        r={this.props.r * ('.' + this.props.characters) + 'px'}
+                        cx={this.props.cx}
+                        cy={this.props.cy}
+                        stroke={this.props.stroke}
+                        style={{strokeWidth: '3px'}}
+                        onMouseOver={this._handleOver.bind(this, this.props)}
+                        onMouseOut={this._handleOut.bind(this, this.props)}
+                        />
         break;
       default:
         break;
