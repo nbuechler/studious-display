@@ -198,7 +198,21 @@ export default class DataSeries extends React.Component {
               <Node id={i} dataLength={tempStore.dataLength}
                 cx={node.x} cy={node.y} r={'10'}
                 stroke={strokeAlt} fillColor={computedColorAlt} key={i}
-                nodeType={node.nodeType} characters={node.characters} />
+                name={node.name}
+                nodeType={node.nodeType}
+                characters={node.characters}
+                academicArrayLength={node.academicArrayLength}
+                academicContent={node.academicContent}
+                communeArrayLength={node.communeArrayLength}
+                communeContent={node.communeContent}
+                emotionArrayLength={node.emotionArrayLength}
+                emotionContent={node.emotionContent}
+                etherArrayLength={node.etherArrayLength}
+                etherContent={node.etherContent}
+                physicArrayLength={node.physicArrayLength}
+                physicContent={node.physicContent}
+                privacy={node.privacy}
+                />
             );
           });
           return (

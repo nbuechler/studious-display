@@ -25,7 +25,7 @@ export default class ForceTip extends React.Component {
               x={400 + this.props.width/2 - ttRectWidth/2} y={this.props.availableHeight/2 - 30} >
         </rect>
         {textElement}
-        <MiniPieChart data={[1,2,4,3,2]} x={400 + this.props.width/2 - ttRectWidth/2} y={this.props.availableHeight/2 - 30} />
+        <MiniPieChart data={[1,2,3,4,5]} x={400 + this.props.width/2 - ttRectWidth/2} y={this.props.availableHeight/2 - 30} />
       </g>
     );
   }
