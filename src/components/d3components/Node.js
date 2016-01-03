@@ -14,30 +14,36 @@ export default class Node extends React.Component {
 
     var forceTipDOM = ReactDOM.findDOMNode(this).parentElement.parentElement.children[3];
 
-    // Change Text
-    forceTipDOM.children[1].innerHTML = d.nodeType.charAt(0).toUpperCase() + d.nodeType.slice(1);
-    forceTipDOM.children[1].setAttribute('x', d.cx + 10 + shifter);
-    forceTipDOM.children[1].setAttribute('y', d.cy + 20 + shifter);
-    forceTipDOM.children[1].setAttribute('visibility', 'visible');
-
     // Change Rectangle Element
     forceTipDOM.children[0].setAttribute('x', d.cx + shifter);
     forceTipDOM.children[0].setAttribute('y', d.cy + shifter);
     forceTipDOM.children[0].setAttribute('visibility', 'visible');
 
+    // Change Text Title
+    forceTipDOM.children[1].innerHTML = d.nodeType.charAt(0).toUpperCase() + d.nodeType.slice(1);
+    forceTipDOM.children[1].setAttribute('x', d.cx + 10 + shifter);
+    forceTipDOM.children[1].setAttribute('y', d.cy + 20 + shifter);
+    forceTipDOM.children[1].setAttribute('visibility', 'visible');
+
     // Change MiniPieChart Element
     forceTipDOM.children[2].setAttribute('visibility', 'visible');
+    forceTipDOM.children[2].setAttribute('x', d.cx + 10 + shifter);
+    forceTipDOM.children[2].setAttribute('y', d.cy + 20 + shifter);
+    forceTipDOM.children[2].setAttribute('visibility', 'visible');
+    forceTipDOM.children[2].setAttribute('data', [d.physicArrayLength, d.emotionArrayLength, d.academicArrayLength, d.communeArrayLength, d.etherArrayLength]);
 
-    console.log(forceTipDOM.children, d);
+    console.log(forceTipDOM.children[2].getAttribute('data'));
+
+    console.log(forceTipDOM.children, d, [d.physicArrayLength, d.emotionArrayLength, d.academicArrayLength, d.communeArrayLength, d.etherArrayLength]);
   }
   _handleOut(d) {
     var forceTipDOM = ReactDOM.findDOMNode(this).parentElement.parentElement.children[3];
 
-    // Change Text
-    forceTipDOM.children[1].setAttribute('visibility', 'hidden');
-
     // Change Rectangle Element
     forceTipDOM.children[0].setAttribute('visibility', 'hidden');
+
+    // Change Text Title
+    forceTipDOM.children[1].setAttribute('visibility', 'hidden');
 
     // Change MiniPieChart Element
     forceTipDOM.children[2].setAttribute('visibility', 'hidden');
