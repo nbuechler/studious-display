@@ -13,9 +13,10 @@ export default class ForceTip extends React.Component {
     var ttRectWidth = this.props.ttRectWidth,
         ttRectHeight = this.props.ttRectHeight;
 
-    var textElement = '';
+    var titleTextElement = '';
+    var nameTextElement = '';
 
-      textElement = <text id={this.props.tipId} x={'400'}
+      titleTextElement = <text id={this.props.tipId} x={'400'}
                           y={this.props.availableHeight/2}
                           fill={'white'}>Error</text>;
 
@@ -24,7 +25,7 @@ export default class ForceTip extends React.Component {
         <rect width={ttRectWidth} height={ttRectHeight} fill="#111" opacity="0.9" stroke="black" strokeWidth="3px"
               x={400 + this.props.width/2 - ttRectWidth/2} y={this.props.availableHeight/2 - 30} >
         </rect>
-        {textElement}
+        {titleTextElement}
         <MiniPieChart data={[1,2,3,4,5]} x={400 + this.props.width/2 - ttRectWidth/2} y={this.props.availableHeight/2 - 30} />
       </g>
     );

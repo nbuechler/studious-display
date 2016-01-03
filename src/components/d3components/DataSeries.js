@@ -243,7 +243,7 @@ export default class DataSeries extends React.Component {
             {drawNodes()}
             {title}
             <ForceTip id={'567885'} dataLength={tempStore.dataLength}
-              mainText={'hi'} ttRectWidth={'50'} ttRectHeight={'50'}  visibility={''}
+              mainText={'hi'} ttRectWidth={'50'} ttRectHeight={'50'}  visibility={'hidden'}
               height={30} width={30} availableHeight={props.height} fillColor={computedColor} />
           </g>
         );
