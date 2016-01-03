@@ -33,7 +33,8 @@ export default class MiniPieChart extends React.Component {
                 style={{
                   fill: color[i % 5],
                   stroke: 'black',
-                  strokeWidth: '2px'
+                  strokeWidth: '2px',
+                  visibility: 'hidden'
                 }}
               />
               );
