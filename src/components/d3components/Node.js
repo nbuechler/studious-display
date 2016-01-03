@@ -14,19 +14,24 @@ export default class Node extends React.Component {
     var shifter = 30; // This gets the whole tooltip away from the node
     var forceTipDOM = ReactDOM.findDOMNode(this).parentElement.parentElement.children[3]; //DOM Element
 
-        // Change Rectangle Element
-        forceTipDOM.children[0].setAttribute('x', d.cx + shifter);
-        forceTipDOM.children[0].setAttribute('y', d.cy + shifter);
-        forceTipDOM.children[0].setAttribute('visibility', 'visible');
 
-        // Change Text Title
+        //These transformations apply to each case
         forceTipDOM.children[1].innerHTML = d.nodeType.charAt(0).toUpperCase() + d.nodeType.slice(1);
-        forceTipDOM.children[1].setAttribute('x', d.cx + 20 + shifter);
-        forceTipDOM.children[1].setAttribute('y', d.cy + 30 + shifter);
+        forceTipDOM.children[0].setAttribute('visibility', 'visible');
         forceTipDOM.children[1].setAttribute('visibility', 'visible');
 
     switch (d.nodeType) {
       case 'log':
+        // Change Rectangle Element
+        forceTipDOM.children[0].setAttribute('x', d.cx + shifter);
+        forceTipDOM.children[0].setAttribute('y', d.cy + shifter);
+        forceTipDOM.children[0].setAttribute('width', 60);
+
+        // Change Text Title
+        forceTipDOM.children[1].setAttribute('x', d.cx + 20 + shifter);
+        forceTipDOM.children[1].setAttribute('y', d.cy + 30 + shifter);
+
+        // Pie Variables
         var nodePiePaths = forceTipDOM.children[2].children[0].children; //piePaths
         var nodePieData = [d.physicArrayLength, d.emotionArrayLength, d.academicArrayLength, d.communeArrayLength, d.etherArrayLength]; //data
         var nodePie = d3.layout.pie()(nodePieData); //pie layout
@@ -47,14 +52,19 @@ export default class Node extends React.Component {
         nodePiePaths[4].setAttribute('d', arcGen(nodePie[4]));
         break;
       case 'word':
+        // Change Rectangle Element
+        forceTipDOM.children[0].setAttribute('x', d.cx + shifter);
+        forceTipDOM.children[0].setAttribute('y', d.cy + shifter);
+        forceTipDOM.children[0].setAttribute('width', 100);
 
+        // Change Text Title
+        forceTipDOM.children[1].setAttribute('x', d.cx + 20 + shifter);
+        forceTipDOM.children[1].setAttribute('y', d.cy + 30 + shifter);
+        forceTipDOM.children[1].innerHTML += '(' + d.characters + ')';
         break;
       default:
         break;
     }
-
-    console.log(d);
-
 
   }
   _handleOut(d) {

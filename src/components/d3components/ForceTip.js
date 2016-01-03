@@ -14,6 +14,7 @@ export default class ForceTip extends React.Component {
         ttRectHeight = this.props.ttRectHeight;
 
     var titleTextElement = '';
+    var nameTextElement = '';
 
       titleTextElement = <text id={this.props.tipId} x={'400'}
                           y={this.props.availableHeight/2}
