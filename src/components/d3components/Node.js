@@ -25,6 +25,8 @@ export default class Node extends React.Component {
     forceTipDOM.children[0].setAttribute('y', d.cy + shifter);
     forceTipDOM.children[0].setAttribute('visibility', 'visible');
 
+    // Change MiniPieChart Element
+    forceTipDOM.children[2].setAttribute('visibility', 'visible');
 
     console.log(forceTipDOM.children, d);
   }
@@ -37,6 +39,8 @@ export default class Node extends React.Component {
     // Change Rectangle Element
     forceTipDOM.children[0].setAttribute('visibility', 'hidden');
 
+    // Change MiniPieChart Element
+    forceTipDOM.children[2].setAttribute('visibility', 'hidden');
 
     // console.log(d, forceTipDOM.children);
   }

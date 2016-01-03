@@ -23,7 +23,7 @@ export default class MiniPieChart extends React.Component {
       .outerRadius(radius * 0.9);
     var color = ['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30'];
     return (
-      <svg {...props} >
+      <svg {...props} visibility={'hidden'}>
         <g transform={`translate(${width / 2},${height / 2})`}>
           {layout.map((d, i) => {
             return (
@@ -34,7 +34,6 @@ export default class MiniPieChart extends React.Component {
                   fill: color[i % 5],
                   stroke: 'black',
                   strokeWidth: '2px',
-                  visibility: 'hidden'
                 }}
               />
               );
