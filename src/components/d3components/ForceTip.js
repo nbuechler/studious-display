@@ -2,6 +2,8 @@ import React from 'react';
 import d3 from 'd3';
 import _ from 'underscore';
 
+import MiniPieChart from '../../components/d3charts/MiniPieChart';
+
 export default class ForceTip extends React.Component {
   constructor (props) {
     super(props);
@@ -15,7 +17,7 @@ export default class ForceTip extends React.Component {
 
       textElement = <text id={this.props.tipId} x={'400'}
                           y={this.props.availableHeight/2}
-                          fill={'lightGreen'}>Error</text>;
+                          fill={'white'}>Error</text>;
 
     return (
       <g style={{visibility: this.props.visibility, fontWeight: 900, textAlign: 'center'}}>
@@ -23,6 +25,7 @@ export default class ForceTip extends React.Component {
               x={400 + this.props.width/2 - ttRectWidth/2} y={this.props.availableHeight/2 - 30} >
         </rect>
         {textElement}
+        <MiniPieChart data={[1,2,4,3,2]} x={400 + this.props.width/2 - ttRectWidth/2} y={this.props.availableHeight/2 - 30} />
       </g>
     );
   }
