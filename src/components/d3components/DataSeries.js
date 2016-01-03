@@ -3,6 +3,8 @@ import d3 from 'd3';
 import _ from 'underscore';
 
 import ToolTip from '../d3components/ToolTip';
+import ForceTip from '../d3components/ForceTip';
+
 import Label from '../d3components/Label';
 import Bar from '../d3components/Bar';
 import Point from '../d3components/Point';
@@ -196,7 +198,21 @@ export default class DataSeries extends React.Component {
               <Node id={i} dataLength={tempStore.dataLength}
                 cx={node.x} cy={node.y} r={'10'}
                 stroke={strokeAlt} fillColor={computedColorAlt} key={i}
-                nodeType={node.nodeType} characters={node.characters} />
+                name={node.name}
+                nodeType={node.nodeType}
+                characters={node.characters}
+                academicArrayLength={node.academicArrayLength}
+                academicContent={node.academicContent}
+                communeArrayLength={node.communeArrayLength}
+                communeContent={node.communeContent}
+                emotionArrayLength={node.emotionArrayLength}
+                emotionContent={node.emotionContent}
+                etherArrayLength={node.etherArrayLength}
+                etherContent={node.etherContent}
+                physicArrayLength={node.physicArrayLength}
+                physicContent={node.physicContent}
+                privacy={node.privacy}
+                />
             );
           });
           return (
@@ -226,6 +242,9 @@ export default class DataSeries extends React.Component {
             {drawLinks()}
             {drawNodes()}
             {title}
+            <ForceTip id={'567885'} dataLength={tempStore.dataLength}
+              mainText={'hi'} ttRectWidth={'50'} ttRectHeight={'50'}  visibility={''}
+              height={30} width={30} availableHeight={props.height} fillColor={computedColor} />
           </g>
         );
         break;
