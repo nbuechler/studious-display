@@ -12,7 +12,14 @@ export default class Node extends React.Component {
   _handleOver(d) {
     var shifter = 30; // This gets the whole tooltip away from the node
 
-    var forceTipDOM = ReactDOM.findDOMNode(this).parentElement.parentElement.children[3];
+    var forceTipDOM = ReactDOM.findDOMNode(this).parentElement.parentElement.children[3]; //DOM Element
+    console.log(forceTipDOM);
+    var nodePiePaths = forceTipDOM.children[2].children[0].children; //piePaths
+    var nodePieData = [d.physicArrayLength, d.emotionArrayLength, d.academicArrayLength, d.communeArrayLength, d.etherArrayLength]; //data
+    var nodePie = d3.layout.pie()(nodePieData); //pie layout
+    var arcGen = d3.svg.arc() //arcGeneration of pie slices paths
+          .innerRadius(25 * 0.0)
+          .outerRadius(25 * 0.9);
 
     // Change Rectangle Element
     forceTipDOM.children[0].setAttribute('x', d.cx + shifter);
@@ -21,18 +28,24 @@ export default class Node extends React.Component {
 
     // Change Text Title
     forceTipDOM.children[1].innerHTML = d.nodeType.charAt(0).toUpperCase() + d.nodeType.slice(1);
-    forceTipDOM.children[1].setAttribute('x', d.cx + 10 + shifter);
-    forceTipDOM.children[1].setAttribute('y', d.cy + 20 + shifter);
+    forceTipDOM.children[1].setAttribute('x', d.cx + 20 + shifter);
+    forceTipDOM.children[1].setAttribute('y', d.cy + 30 + shifter);
     forceTipDOM.children[1].setAttribute('visibility', 'visible');
 
     // Change MiniPieChart Element
     forceTipDOM.children[2].setAttribute('visibility', 'visible');
-    forceTipDOM.children[2].setAttribute('x', d.cx + 10 + shifter);
-    forceTipDOM.children[2].setAttribute('y', d.cy + 20 + shifter);
+    forceTipDOM.children[2].setAttribute('x', d.cx + 5);
+    forceTipDOM.children[2].setAttribute('y', d.cy + 5);
     forceTipDOM.children[2].setAttribute('visibility', 'visible');
-    forceTipDOM.children[2].setAttribute('data', [d.physicArrayLength, d.emotionArrayLength, d.academicArrayLength, d.communeArrayLength, d.etherArrayLength]);
 
-    console.log(forceTipDOM.children[2].getAttribute('data'));
+    nodePiePaths[0].setAttribute('d', arcGen(nodePie[0]));
+    nodePiePaths[1].setAttribute('d', arcGen(nodePie[1]));
+    nodePiePaths[2].setAttribute('d', arcGen(nodePie[2]));
+    nodePiePaths[3].setAttribute('d', arcGen(nodePie[3]));
+    nodePiePaths[4].setAttribute('d', arcGen(nodePie[4]));
+
+
+    console.log(arcGen(nodePie[0]), nodePiePaths[0]);
 
     console.log(forceTipDOM.children, d, [d.physicArrayLength, d.emotionArrayLength, d.academicArrayLength, d.communeArrayLength, d.etherArrayLength]);
   }
