@@ -145,6 +145,25 @@ class Display extends Component {
                           </Table>
                         )
           break;
+        case 'eventSummary':
+        secondaryArea = [];
+        //Secondary Area
+        secondaryArea.push(
+                        <Table style={{width: '500px', margin: 'auto', textAlign: 'center'}} striped bordered condensed hover>
+                          <thead>
+                            <tr>
+                              <th style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}>Event Statistics</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Event Table Cell</td>
+                              <td>Events go here!</td>
+                            </tr>
+                          </tbody>
+                        </Table>
+                        )
+          break;
         default:
           break;
       }
@@ -157,9 +176,9 @@ class Display extends Component {
         {data.length > 0 &&
         <Picker value={selectedLogDataset}
                 onChange={this.handleChange}
-                options={['0', '1', '2', '3']}
-                apiOptions={['logsOverview', 'characterLengths', 'wordLengths', 'logHasWord']}
-                displayOptions={['View all logs', 'Character Lengths', 'Word Lengths', 'Log Clusters']}
+                options={['0', '1', '2', '3', '4']}
+                apiOptions={['logsOverview', 'characterLengths', 'wordLengths', 'logHasWord', 'eventSummary']}
+                displayOptions={['View all logs', 'Character Lengths', 'Word Lengths', 'Log Clusters', 'Event Summary']}
                 descriptionPrimary={data[2].description_primary}
                 descriptionSecondary={data[3].description_secondary}
                 title={data[4].title} />
