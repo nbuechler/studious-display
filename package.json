@@ -1,6 +1,6 @@
 {
   "name": "studious-display",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "ReactJS display for analytics",
   "scripts": {
     "start": "node server.js",
