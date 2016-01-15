@@ -146,6 +146,13 @@ class Display extends Component {
                         )
           break;
         case 'eventSummary':
+        //Primary Area
+        primaryArea =
+                      <svg>
+                        <rect x="20" y="30" width="200" fill="gray" height="150">
+                          <title>Hello, World!</title>
+                        </rect>
+                      </svg>
         secondaryArea = [];
         //Secondary Area
         secondaryArea.push(
