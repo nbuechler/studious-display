@@ -149,9 +149,12 @@ class Display extends Component {
         //Primary Area
         primaryArea =
                       <svg>
-                        <rect x="20" y="30" width="200" fill="gray" height="150">
+                        <rect x="20" y="30" fill="gray" width="200" height="150">
                           <title>Hello, World!</title>
                         </rect>
+                        <circle r="20" cx="30" cy="30" fill="lightgray">
+                          <title>Hello, World!</title>
+                        </circle>
                       </svg>
         secondaryArea = [];
         //Secondary Area
