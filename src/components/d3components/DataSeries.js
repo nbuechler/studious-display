@@ -1,6 +1,7 @@
 import React from 'react';
 import d3 from 'd3';
 import _ from 'underscore';
+import { Calendar } from 'calendar';
 
 import ToolTip from '../d3components/ToolTip';
 import ForceTip from '../d3components/ForceTip';
@@ -20,6 +21,15 @@ export default class DataSeries extends React.Component {
     this.state = { };
   }
   render () {
+
+    console.log(new Calendar);
+
+    var cMon = new Calendar(0); // weeks starts on Monday
+    var mdc = cMon.monthDays(2016, 0);
+    for (var i = 0; i < mdc.length; i++) {
+      console.log(mdc[i])
+    };
+
     var props = this.props;
 
     var yScale = d3.scale.linear()
