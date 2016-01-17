@@ -251,6 +251,7 @@ export default class DataSeries extends React.Component {
         break;
       case 'calendar': //chart
         var now = new Date;
+        var cellSize = props.height/7;
         var cells = _.map(this.props.data, function(dataPoint, i) {
           if (distinctColors){
             computedColor = fillColors[dataPoint.winningIndexes[0] % modulus];
@@ -259,8 +260,8 @@ export default class DataSeries extends React.Component {
 
             return (
               <CalendarCell id={i} dataLength={tempStore.dataLength}
-                height={props.height/7} width={props.height/7}
-                x={props.height/7 * (dataPoint.day % 7) } y={props.height/7 * (i % 7) } fillColor={computedColor} key={i}
+                height={cellSize} width={cellSize}
+                x={cellSize * ((dataPoint.day + 4) % 7) } y={cellSize * (i % 7) } fillColor={computedColor} key={i}
                 date={dataPoint.ymd}/>
             );
           }
