@@ -20,12 +20,6 @@ export default class ForceChart extends React.Component {
 
   render () {
 
-
-    var tickCount = 0;
-    var data = d3.range(1).map(function(){
-      return {r: Math.floor(Math.random() * 8 + 2)};
-    });
-
     var force = d3.layout.force()
       // .nodes(data)
       .links(this.props.data[5].allLinks)
