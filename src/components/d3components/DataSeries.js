@@ -252,23 +252,18 @@ export default class DataSeries extends React.Component {
       case 'calendar': //chart
         var cells = _.map(this.props.data, function(dataPoint, i) {
           if (distinctColors){
-            computedColor = fillColors[i % modulus];
+            computedColor = fillColors[dataPoint.winningIndexes[0] % modulus];
           }
           return (
             <CalendarCell id={i} dataLength={tempStore.dataLength}
               height={30} width={30}
-              x={30 * i} y={30 * i} fillColor={computedColor} key={i} />
+              x={30 * i} y={30 * i} fillColor={computedColor} key={i}
+              date={dataPoint.ymd}/>
           );
         });
         return (
           <g>
             {cells}
-            <rect x="120" y="330" fill="gray" width="200" height="150">
-              <title>Hello, World!</title>
-            </rect>
-            <circle r="20" cx="130" cy="330" fill="lightgray">
-              <title>Hello, World!</title>
-            </circle>
           </g>
         );
         break;

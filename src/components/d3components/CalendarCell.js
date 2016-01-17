@@ -15,7 +15,7 @@ export default class Bar extends React.Component {
         width={this.props.width} height={this.props.height}
         x={this.props.x} y={this.props.y}
         style={{stroke: 'black', strokeWidth: '3px'}}>
-        <title>Hello, World!</title>
+        <title>Date: {this.props.date}</title>
       </rect>
     );
   }
