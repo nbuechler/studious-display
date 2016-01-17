@@ -22,14 +22,6 @@ export default class DataSeries extends React.Component {
   }
   render () {
 
-    console.log(new Calendar);
-
-    var cMon = new Calendar(0); // weeks starts on Monday
-    var mdc = cMon.monthDays(2016, 0);
-    for (var i = 0; i < mdc.length; i++) {
-      console.log(mdc[i])
-    };
-
     var props = this.props;
 
     var yScale = d3.scale.linear()
@@ -64,6 +56,7 @@ export default class DataSeries extends React.Component {
 
     var tempStore = {};
         tempStore.data = this.props.data;
+        tempStore.eventfulDates = this.props.eventfulDates;
         tempStore.dataLength = this.props.data.length
 
     var title = <text fill="white" fontSize="20px" x={5} y= "18">{this.props.title ? this.props.title : ''}</text>;
@@ -261,12 +254,20 @@ export default class DataSeries extends React.Component {
         break;
       case 'calendar': //chart
         var now = new Date;
+        var nowDay = now.getDay();
+        var nowMonth = now.getMonth();
+        var nowYear = now.getYear();
+        var cSun = new Calendar(0); // weeks starts on Sunday
+        var mdc = cSun.monthDays(2016, 0);
+        for (var i = 0; i < mdc.length; i++) {
+          console.log(mdc[i])
+        };
         var cellSize = props.height/7;
         var cells = _.map(this.props.data, function(dataPoint, i) {
           if (distinctColors){
             computedColor = fillColors[dataPoint.winningIndexes[0] % modulus];
           }
-          if(dataPoint.month == now.getMonth() + 1 && dataPoint.year == now.getYear() + 1900){
+          if(dataPoint.month == nowMonth + 1 && dataPoint.year == nowYear + 1900){
 
             return (
               <CalendarCell id={i} dataLength={tempStore.dataLength}
@@ -276,9 +277,63 @@ export default class DataSeries extends React.Component {
             );
           }
         });
+        var calendarCellDate = '';
+        var match = false;
+        var dp = '';
+        var bkgCells = _.map(mdc[0], function(dataPoint, i) {
+          calendarCellDate = nowYear + 1900 + '-' + (nowMonth + 1) + '-' +  dataPoint;
+          console.log(calendarCellDate);
+          // console.log(tempStore.eventfulDates);
+          for (var d = 0; d < tempStore.data.length; d++) {
+              // console.log(calendarCellDate, 'here', tempStore.data[d].ymd);
+              if(tempStore.data[d].ymd == calendarCellDate){
+                console.log('match', calendarCellDate);
+                match = true;
+              }
+          }
+            if (match) {
+              match = false;
+              dp = {
+                'academicArrayLengthSum': 1,
+                'communeArrayLengthSum': 1,
+                'day': 1,
+                'emotionArrayLengthSum': 1,
+                'etherArrayLengthSum': 5,
+                'logCount': 1,
+                'month': 1,
+                'physicArrayLengthSum': 1,
+                'user': '562d722a3f1f9f541814a3e8',
+                'winningIndexes': [
+                  2
+                ],
+                'year': 2016,
+                'ymd': '2016-1-1'
+              };
+              if (distinctColors){
+                computedColor = fillColors[dp.winningIndexes[0] % modulus];
+              }
+                return (
+                  <CalendarCell id={i} dataLength={tempStore.dataLength}
+                    height={cellSize} width={cellSize}
+                    y={cellSize * (0) } x={cellSize * (i % 7) } fillColor={computedColor} key={i}
+                    date={dp.ymd}/>
+                );
+            } else if (true) {
+              if (distinctColors){
+                computedColor = 'lightGray';
+              }
+                return (
+                  <CalendarCell id={i} dataLength={tempStore.dataLength}
+                    height={cellSize} width={cellSize}
+                    y={cellSize * (0) } x={cellSize * (i % 7) } fillColor={computedColor} key={i}
+                    date={'null'}/>
+                );
+            }
+        });
         return (
           <g>
             {cells}
+            {bkgCells}
           </g>
         );
         break;

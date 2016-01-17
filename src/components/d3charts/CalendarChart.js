@@ -21,7 +21,7 @@ export default class CalendarChart extends React.Component {
       <Wrapper border={this.props.border} borderWeight={this.props.borderWeight} width={this.props.width} height={this.props.height}>
         <DataSeries distinctColors={this.props.distinctColors} fillColors={this.props.fillColors}
           chart={'calendar'} modulus={this.props.modulus} title={this.props.title}
-          data={this.props.data} width={this.props.width} height={this.props.height}/>
+          data={this.props.data} eventfulDates={this.props.eventfulDates} width={this.props.width} height={this.props.height}/>
       </Wrapper>
     );
 

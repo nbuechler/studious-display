@@ -158,7 +158,8 @@ class Display extends Component {
                         distinctColors={true}
                         modulus={5}
                         fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
-                        data={this.props.data[5].allEvents} />
+                        data={this.props.data[5].allEvents}
+                        eventfulDates={this.props.data[1].eventfulDates} />
         secondaryArea = [];
         //Secondary Area
         secondaryArea.push(
