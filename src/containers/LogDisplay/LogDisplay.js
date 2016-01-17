@@ -151,8 +151,8 @@ class Display extends Component {
         //Primary Area
         primaryArea = <CalendarChart
                         title={''}
-                        width={'800'}
-                        height={'800'}
+                        width={'400'}
+                        height={'400'}
                         border={'true'}
                         borderWeight={1}
                         distinctColors={true}

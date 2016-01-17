@@ -5,13 +5,14 @@ import _ from 'underscore';
 import ToolTip from '../d3components/ToolTip';
 import ForceTip from '../d3components/ForceTip';
 
-import Label from '../d3components/Label';
 import Bar from '../d3components/Bar';
-import Point from '../d3components/Point';
-import Node from '../d3components/Node';
-import Link from '../d3components/Link';
-import Line from '../d3components/Line';
+import CalendarCell from '../d3components/CalendarCell';
 import Empty from '../d3components/Empty';
+import Label from '../d3components/Label';
+import Line from '../d3components/Line';
+import Link from '../d3components/Link';
+import Node from '../d3components/Node';
+import Point from '../d3components/Point';
 
 export default class DataSeries extends React.Component {
   constructor (props) {
@@ -249,12 +250,23 @@ export default class DataSeries extends React.Component {
         );
         break;
       case 'calendar': //chart
+        var cells = _.map(this.props.data, function(dataPoint, i) {
+          if (distinctColors){
+            computedColor = fillColors[i % modulus];
+          }
+          return (
+            <CalendarCell id={i} dataLength={tempStore.dataLength}
+              height={30} width={30}
+              x={30 * i} y={30 * i} fillColor={computedColor} key={i} />
+          );
+        });
         return (
           <g>
-            <rect x="20" y="30" fill="gray" width="200" height="150">
+            {cells}
+            <rect x="120" y="330" fill="gray" width="200" height="150">
               <title>Hello, World!</title>
             </rect>
-            <circle r="20" cx="30" cy="30" fill="lightgray">
+            <circle r="20" cx="130" cy="330" fill="lightgray">
               <title>Hello, World!</title>
             </circle>
           </g>
