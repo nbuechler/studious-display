@@ -146,6 +146,7 @@ class Display extends Component {
                         )
           break;
         case 'eventSummary':
+        // TODO: Refactor this into a graph somewhere else.
         //Primary Area
         primaryArea =
                       <svg>
