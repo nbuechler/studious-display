@@ -4,7 +4,7 @@ import { selectLogDataset, fetchDataIfNeeded, invalidateDataset } from '../../ac
 import Picker from '../../components/Picker';
 import PieChart from '../../components/d3charts/PieChart';
 import BarChart from '../../components/d3charts/BarChart';
-import BarChart from '../../components/d3charts/CalendarChart';
+import CalendarChart from '../../components/d3charts/CalendarChart';
 import ForceChart from '../../components/d3charts/ForceChart';
 
 import { Table } from 'react-bootstrap';
@@ -151,14 +151,14 @@ class Display extends Component {
         //Primary Area
         primaryArea = <CalendarChart
                         title={''}
-                        width={'100'}
-                        height={'100'}
+                        width={'800'}
+                        height={'800'}
                         border={'true'}
                         borderWeight={1}
                         distinctColors={true}
                         modulus={5}
                         fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
-                        data={this.props.data[6].allEvents} />
+                        data={this.props.data[5].allEvents} />
         secondaryArea = [];
         //Secondary Area
         secondaryArea.push(

@@ -248,6 +248,18 @@ export default class DataSeries extends React.Component {
           </g>
         );
         break;
+      case 'calendar': //chart
+        return (
+          <g>
+            <rect x="20" y="30" fill="gray" width="200" height="150">
+              <title>Hello, World!</title>
+            </rect>
+            <circle r="20" cx="30" cy="30" fill="lightgray">
+              <title>Hello, World!</title>
+            </circle>
+          </g>
+        );
+        break;
       default:
         return (
           <Empty height={this.props.height} width={this.props.width}></Empty>
