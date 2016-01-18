@@ -265,20 +265,6 @@ export default class DataSeries extends React.Component {
         for (var i = 0; i < mdc.length; i++) {
           console.log(mdc[i])
         };
-        // var cells = _.map(this.props.data, function(dataPoint, i) {
-        //   if (distinctColors){
-        //     computedColor = fillColors[dataPoint.winningIndexes[0] % modulus];
-        //   }
-        //   if(dataPoint.month == nowMonth + 1 && dataPoint.year == nowYear + 1900){
-        //
-        //     return (
-        //       <CalendarCell id={i} dataLength={tempStore.dataLength}
-        //         height={cellSize} width={cellSize}
-        //         x={cellSize * ((dataPoint.day + 4) % 7) } y={cellSize * (i % 7) } fillColor={computedColor} key={i}
-        //         date={dataPoint.ymd}/>
-        //     );
-        //   }
-        // });
         /**
           * Setting up the main business logic
           */
@@ -291,16 +277,16 @@ export default class DataSeries extends React.Component {
         for (var r = 0; r < mdc.length; r++) {
           cellRow = _.map(mdc[r], function(dataPoint, i) {
             calendarCellDate = nowYear + 1900 + '-' + (nowMonth + 1) + '-' +  dataPoint;
-            console.log(calendarCellDate);
+            // console.log(calendarCellDate);
             for (var d = 0; d < tempStore.data.length; d++) {
                 if(tempStore.data[d].ymd == calendarCellDate){
-                  console.log('match', calendarCellDate);
+                  // console.log('match', calendarCellDate);
                   match = true;
                   dp = tempStore.data[d];
                 }
             }
               if (match) {
-                console.log(tempStore.data);
+                // console.log(tempStore.data);
                 match = false;
                 if (distinctColors){
                   computedColor = fillColors[dp.winningIndexes[0] % modulus];
@@ -312,7 +298,7 @@ export default class DataSeries extends React.Component {
                       date={dp.ymd}/>
                   );
               } else if (dataPoint == 0) {
-
+                // Don't do anything
               } else {
                 if (distinctColors){
                   computedColor = 'lightGray';
@@ -326,7 +312,6 @@ export default class DataSeries extends React.Component {
               }
           });
           cells = cells.concat(cellRow);
-          console.log(cells);
         }
         return (
           <g>
