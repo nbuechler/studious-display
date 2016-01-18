@@ -14,6 +14,7 @@ export default class Bar extends React.Component {
       <rect fill={this.props.fillColor}
         width={this.props.width} height={this.props.height}
         x={this.props.x} y={this.props.y}
+        rx="10" ry="10" 
         style={{stroke: 'black', strokeWidth: '3px'}}>
         <title>Date: {this.props.date}</title>
       </rect>

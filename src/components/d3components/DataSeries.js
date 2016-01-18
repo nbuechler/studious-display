@@ -253,6 +253,9 @@ export default class DataSeries extends React.Component {
         );
         break;
       case 'calendar': //chart
+        /**
+          * Date logic using a 3rd part npm library called 'Calendar'
+          */
         var now = new Date;
         var nowDay = now.getDay();
         var nowMonth = now.getMonth();
@@ -262,78 +265,72 @@ export default class DataSeries extends React.Component {
         for (var i = 0; i < mdc.length; i++) {
           console.log(mdc[i])
         };
+        // var cells = _.map(this.props.data, function(dataPoint, i) {
+        //   if (distinctColors){
+        //     computedColor = fillColors[dataPoint.winningIndexes[0] % modulus];
+        //   }
+        //   if(dataPoint.month == nowMonth + 1 && dataPoint.year == nowYear + 1900){
+        //
+        //     return (
+        //       <CalendarCell id={i} dataLength={tempStore.dataLength}
+        //         height={cellSize} width={cellSize}
+        //         x={cellSize * ((dataPoint.day + 4) % 7) } y={cellSize * (i % 7) } fillColor={computedColor} key={i}
+        //         date={dataPoint.ymd}/>
+        //     );
+        //   }
+        // });
+        /**
+          * Setting up the main business logic
+          */
         var cellSize = props.height/7;
-        var cells = _.map(this.props.data, function(dataPoint, i) {
-          if (distinctColors){
-            computedColor = fillColors[dataPoint.winningIndexes[0] % modulus];
-          }
-          if(dataPoint.month == nowMonth + 1 && dataPoint.year == nowYear + 1900){
-
-            return (
-              <CalendarCell id={i} dataLength={tempStore.dataLength}
-                height={cellSize} width={cellSize}
-                x={cellSize * ((dataPoint.day + 4) % 7) } y={cellSize * (i % 7) } fillColor={computedColor} key={i}
-                date={dataPoint.ymd}/>
-            );
-          }
-        });
         var calendarCellDate = '';
         var match = false;
         var dp = '';
-        var bkgCells = _.map(mdc[0], function(dataPoint, i) {
-          calendarCellDate = nowYear + 1900 + '-' + (nowMonth + 1) + '-' +  dataPoint;
-          console.log(calendarCellDate);
-          // console.log(tempStore.eventfulDates);
-          for (var d = 0; d < tempStore.data.length; d++) {
-              // console.log(calendarCellDate, 'here', tempStore.data[d].ymd);
-              if(tempStore.data[d].ymd == calendarCellDate){
-                console.log('match', calendarCellDate);
-                match = true;
-              }
-          }
-            if (match) {
-              match = false;
-              dp = {
-                'academicArrayLengthSum': 1,
-                'communeArrayLengthSum': 1,
-                'day': 1,
-                'emotionArrayLengthSum': 1,
-                'etherArrayLengthSum': 5,
-                'logCount': 1,
-                'month': 1,
-                'physicArrayLengthSum': 1,
-                'user': '562d722a3f1f9f541814a3e8',
-                'winningIndexes': [
-                  2
-                ],
-                'year': 2016,
-                'ymd': '2016-1-1'
-              };
-              if (distinctColors){
-                computedColor = fillColors[dp.winningIndexes[0] % modulus];
-              }
-                return (
-                  <CalendarCell id={i} dataLength={tempStore.dataLength}
-                    height={cellSize} width={cellSize}
-                    y={cellSize * (0) } x={cellSize * (i % 7) } fillColor={computedColor} key={i}
-                    date={dp.ymd}/>
-                );
-            } else if (true) {
-              if (distinctColors){
-                computedColor = 'lightGray';
-              }
-                return (
-                  <CalendarCell id={i} dataLength={tempStore.dataLength}
-                    height={cellSize} width={cellSize}
-                    y={cellSize * (0) } x={cellSize * (i % 7) } fillColor={computedColor} key={i}
-                    date={'null'}/>
-                );
+        var cells = [];
+        var cellRow = [];
+        for (var r = 0; r < mdc.length; r++) {
+          cellRow = _.map(mdc[r], function(dataPoint, i) {
+            calendarCellDate = nowYear + 1900 + '-' + (nowMonth + 1) + '-' +  dataPoint;
+            console.log(calendarCellDate);
+            for (var d = 0; d < tempStore.data.length; d++) {
+                if(tempStore.data[d].ymd == calendarCellDate){
+                  console.log('match', calendarCellDate);
+                  match = true;
+                  dp = tempStore.data[d];
+                }
             }
-        });
+              if (match) {
+                console.log(tempStore.data);
+                match = false;
+                if (distinctColors){
+                  computedColor = fillColors[dp.winningIndexes[0] % modulus];
+                }
+                  return (
+                    <CalendarCell id={i} dataLength={tempStore.dataLength}
+                      height={cellSize} width={cellSize}
+                      y={cellSize * (r) } x={cellSize * (i % 7) } fillColor={computedColor} key={calendarCellDate}
+                      date={dp.ymd}/>
+                  );
+              } else if (dataPoint == 0) {
+
+              } else {
+                if (distinctColors){
+                  computedColor = 'lightGray';
+                }
+                  return (
+                    <CalendarCell id={i} dataLength={tempStore.dataLength}
+                      height={cellSize} width={cellSize}
+                      y={cellSize * (r) } x={cellSize * (i % 7) } fillColor={computedColor} key={calendarCellDate}
+                      date={calendarCellDate}/>
+                  );
+              }
+          });
+          cells = cells.concat(cellRow);
+          console.log(cells);
+        }
         return (
           <g>
             {cells}
-            {bkgCells}
           </g>
         );
         break;

@@ -153,8 +153,8 @@ class Display extends Component {
                         title={''}
                         width={'400'}
                         height={'400'}
-                        border={'true'}
-                        borderWeight={1}
+                        border={'false'}
+                        borderWeight={0}
                         distinctColors={true}
                         modulus={5}
                         fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
