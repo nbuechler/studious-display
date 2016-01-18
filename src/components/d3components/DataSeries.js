@@ -253,6 +253,9 @@ export default class DataSeries extends React.Component {
         );
         break;
       case 'calendar': //chart
+
+        var dayOfTheWeekDistance = 20;
+
         /**
           * Date logic using a 3rd part npm library called 'Calendar'
           */
@@ -294,7 +297,7 @@ export default class DataSeries extends React.Component {
                   return (
                     <CalendarCell id={i} dataLength={tempStore.dataLength}
                       height={cellSize} width={cellSize}
-                      y={cellSize * (r) } x={cellSize * (i % 7) } fillColor={computedColor} key={calendarCellDate}
+                      y={cellSize * (r) + dayOfTheWeekDistance} x={cellSize * (i % 7) } fillColor={computedColor} key={calendarCellDate}
                       date={dp.ymd}/>
                   );
               } else if (dataPoint == 0) {
@@ -306,7 +309,7 @@ export default class DataSeries extends React.Component {
                   return (
                     <CalendarCell id={i} dataLength={tempStore.dataLength}
                       height={cellSize} width={cellSize}
-                      y={cellSize * (r) } x={cellSize * (i % 7) } fillColor={computedColor} key={calendarCellDate}
+                      y={cellSize * (r) + dayOfTheWeekDistance} x={cellSize * (i % 7) } fillColor={computedColor} key={calendarCellDate}
                       date={calendarCellDate}/>
                   );
               }
@@ -316,6 +319,27 @@ export default class DataSeries extends React.Component {
         return (
           <g>
             {cells}
+            <text fill="gray" x={cellSize/4 + 2 + cellSize * 0} y={dayOfTheWeekDistance - 7}>
+              Sun
+            </text>
+            <text fill="gray" x={cellSize/4 + 2 + cellSize * 1} y={dayOfTheWeekDistance - 7}>
+              Mon
+            </text>
+            <text fill="gray" x={cellSize/4 + 2 + cellSize * 2} y={dayOfTheWeekDistance - 7}>
+              Tue
+            </text>
+            <text fill="gray" x={cellSize/4 + 2 + cellSize * 3} y={dayOfTheWeekDistance - 7}>
+              Wed
+            </text>
+            <text fill="gray" x={cellSize/4 + 2 + cellSize * 4} y={dayOfTheWeekDistance - 7}>
+              Thu
+            </text>
+            <text fill="gray" x={cellSize/4 + 4 + cellSize * 5} y={dayOfTheWeekDistance - 7}>
+              Fri
+            </text>
+            <text fill="gray" x={cellSize/4 + 2 + cellSize * 6} y={dayOfTheWeekDistance - 7}>
+              Sat
+            </text>
           </g>
         );
         break;
