@@ -4,6 +4,7 @@ import { selectLogDataset, fetchDataIfNeeded, invalidateDataset } from '../../ac
 import Picker from '../../components/Picker';
 import PieChart from '../../components/d3charts/PieChart';
 import BarChart from '../../components/d3charts/BarChart';
+import CalendarChart from '../../components/d3charts/CalendarChart';
 import ForceChart from '../../components/d3charts/ForceChart';
 
 import { Table } from 'react-bootstrap';
@@ -148,15 +149,17 @@ class Display extends Component {
         case 'eventSummary':
         // TODO: Refactor this into a graph somewhere else.
         //Primary Area
-        primaryArea =
-                      <svg>
-                        <rect x="20" y="30" fill="gray" width="200" height="150">
-                          <title>Hello, World!</title>
-                        </rect>
-                        <circle r="20" cx="30" cy="30" fill="lightgray">
-                          <title>Hello, World!</title>
-                        </circle>
-                      </svg>
+        primaryArea = <CalendarChart
+                        title={''}
+                        width={'400'}
+                        height={'400'}
+                        border={'false'}
+                        borderWeight={0}
+                        distinctColors={true}
+                        modulus={5}
+                        fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
+                        data={this.props.data[5].allEvents}
+                        eventfulDates={this.props.data[1].eventfulDates} />
         secondaryArea = [];
         //Secondary Area
         secondaryArea.push(

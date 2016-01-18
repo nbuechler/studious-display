@@ -1,17 +1,19 @@
 import React from 'react';
 import d3 from 'd3';
 import _ from 'underscore';
+import { Calendar } from 'calendar';
 
 import ToolTip from '../d3components/ToolTip';
 import ForceTip from '../d3components/ForceTip';
 
-import Label from '../d3components/Label';
 import Bar from '../d3components/Bar';
-import Point from '../d3components/Point';
-import Node from '../d3components/Node';
-import Link from '../d3components/Link';
-import Line from '../d3components/Line';
+import CalendarCell from '../d3components/CalendarCell';
 import Empty from '../d3components/Empty';
+import Label from '../d3components/Label';
+import Line from '../d3components/Line';
+import Link from '../d3components/Link';
+import Node from '../d3components/Node';
+import Point from '../d3components/Point';
 
 export default class DataSeries extends React.Component {
   constructor (props) {
@@ -19,6 +21,7 @@ export default class DataSeries extends React.Component {
     this.state = { };
   }
   render () {
+
     var props = this.props;
 
     var yScale = d3.scale.linear()
@@ -53,6 +56,7 @@ export default class DataSeries extends React.Component {
 
     var tempStore = {};
         tempStore.data = this.props.data;
+        tempStore.eventfulDates = this.props.eventfulDates;
         tempStore.dataLength = this.props.data.length
 
     var title = <text fill="white" fontSize="20px" x={5} y= "18">{this.props.title ? this.props.title : ''}</text>;
@@ -245,6 +249,110 @@ export default class DataSeries extends React.Component {
             <ForceTip id={'567885'} dataLength={tempStore.dataLength}
               mainText={'hi'} ttRectWidth={'50'} ttRectHeight={'50'}  visibility={'hidden'}
               height={30} width={30} availableHeight={props.height} fillColor={computedColor} />
+          </g>
+        );
+        break;
+      case 'calendar': //chart
+
+
+        var monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+          'July', 'August', 'September', 'October', 'November', 'December'
+        ];
+
+        /**
+          * Date logic using a 3rd part npm library called 'Calendar'
+          */
+        var now = new Date;
+        var nowDay = now.getDay();
+        var nowMonth = now.getMonth();
+        var nowYear = now.getYear();
+        var cSun = new Calendar(0); // weeks starts on Sunday
+        var mdc = cSun.monthDays(2016, 0);
+        for (var i = 0; i < mdc.length; i++) {
+          console.log(mdc[i])
+        };
+
+
+        var dayOfTheWeekDistance = 20;
+        var monthDistance = 40;
+        var thisMonthText =  monthNames[nowMonth];
+
+        /**
+          * Setting up the main business logic
+          */
+        var cellSize = props.height/7;
+        var calendarCellDate = '';
+        var match = false;
+        var dp = '';
+        var cells = [];
+        var cellRow = [];
+        for (var r = 0; r < mdc.length; r++) {
+          cellRow = _.map(mdc[r], function(dataPoint, i) {
+            calendarCellDate = nowYear + 1900 + '-' + (nowMonth + 1) + '-' +  dataPoint;
+            // console.log(calendarCellDate);
+            for (var d = 0; d < tempStore.data.length; d++) {
+                if(tempStore.data[d].ymd == calendarCellDate){
+                  // console.log('match', calendarCellDate);
+                  match = true;
+                  dp = tempStore.data[d];
+                }
+            }
+              if (match) {
+                // console.log(tempStore.data);
+                match = false;
+                if (distinctColors){
+                  computedColor = fillColors[dp.winningIndexes[0] % modulus];
+                }
+                  return (
+                    <CalendarCell id={i} dataLength={tempStore.dataLength}
+                      height={cellSize} width={cellSize}
+                      y={cellSize * (r) + dayOfTheWeekDistance + monthDistance} x={cellSize * (i % 7) } fillColor={computedColor} key={calendarCellDate}
+                      date={dp.ymd}/>
+                  );
+              } else if (dataPoint == 0) {
+                // Don't do anything
+              } else {
+                if (distinctColors){
+                  computedColor = 'lightGray';
+                }
+                  return (
+                    <CalendarCell id={i} dataLength={tempStore.dataLength}
+                      height={cellSize} width={cellSize}
+                      y={cellSize * (r) + dayOfTheWeekDistance + monthDistance} x={cellSize * (i % 7) } fillColor={computedColor} key={calendarCellDate}
+                      date={calendarCellDate}/>
+                  );
+              }
+          });
+          cells = cells.concat(cellRow);
+        }
+        return (
+          <g>
+            {cells}
+            <text fill="lightgray" x={cellSize/4 + 2 + cellSize * 0} y={monthDistance - 17}
+              style={{fontSize: '30px'}}>
+              {thisMonthText}
+            </text>
+            <text fill="gray" x={cellSize/4 + 2 + cellSize * 0} y={monthDistance + dayOfTheWeekDistance - 7}>
+              Sun
+            </text>
+            <text fill="gray" x={cellSize/4 + 2 + cellSize * 1} y={monthDistance + dayOfTheWeekDistance - 7}>
+              Mon
+            </text>
+            <text fill="gray" x={cellSize/4 + 2 + cellSize * 2} y={monthDistance + dayOfTheWeekDistance - 7}>
+              Tue
+            </text>
+            <text fill="gray" x={cellSize/4 + 2 + cellSize * 3} y={monthDistance + dayOfTheWeekDistance - 7}>
+              Wed
+            </text>
+            <text fill="gray" x={cellSize/4 + 2 + cellSize * 4} y={monthDistance + dayOfTheWeekDistance - 7}>
+              Thu
+            </text>
+            <text fill="gray" x={cellSize/4 + 4 + cellSize * 5} y={monthDistance + dayOfTheWeekDistance - 7}>
+              Fri
+            </text>
+            <text fill="gray" x={cellSize/4 + 2 + cellSize * 6} y={monthDistance + dayOfTheWeekDistance - 7}>
+              Sat
+            </text>
           </g>
         );
         break;
