@@ -12,10 +12,10 @@ export default class Bar extends React.Component {
   render () {
     return (
       <rect fill={this.props.fillColor}
-        width={this.props.width} height={this.props.height}
-        x={this.props.x} y={this.props.y}
-        rx="10" ry="10" 
-        style={{stroke: 'black', strokeWidth: '3px'}}>
+        width={this.props.width - 4} height={this.props.height - 4}
+        x={this.props.x + 2} y={this.props.y + 2}
+        rx="5" ry="5"
+        style={{stroke: '#111', strokeWidth: '2px'}}>
         <title>Date: {this.props.date}</title>
       </rect>
     );
