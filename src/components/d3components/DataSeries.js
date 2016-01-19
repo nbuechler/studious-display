@@ -276,6 +276,7 @@ export default class DataSeries extends React.Component {
         var dayOfTheWeekDistance = 20;
         var monthDistance = 40;
         var thisMonthText =  monthNames[nowMonth];
+        var thisYearText = nowYear + 1900;
 
         /**
           * Setting up the main business logic
@@ -331,6 +332,10 @@ export default class DataSeries extends React.Component {
             <text fill="lightgray" x={cellSize/4 + 2 + cellSize * 0} y={monthDistance - 17}
               style={{fontSize: '30px'}}>
               {thisMonthText}
+            </text>
+            <text fill="lightgray" x={props.width - 87} y={monthDistance - 17}
+              style={{fontSize: '30px'}}>
+              {thisYearText}
             </text>
             <text fill="gray" x={cellSize/4 + 2 + cellSize * 0} y={monthDistance + dayOfTheWeekDistance - 7}>
               Sun
