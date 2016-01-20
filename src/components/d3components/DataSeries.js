@@ -267,7 +267,7 @@ export default class DataSeries extends React.Component {
         var nowMonth = now.getMonth();
         var nowYear = now.getYear();
         var cSun = new Calendar(0); // weeks starts on Sunday
-        var mdc = cSun.monthDays(2016, 0);
+        var mdc = cSun.monthDays(nowYear + 1900, nowMonth);
         for (var i = 0; i < mdc.length; i++) {
           console.log(mdc[i])
         };
@@ -308,7 +308,8 @@ export default class DataSeries extends React.Component {
                     <CalendarCell id={i} dataLength={tempStore.dataLength}
                       height={cellSize} width={cellSize}
                       y={cellSize * (r) + dayOfTheWeekDistance + monthDistance} x={cellSize * (i % 7) } fillColor={computedColor} key={calendarCellDate}
-                      date={dp.ymd}/>
+                      date={dp.ymd} month={nowMonth} day={dataPoint} year={nowYear}
+                      logCount={dp.logCount}/>
                   );
               } else if (dataPoint == 0) {
                 // Don't do anything
@@ -320,7 +321,8 @@ export default class DataSeries extends React.Component {
                     <CalendarCell id={i} dataLength={tempStore.dataLength}
                       height={cellSize} width={cellSize}
                       y={cellSize * (r) + dayOfTheWeekDistance + monthDistance} x={cellSize * (i % 7) } fillColor={computedColor} key={calendarCellDate}
-                      date={calendarCellDate}/>
+                      date={calendarCellDate} month={nowMonth} day={dataPoint} year={nowYear}
+                      logCount={0}/>
                   );
               }
           });
