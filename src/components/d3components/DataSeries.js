@@ -308,7 +308,8 @@ export default class DataSeries extends React.Component {
                     <CalendarCell id={i} dataLength={tempStore.dataLength}
                       height={cellSize} width={cellSize}
                       y={cellSize * (r) + dayOfTheWeekDistance + monthDistance} x={cellSize * (i % 7) } fillColor={computedColor} key={calendarCellDate}
-                      date={dp.ymd}/>
+                      date={dp.ymd} month={nowMonth} day={dataPoint} year={nowYear}
+                      logCount={dp.logCount}/>
                   );
               } else if (dataPoint == 0) {
                 // Don't do anything
@@ -320,7 +321,8 @@ export default class DataSeries extends React.Component {
                     <CalendarCell id={i} dataLength={tempStore.dataLength}
                       height={cellSize} width={cellSize}
                       y={cellSize * (r) + dayOfTheWeekDistance + monthDistance} x={cellSize * (i % 7) } fillColor={computedColor} key={calendarCellDate}
-                      date={calendarCellDate}/>
+                      date={calendarCellDate} month={nowMonth} day={dataPoint} year={nowYear}
+                      logCount={0}/>
                   );
               }
           });
