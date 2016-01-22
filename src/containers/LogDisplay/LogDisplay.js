@@ -171,8 +171,28 @@ class Display extends Component {
                           </thead>
                           <tbody>
                             <tr>
-                              <td>Event Table Cell</td>
-                              <td>Events go here!</td>
+                              <td>Total Words</td>
+                              <td>{data[1].aggregateData[0].physicSum + data[1].aggregateData[0].emotionSum + data[1].aggregateData[0].academicSum + data[1].aggregateData[0].communeSum + data[1].aggregateData[0].etherSum}</td>
+                            </tr>
+                            <tr style={{background: '#EB493A', color: 'black'}}>
+                              <td style={{background: '#3D3D3D', border: 'none', color: 'black'}}></td>
+                              <td>{data[1].aggregateData[0].physicSum}</td>
+                            </tr>
+                            <tr style={{background: '#5078A9', color: 'black'}}>
+                              <td style={{background: '#3D3D3D', border: 'none', color: 'black'}}></td>
+                              <td>{data[1].aggregateData[0].emotionSum}</td>
+                            </tr>
+                            <tr style={{background: '#8B2E74', color: 'black'}}>
+                              <td style={{background: '#3D3D3D', border: 'none', color: 'black'}}></td>
+                              <td>{data[1].aggregateData[0].academicSum}</td>
+                            </tr>
+                            <tr style={{background: '#4E981F', color: 'black'}}>
+                              <td style={{background: '#3D3D3D', border: 'none', color: 'black'}}></td>
+                              <td>{data[1].aggregateData[0].communeSum}</td>
+                            </tr>
+                            <tr style={{background: '#D69C30', color: 'black'}}>
+                              <td style={{background: '#3D3D3D', border: 'none', color: 'black'}}></td>
+                              <td>{data[1].aggregateData[0].etherSum}</td>
                             </tr>
                           </tbody>
                         </Table>
