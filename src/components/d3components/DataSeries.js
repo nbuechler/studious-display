@@ -269,7 +269,7 @@ export default class DataSeries extends React.Component {
         var cSun = new Calendar(0); // weeks starts on Sunday
         var mdc = cSun.monthDays(nowYear + 1900, nowMonth);
         for (var i = 0; i < mdc.length; i++) {
-          console.log(mdc[i])
+          // console.log(mdc[i])
         };
 
 
