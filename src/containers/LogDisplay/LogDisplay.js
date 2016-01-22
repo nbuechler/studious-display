@@ -51,7 +51,7 @@ class Display extends Component {
         case 'logsOverview':
           //Primary Area
           primaryArea = <BarChart
-                          title={'Category Totals for each Log'}
+                          title={'Totals for Each Category'}
                           distinctColors={true}
                           modulus={5}
                           fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
@@ -163,40 +163,28 @@ class Display extends Component {
         secondaryArea = [];
         //Secondary Area
         secondaryArea.push(
-                        <Table style={{width: '500px', margin: 'auto', textAlign: 'center'}} striped bordered condensed hover>
-                          <thead>
-                            <tr>
-                              <th style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}>Event Statistics</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <td>Total Words</td>
-                              <td>{data[1].aggregateData[0].physicSum + data[1].aggregateData[0].emotionSum + data[1].aggregateData[0].academicSum + data[1].aggregateData[0].communeSum + data[1].aggregateData[0].etherSum}</td>
-                            </tr>
-                            <tr style={{background: '#EB493A', color: 'black'}}>
-                              <td style={{background: '#3D3D3D', border: 'none', color: 'black'}}></td>
-                              <td>{data[1].aggregateData[0].physicSum}</td>
-                            </tr>
-                            <tr style={{background: '#5078A9', color: 'black'}}>
-                              <td style={{background: '#3D3D3D', border: 'none', color: 'black'}}></td>
-                              <td>{data[1].aggregateData[0].emotionSum}</td>
-                            </tr>
-                            <tr style={{background: '#8B2E74', color: 'black'}}>
-                              <td style={{background: '#3D3D3D', border: 'none', color: 'black'}}></td>
-                              <td>{data[1].aggregateData[0].academicSum}</td>
-                            </tr>
-                            <tr style={{background: '#4E981F', color: 'black'}}>
-                              <td style={{background: '#3D3D3D', border: 'none', color: 'black'}}></td>
-                              <td>{data[1].aggregateData[0].communeSum}</td>
-                            </tr>
-                            <tr style={{background: '#D69C30', color: 'black'}}>
-                              <td style={{background: '#3D3D3D', border: 'none', color: 'black'}}></td>
-                              <td>{data[1].aggregateData[0].etherSum}</td>
-                            </tr>
-                          </tbody>
-                        </Table>
-                        )
+                        <BarChart
+                              title={'Totals for Each Category from 1st Log to Now'}
+                              distinctColors={true}
+                              modulus={5}
+                              fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
+                              data={[data[1].aggregateData[0].physicSum, data[1].aggregateData[0].emotionSum, data[1].aggregateData[0].academicSum, data[1].aggregateData[0].communeSum, data[1].aggregateData[0].etherSum]} />
+                          )
+      secondaryArea.push(
+                      <Table style={{width: '500px', margin: 'auto', textAlign: 'center'}} striped bordered condensed hover>
+                        <thead>
+                          <tr>
+                            <th style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}>Event Statistics</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>Total Words</td>
+                            <td>{data[1].aggregateData[0].physicSum + data[1].aggregateData[0].emotionSum + data[1].aggregateData[0].academicSum + data[1].aggregateData[0].communeSum + data[1].aggregateData[0].etherSum}</td>
+                          </tr>
+                        </tbody>
+                      </Table>
+                      )
           break;
         default:
           break;
