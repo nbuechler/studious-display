@@ -7,7 +7,7 @@ import BarChart from '../../components/d3charts/BarChart';
 import CalendarChart from '../../components/d3charts/CalendarChart';
 import ForceChart from '../../components/d3charts/ForceChart';
 
-import { Table } from 'react-bootstrap';
+import { Table, Panel, Row, Col } from 'react-bootstrap';
 
 class Display extends Component {
   constructor(props) {
@@ -61,7 +61,43 @@ class Display extends Component {
           var pieCharts = [];
           if (this.props.data[0] != null) {
             for (var i = 0; i < this.props.data[0].pies.length; i++) {
-                pieCharts.push(<PieChart data={data[0].pies[i].data} />);
+                pieCharts.push(
+                  <div>
+                    <Panel header={data[0].pies[i].name}>
+                      <Row>
+                        <Col style={{padding: '30px'}}xs={12} md={3} lg={33}>
+                          <PieChart data={data[0].pies[i].data} />
+                        </Col>
+                        <Col xs={12} md={9} lg={9}>
+                          <Table style={{margin: 'auto', textAlign: 'center'}} striped bordered condensed hover>
+                            <tbody>
+                              <tr>
+                                <td style={{background: '#EB493A', color: 'black', width: '50px'}}>{data[0].pies[i].data[0]}</td>
+                                <td>{data[0].pies[i].values[0]}</td>
+                              </tr>
+                              <tr>
+                                <td style={{background: '#5078A9', color: 'black', width: '50px'}}>{data[0].pies[i].data[1]}</td>
+                                <td>{data[0].pies[i].values[1]}</td>
+                              </tr>
+                              <tr>
+                                <td style={{background: '#8B2E74', color: 'black', width: '50px'}}>{data[0].pies[i].data[2]}</td>
+                                <td>{data[0].pies[i].values[2]}</td>
+                              </tr>
+                              <tr>
+                                <td style={{background: '#4E981F', color: 'black', width: '50px'}}>{data[0].pies[i].data[3]}</td>
+                                <td>{data[0].pies[i].values[3]}</td>
+                              </tr>
+                              <tr>
+                                <td style={{background: '#D69C30', color: 'black', width: '50px'}}>{data[0].pies[i].data[4]}</td>
+                                <td>{data[0].pies[i].values[4]}</td>
+                              </tr>
+                            </tbody>
+                          </Table>
+                        </Col>
+                      </Row>
+                    </Panel>
+                  </div>
+                );
             }
           }
           secondaryArea = pieCharts;
@@ -170,21 +206,21 @@ class Display extends Component {
                               fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
                               data={[data[1].aggregateData[0].physicSum, data[1].aggregateData[0].emotionSum, data[1].aggregateData[0].academicSum, data[1].aggregateData[0].communeSum, data[1].aggregateData[0].etherSum]} />
                           )
-      secondaryArea.push(
-                      <Table style={{width: '500px', margin: 'auto', textAlign: 'center'}} striped bordered condensed hover>
-                        <thead>
-                          <tr>
-                            <th style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}>Event Statistics</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Total Words</td>
-                            <td>{data[1].aggregateData[0].physicSum + data[1].aggregateData[0].emotionSum + data[1].aggregateData[0].academicSum + data[1].aggregateData[0].communeSum + data[1].aggregateData[0].etherSum}</td>
-                          </tr>
-                        </tbody>
-                      </Table>
-                      )
+        secondaryArea.push(
+                        <Table style={{width: '500px', margin: 'auto', textAlign: 'center'}} striped bordered condensed hover>
+                          <thead>
+                            <tr>
+                              <th style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}>Event Statistics</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td>Total Words</td>
+                              <td>{data[1].aggregateData[0].physicSum + data[1].aggregateData[0].emotionSum + data[1].aggregateData[0].academicSum + data[1].aggregateData[0].communeSum + data[1].aggregateData[0].etherSum}</td>
+                            </tr>
+                          </tbody>
+                        </Table>
+                        )
           break;
         default:
           break;
