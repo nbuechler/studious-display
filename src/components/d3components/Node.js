@@ -72,6 +72,16 @@ export default class Node extends React.Component {
         forceTipDOM.children[1].setAttribute('x', d.cx + 20 + shifter);
         forceTipDOM.children[1].setAttribute('y', d.cy + 30 + shifter);
         break;
+      case 'activity':
+        // Change Rectangle Element
+        forceTipDOM.children[0].setAttribute('x', d.cx + shifter);
+        forceTipDOM.children[0].setAttribute('y', d.cy + shifter);
+        forceTipDOM.children[0].setAttribute('width', 95);
+
+        // Change Text Title
+        forceTipDOM.children[1].setAttribute('x', d.cx + 20 + shifter);
+        forceTipDOM.children[1].setAttribute('y', d.cy + 30 + shifter);
+        break;
       default:
         break;
     }
@@ -95,6 +105,9 @@ export default class Node extends React.Component {
 
         break;
       case 'experience':
+
+        break;
+      case 'activity':
 
         break;
       default:
@@ -135,6 +148,17 @@ export default class Node extends React.Component {
                         />
         break;
       case 'experience': //draw a word node
+        node = <circle  fill={nodeColor}
+                        r={this.props.r + 'px'}
+                        cx={this.props.cx}
+                        cy={this.props.cy}
+                        stroke={nodeColor}
+                        style={{strokeWidth: '3px'}}
+                        onMouseOver={this._handleOver.bind(this, this.props)}
+                        onMouseOut={this._handleOut.bind(this, this.props)}
+                        />
+        break;
+      case 'activity': //draw a word node
         node = <circle  fill={nodeColor}
                         r={this.props.r + 'px'}
                         cx={this.props.cx}
