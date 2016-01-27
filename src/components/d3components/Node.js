@@ -66,7 +66,7 @@ export default class Node extends React.Component {
         // Change Rectangle Element
         forceTipDOM.children[0].setAttribute('x', d.cx + shifter);
         forceTipDOM.children[0].setAttribute('y', d.cy + shifter);
-        forceTipDOM.children[0].setAttribute('width', 110);
+        forceTipDOM.children[0].setAttribute('width', 113);
 
         // Change Text Title
         forceTipDOM.children[1].setAttribute('x', d.cx + 20 + shifter);
@@ -76,7 +76,7 @@ export default class Node extends React.Component {
         // Change Rectangle Element
         forceTipDOM.children[0].setAttribute('x', d.cx + shifter);
         forceTipDOM.children[0].setAttribute('y', d.cy + shifter);
-        forceTipDOM.children[0].setAttribute('width', 95);
+        forceTipDOM.children[0].setAttribute('width', 93);
 
         // Change Text Title
         forceTipDOM.children[1].setAttribute('x', d.cx + 20 + shifter);
