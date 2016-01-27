@@ -152,7 +152,7 @@ class Display extends Component {
                                 <td>{data[10].totalNodes}</td>
                               </tr>
                               <tr>
-                                <td>Total Log Nodes</td>
+                                <td>Total Activity Nodes</td>
                                 <td>{data[11].totalActivities}</td>
                               </tr>
                               <tr>
