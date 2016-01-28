@@ -163,6 +163,48 @@ class Display extends Component {
                           </Table>
                         )
           break;
+        case 'activityContainsExperience':
+        //Primary Area
+        primaryArea = <ForceChart
+                        title={''}
+                        width={'800'}
+                        height={'800'}
+                        border={'true'}
+                        borderWeight={1}
+                        distinctColors={false}
+                        modulus={5}
+                        fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
+                        data={this.props.data} />
+        secondaryArea = [];
+        //Secondary Area
+        secondaryArea.push(
+                          <Table style={{width: '500px', margin: 'auto', textAlign: 'center'}} striped bordered condensed hover>
+                            <thead>
+                              <tr>
+                                <th style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}>Key Statistics</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Total Links</td>
+                                <td>{data[9].totalLinks}</td>
+                              </tr>
+                              <tr>
+                                <td>Total Nodes</td>
+                                <td>{data[10].totalNodes}</td>
+                              </tr>
+                              <tr>
+                                <td>Total Activity Nodes</td>
+                                <td>{data[11].totalActivities}</td>
+                              </tr>
+                              <tr>
+                                <td>Total Experiences</td>
+                                <td>{data[12].totalExperiences}</td>
+                              </tr>
+                            </tbody>
+                          </Table>
+                        )
+          break;
         default:
           break;
       }
@@ -175,9 +217,9 @@ class Display extends Component {
         {data.length > 0 &&
         <Picker value={selectedActivityDataset}
                 onChange={this.handleChange}
-                options={['0', '1', '2']}
-                apiOptions={['activitiesOverview', 'activitiesStatistics', 'activityHasWord']}
-                displayOptions={['View all activities', 'Activities Statistics', 'Activity Clusters (Words)']}
+                options={['0', '1', '2', '3']}
+                apiOptions={['activitiesOverview', 'activitiesStatistics', 'activityHasWord', 'activityContainsExperience']}
+                displayOptions={['View all activities', 'Activities Statistics', 'Activity Clusters (Words)', 'Activity Clusters (Experiences)']}
                 descriptionPrimary={data[2].description_primary}
                 descriptionSecondary={data[3].description_secondary}
                 title={data[4].title} />
