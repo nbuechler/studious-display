@@ -12,6 +12,7 @@ import  Logout  from './Logout/Logout';
 import  LogDisplay  from './LogDisplay/LogDisplay';
 import  ExperienceDisplay  from './ExperienceDisplay/ExperienceDisplay';
 import  ActivityDisplay  from './ActivityDisplay/ActivityDisplay';
+import  ReflectionDisplay  from './ReflectionDisplay/ReflectionDisplay';
 
 const store = configureStore();
 
@@ -37,6 +38,7 @@ export default class Root extends Component {
               <Route path="/logDisplay" component={LogDisplay}/>
               <Route path="/experienceDisplay" component={ExperienceDisplay}/>
               <Route path="/activityDisplay" component={ActivityDisplay}/>
+              <Route path="/reflectionDisplay" component={ReflectionDisplay}/>
             </Route>
           </Router>
         }
