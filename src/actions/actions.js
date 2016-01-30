@@ -28,6 +28,13 @@ export function selectActivityDataset(dataset) {
   };
 }
 
+export function selectReflectionDataset(dataset) {
+  return {
+    type: SELECT_ACTIVITY_DATASET,
+    dataset
+  };
+}
+
 export function invalidateDataset(dataset) {
   return {
     type: INVALIDATE_DATASET,
