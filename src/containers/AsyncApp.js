@@ -75,6 +75,7 @@ class AsyncApp extends Component {
                        <li><Link to="/logDisplay">Log Perspective</Link></li>
                        <li><Link to="/experienceDisplay">Experience Perspective</Link></li>
                        <li><Link to="/activityDisplay">Activitiy Perspective</Link></li>
+                       <li><Link to="/reflectionDisplay">Reflection Perspective</Link></li>
                      </NavDropdown>
                    </Nav>)
        loginButton = <Nav right>
