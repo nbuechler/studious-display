@@ -32,6 +32,15 @@ function selectedActivityDataset(state = 'activitiesOverview', action) {
   }
 }
 
+function selectedReflectionDataset(state = 'userSpokeUniqueWord', action) {
+  switch (action.type) {
+  case SELECT_ACTIVITY_DATASET:
+    return action.dataset; // these need to be smarter, maybe?
+  default:
+    return state;
+  }
+}
+
 function data(state = {
   isFetching: false,
   didInvalidate: false,
@@ -76,7 +85,8 @@ const rootReducer = combineReducers({
   dataByDataset,
   selectedLogDataset,
   selectedExperienceDataset,
-  selectedActivityDataset
+  selectedActivityDataset,
+  selectedReflectionDataset
 });
 
 export default rootReducer;
