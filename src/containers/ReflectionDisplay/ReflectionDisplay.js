@@ -52,10 +52,14 @@ class Display extends Component {
     if (this.props.data.length > 0) {
       switch (this.props.selectedReflectionDataset) {
         case 'userSpokeUniqueWord':
+          var wordScatterData = [];
           //Primary Area
           primaryArea = [];
+          //Secondary Area
+          secondaryArea = [];
             for (var i = 0; i < this.props.data[5].allUniqueWords.length; i++) {
-              primaryArea.push(
+              wordScatterData.push(this.props.data[5].allUniqueWords[i].count)
+              secondaryArea.push(
                 <Table style={{margin: 'auto', textAlign: 'center'}} striped bordered condensed hover>
                   <tbody>
                     <tr>
@@ -66,8 +70,16 @@ class Display extends Component {
                 </Table>
               )
             }
-          //Secondary Area
-          secondaryArea = <div></div>;
+          primaryArea.push(
+                          <ScatterPlot
+                            title={'Word Length(y) v Word Count(x)'}
+                            border={'true'}
+                            borderWeight={3}
+                            distinctColors={false}
+                            width={400}
+                            height={400}
+                            data={wordScatterData} />
+                          )
           break;
         default:
           break;
