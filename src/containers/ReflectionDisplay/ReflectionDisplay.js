@@ -57,8 +57,8 @@ class Display extends Component {
           primaryArea = [];
           //Secondary Area
           secondaryArea = [];
-            for (var i = 0; i < this.props.data[5].allUniqueWords.length; i++) {
-              wordScatterData.push(this.props.data[5].allUniqueWords[i].count)
+            for (var i = 0; i < this.props.data[6].lowToHighUniqueWords.length; i++) {
+              wordScatterData.push(this.props.data[6].lowToHighUniqueWords[i].count)
               secondaryArea.push(
                 <Table style={{margin: 'auto', textAlign: 'center'}} striped bordered condensed hover>
                   <tbody>
@@ -71,13 +71,11 @@ class Display extends Component {
               )
             }
           primaryArea.push(
-                          <ScatterPlot
-                            title={'Word Length(y) v Word Count(x)'}
-                            border={'true'}
-                            borderWeight={3}
+                          <BarChart
+                            title={'Position in sorted list(x) vs Word Count(y)'}
                             distinctColors={false}
-                            width={400}
-                            height={400}
+                            modulus={1}
+                            fillColors={['none']}
                             data={wordScatterData} />
                           )
           break;
@@ -130,7 +128,7 @@ class Display extends Component {
                 {primaryArea}
             </div>
             <br></br>
-            <div style={{ textAlign: 'center' }}>
+            <div style={{ textAlign: 'center', height: '300px', overflowY: 'scroll'}}>
                 {secondaryArea}
             </div>
           </div>
