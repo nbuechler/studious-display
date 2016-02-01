@@ -71,13 +71,11 @@ class Display extends Component {
               )
             }
           primaryArea.push(
-                          <ScatterPlot
+                          <BarChart
                             title={'Position in sorted list(x) vs Word Count(y)'}
-                            border={'true'}
-                            borderWeight={3}
                             distinctColors={false}
-                            width={400}
-                            height={400}
+                            modulus={1}
+                            fillColors={['none']}
                             data={wordScatterData} />
                           )
           break;
