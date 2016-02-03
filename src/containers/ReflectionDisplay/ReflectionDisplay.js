@@ -47,7 +47,8 @@ class Display extends Component {
     const { selectedReflectionDataset, data, isFetching, lastUpdated } = this.props;
 
     var primaryArea = '',
-        secondaryArea = '';
+        secondaryArea = '',
+        tertiaryArea = '';
 
     if (this.props.data.length > 0) {
       switch (this.props.selectedReflectionDataset) {
@@ -56,10 +57,10 @@ class Display extends Component {
           //Primary Area
           primaryArea = [];
           //Secondary Area
-          secondaryArea = [];
+          tertiaryArea = [];
             for (var i = 0; i < this.props.data[6].lowToHighUniqueWords.length; i++) {
               wordScatterData.push(this.props.data[6].lowToHighUniqueWords[i].count)
-              secondaryArea.push(
+              tertiaryArea.push(
                 <Table style={{margin: 'auto', textAlign: 'center'}} striped bordered condensed hover>
                   <tbody>
                     <tr>
@@ -79,6 +80,52 @@ class Display extends Component {
                             data={wordScatterData} />
                           )
           break;
+        case 'userDidActivityWithLog':
+        //Primary Area
+        primaryArea = <ForceChart
+                        title={''}
+                        width={'800'}
+                        height={'800'}
+                        border={'true'}
+                        borderWeight={1}
+                        distinctColors={false}
+                        modulus={5}
+                        fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
+                        data={this.props.data} />
+        secondaryArea = [];
+        //Secondary Area
+        secondaryArea.push(
+                          <Table style={{width: '500px', margin: 'auto', textAlign: 'center'}} striped bordered condensed hover>
+                            <thead>
+                              <tr>
+                                <th style={{background: '#111', textAlign: 'center', fontSize: '18'}} colSpan={2}>Key Statistics</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Total Links</td>
+                                <td>{data[10].totalLinks}</td>
+                              </tr>
+                              <tr>
+                                <td>Total Nodes</td>
+                                <td>{data[11].totalNodes}</td>
+                              </tr>
+                              <tr>
+                                <td>Total Activity Nodes</td>
+                                <td>{data[12].totalActivities}</td>
+                              </tr>
+                              <tr>
+                                <td>Total Words</td>
+                                <td>{data[13].totalExperiences}</td>
+                              </tr>
+                              <tr>
+                                <td>Total Words</td>
+                                <td>{data[14].totalLogs}</td>
+                              </tr>
+                            </tbody>
+                          </Table>
+                        )
+          break;
         default:
           break;
       }
@@ -91,9 +138,9 @@ class Display extends Component {
         {data.length > 0 &&
         <Picker value={selectedReflectionDataset}
                 onChange={this.handleChange}
-                options={['0']}
-                apiOptions={['userSpokeUniqueWord']}
-                displayOptions={['Unique Spoken Words']}
+                options={['0', '1']}
+                apiOptions={['userSpokeUniqueWord', 'userDidActivityWithLog']}
+                displayOptions={['Unique Spoken Words', 'User Did Activity with Log']}
                 descriptionPrimary={data[2].description_primary}
                 descriptionSecondary={data[3].description_secondary}
                 title={data[4].title} />
@@ -128,9 +175,14 @@ class Display extends Component {
                 {primaryArea}
             </div>
             <br></br>
-            <div style={{ textAlign: 'center', height: '300px', overflowY: 'scroll'}}>
+            <div>
                 {secondaryArea}
             </div>
+          {tertiaryArea.length > 0 &&
+            <div style={{ textAlign: 'center', height: '300px', overflowY: 'scroll'}}>
+                {tertiaryArea}
+            </div>
+          }
           </div>
         }
       </div>
