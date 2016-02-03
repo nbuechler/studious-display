@@ -163,7 +163,7 @@ export default class Node extends React.Component {
                         r={this.props.r + 'px'}
                         cx={this.props.cx}
                         cy={this.props.cy}
-                        stroke={nodeColor}
+                        stroke={'red'}
                         style={{strokeWidth: '3px'}}
                         onMouseOver={this._handleOver.bind(this, this.props)}
                         onMouseOut={this._handleOut.bind(this, this.props)}
