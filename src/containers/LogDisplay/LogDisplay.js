@@ -7,7 +7,7 @@ import BarChart from '../../components/d3charts/BarChart';
 import CalendarChart from '../../components/d3charts/CalendarChart';
 import ForceChart from '../../components/d3charts/ForceChart';
 
-import { Table, Panel, Row, Col } from 'react-bootstrap';
+import { Table, Panel, Row, Col, Button } from 'react-bootstrap';
 
 class Display extends Component {
   constructor(props) {
@@ -185,17 +185,26 @@ class Display extends Component {
         case 'eventSummary':
         // TODO: Refactor this into a graph somewhere else.
         //Primary Area
-        primaryArea = <CalendarChart
-                        title={''}
-                        width={'400'}
-                        height={'400'}
-                        border={'false'}
-                        borderWeight={0}
-                        distinctColors={true}
-                        modulus={5}
-                        fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
-                        data={this.props.data[5].allEvents}
-                        eventfulDates={this.props.data[1].eventfulDates} />
+        primaryArea = [];
+        primaryArea.push(
+                          <Button>Last Month</Button>
+                        )
+        primaryArea.push(
+                          <CalendarChart
+                            title={''}
+                            width={'400'}
+                            height={'400'}
+                            border={'false'}
+                            borderWeight={0}
+                            distinctColors={true}
+                            modulus={5}
+                            fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
+                            data={this.props.data[5].allEvents}
+                            eventfulDates={this.props.data[1].eventfulDates} />
+                        )
+        primaryArea.push(
+                          <Button>Next Month</Button>
+                        )
         secondaryArea = [];
         //Secondary Area
         secondaryArea.push(
