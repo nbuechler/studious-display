@@ -14,6 +14,8 @@ class Display extends Component {
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleRefreshClick = this.handleRefreshClick.bind(this);
+    this.incrementMonth = this.incrementMonth.bind(this);
+    this.decrementMonth = this.decrementMonth.bind(this);
   }
 
   componentDidMount() {
@@ -38,6 +40,22 @@ class Display extends Component {
     const { dispatch, selectedLogDataset } = this.props;
     dispatch(invalidateDataset(selectedLogDataset));
     dispatch(fetchDataIfNeeded(selectedLogDataset));
+  }
+
+  incrementMonth(e) {
+    e.preventDefault();
+    localStorage.setItem('focusedMonth', parseInt(localStorage.getItem('focusedMonth')) + 1);
+    localStorage.setItem('focusedYear', parseInt(localStorage.getItem('focusedYear')));
+
+    this.handleRefreshClick(e)
+  }
+
+  decrementMonth(e) {
+    e.preventDefault();
+    localStorage.setItem('focusedMonth', parseInt(localStorage.getItem('focusedMonth')) + 1);
+    localStorage.setItem('focusedYear', parseInt(localStorage.getItem('focusedYear')));
+
+    this.handleRefreshClick(e)
   }
 
   render () {
@@ -187,7 +205,11 @@ class Display extends Component {
         //Primary Area
         primaryArea = [];
         primaryArea.push(
-                          <Button>Last Month</Button>
+                          <Button bsSize="small"
+                            style={{margin: '20px'}}
+                            onClick={this.decrementMonth}>
+                            Last Month
+                          </Button>
                         )
         primaryArea.push(
                           <CalendarChart
@@ -203,7 +225,11 @@ class Display extends Component {
                             eventfulDates={this.props.data[1].eventfulDates} />
                         )
         primaryArea.push(
-                          <Button>Next Month</Button>
+                          <Button bsSize="small"
+                            style={{margin: '20px'}}
+                            onClick={this.incrementMonth}>
+                            Next Month
+                          </Button>
                         )
         secondaryArea = [];
         //Secondary Area
