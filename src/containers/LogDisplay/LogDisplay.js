@@ -44,16 +44,30 @@ class Display extends Component {
 
   incrementMonth(e) {
     e.preventDefault();
-    localStorage.setItem('focusedMonth', parseInt(localStorage.getItem('focusedMonth')) + 1);
-    localStorage.setItem('focusedYear', parseInt(localStorage.getItem('focusedYear')));
+
+    var month = parseInt(localStorage.getItem('focusedMonth'))
+    if(month == 11) {
+      localStorage.setItem('focusedMonth', 0);
+      localStorage.setItem('focusedYear', parseInt(localStorage.getItem('focusedYear')) + 1);
+    } else {
+      localStorage.setItem('focusedMonth', parseInt(localStorage.getItem('focusedMonth')) + 1);
+    }
 
     this.handleRefreshClick(e)
   }
 
   decrementMonth(e) {
     e.preventDefault();
-    localStorage.setItem('focusedMonth', parseInt(localStorage.getItem('focusedMonth')) + 1);
-    localStorage.setItem('focusedYear', parseInt(localStorage.getItem('focusedYear')));
+
+    var month = parseInt(localStorage.getItem('focusedMonth'))
+    if(month == 0) {
+      localStorage.setItem('focusedMonth', 11);
+      localStorage.setItem('focusedYear', parseInt(localStorage.getItem('focusedYear') - 1));
+    } else {
+      localStorage.setItem('focusedMonth', parseInt(localStorage.getItem('focusedMonth')) - 1);
+    }
+
+
 
     this.handleRefreshClick(e)
   }
