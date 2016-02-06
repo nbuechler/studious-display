@@ -41,8 +41,11 @@ class Login extends Component {
          * TODO: It may be worth considering creating a service for this to handle all error codes... but later.
          */
         if(data.customCode == 2001){
+          var now = new Date;
           localStorage.setItem('currentSession', 1);
           localStorage.setItem('credentials', data._id);
+          localStorage.setItem('focusedMonth', now.getMonth());
+          localStorage.setItem('focusedYear', now.getYear());
           window.location.href = 'http://localhost:3001/#/logDisplay';
         } else if (data.customCode == 4031) {
           self.setState({showError: true});
