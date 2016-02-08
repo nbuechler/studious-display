@@ -292,8 +292,8 @@ class Display extends Component {
     }
 
     /*Modal variables*/
-    var popover = <Popover title="popover">very popover. such engagement</Popover>;
-    var tooltip = <Tooltip>wow.</Tooltip>;
+    var popover = <Popover title="Motivational Message">{localStorage.getItem('popoverMessage')}</Popover>;
+    var tooltip = <Tooltip>Keep it up!</Tooltip>;
 
     return (
       <div style={{paddingBottom: '100px'}}>
@@ -337,33 +337,21 @@ class Display extends Component {
         {data.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
             <div>
-              <p>Click to get the full Modal experience!</p>
-
-              <Button
-                bsStyle="primary"
-                bsSize="large"
-                onClick={this.open}
-              >
-                Launch demo modal
-              </Button>
-
               <Modal show={this.state.showModal} onHide={this.close}>
                 <Modal.Header closeButton>
                   <Modal.Title>{localStorage.getItem('reflectionDate')}</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
-                  <h4>Popover in a modal</h4>
-                  <p><OverlayTrigger overlay={popover}><a href="#">popssover</a></OverlayTrigger> here</p>
+                  <p>There are <OverlayTrigger overlay={popover}><a href="#">{localStorage.getItem('eventCount')}</a></OverlayTrigger> total events.</p>
+                  <hr></hr>
 
-                  <h4>Tooltips in a modal</h4>
-                  <p>there is a <OverlayTrigger overlay={tooltip}><a href="#">tooltip</a></OverlayTrigger> here</p>
+                  <p>Introspection is a daily task! Stay <OverlayTrigger overlay={tooltip}><a href="#">motivated!</a></OverlayTrigger></p>
 
                 </Modal.Body>
 
                 <Modal.Footer>
                   <Button onClick={this.close}>Close</Button>
-                  <Button bsStyle="primary">Save changes</Button>
                 </Modal.Footer>
               </Modal>
             </div>

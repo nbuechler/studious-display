@@ -11,8 +11,13 @@ export default class Bar extends React.Component {
 
   _handleClick(d) {
     console.log(d);
-    console.log(this);
     localStorage.setItem('reflectionDate', d.date);
+    if (d.logCount > 0) {
+      localStorage.setItem('popoverMessage', 'Good work!');
+    } else {
+      localStorage.setItem('popoverMessage', 'Oh well, no worries here!');
+    }
+    localStorage.setItem('eventCount', d.logCount);
     d.openModal(); //Opens the modal information from the parent... in LogDisplay.js
   }
 
