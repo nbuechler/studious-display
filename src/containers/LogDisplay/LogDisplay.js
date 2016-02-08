@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
+
 import { connect } from 'react-redux';
 import { selectLogDataset, fetchDataIfNeeded, invalidateDataset } from '../../actions/actions';
 import Picker from '../../components/Picker';
@@ -7,15 +9,27 @@ import BarChart from '../../components/d3charts/BarChart';
 import CalendarChart from '../../components/d3charts/CalendarChart';
 import ForceChart from '../../components/d3charts/ForceChart';
 
-import { Table, Panel, Row, Col, Button } from 'react-bootstrap';
+import { Table, Panel, Row, Col, Button,
+  Modal, OverlayTrigger, Popover, Tooltip } from 'react-bootstrap';
 
 class Display extends Component {
   constructor(props) {
     super(props);
+    this.state = { showModal: false };
     this.handleChange = this.handleChange.bind(this);
     this.handleRefreshClick = this.handleRefreshClick.bind(this);
     this.incrementMonth = this.incrementMonth.bind(this);
     this.decrementMonth = this.decrementMonth.bind(this);
+    this.close = this.close.bind(this);
+    this.open = this.open.bind(this);
+  }
+
+  close() {
+    this.setState({ showModal: false });
+  }
+
+  open() {
+    this.setState({ showModal: true });
   }
 
   componentDidMount() {
@@ -236,7 +250,8 @@ class Display extends Component {
                             modulus={5}
                             fillColors={['#EB493A', '#5078A9', '#8B2E74', '#4E981F', '#D69C30']}
                             data={this.props.data[5].allEvents}
-                            eventfulDates={this.props.data[1].eventfulDates} />
+                            eventfulDates={this.props.data[1].eventfulDates}
+                            openModal={this.open}/>
                         )
         primaryArea.push(
                           <Button bsSize="small"
@@ -275,6 +290,11 @@ class Display extends Component {
           break;
       }
     }
+
+    /*Modal variables*/
+    var popover = <Popover title="popover">very popover. such engagement</Popover>;
+    var tooltip = <Tooltip>wow.</Tooltip>;
+
     return (
       <div style={{paddingBottom: '100px'}}>
         <h1>Log Perspective</h1>
@@ -316,13 +336,44 @@ class Display extends Component {
         }
         {data.length > 0 &&
           <div style={{ opacity: isFetching ? 0.5 : 1 }}>
+            <div>
+              <p>Click to get the full Modal experience!</p>
+
+              <Button
+                bsStyle="primary"
+                bsSize="large"
+                onClick={this.open}
+              >
+                Launch demo modal
+              </Button>
+
+              <Modal show={this.state.showModal} onHide={this.close}>
+                <Modal.Header closeButton>
+                  <Modal.Title>{localStorage.getItem('reflectionDate')}</Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                  <h4>Popover in a modal</h4>
+                  <p><OverlayTrigger overlay={popover}><a href="#">popssover</a></OverlayTrigger> here</p>
+
+                  <h4>Tooltips in a modal</h4>
+                  <p>there is a <OverlayTrigger overlay={tooltip}><a href="#">tooltip</a></OverlayTrigger> here</p>
+
+                </Modal.Body>
+
+                <Modal.Footer>
+                  <Button onClick={this.close}>Close</Button>
+                  <Button bsStyle="primary">Save changes</Button>
+                </Modal.Footer>
+              </Modal>
+            </div>
             <div style={{ textAlign: 'center' }}>
-                {primaryArea}
+              {primaryArea}
             </div>
             <br></br>
-              <div style={{ textAlign: 'center' }}>
-                {secondaryArea}
-              </div>
+            <div style={{ textAlign: 'center' }}>
+              {secondaryArea}
+            </div>
           </div>
         }
       </div>
