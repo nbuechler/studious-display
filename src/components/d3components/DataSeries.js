@@ -57,7 +57,8 @@ export default class DataSeries extends React.Component {
     var tempStore = {};
         tempStore.data = this.props.data;
         tempStore.eventfulDates = this.props.eventfulDates;
-        tempStore.dataLength = this.props.data.length
+        tempStore.dataLength = this.props.data.length;
+        tempStore.openModal = this.props.openModal;
 
     var title = <text fill="white" fontSize="20px" x={5} y= "18">{this.props.title ? this.props.title : ''}</text>;
 
@@ -322,7 +323,8 @@ export default class DataSeries extends React.Component {
                       height={cellSize} width={cellSize}
                       y={cellSize * (r) + dayOfTheWeekDistance + monthDistance} x={cellSize * (i % 7) } fillColor={computedColor} key={calendarCellDate}
                       date={dp.ymd} month={nowMonth} day={dataPoint} year={nowYear}
-                      logCount={dp.logCount}/>
+                      logCount={dp.logCount}
+                      openModal={tempStore.openModal}/>
                   );
               } else if (dataPoint == 0) {
                 // Don't do anything
@@ -335,7 +337,8 @@ export default class DataSeries extends React.Component {
                       height={cellSize} width={cellSize}
                       y={cellSize * (r) + dayOfTheWeekDistance + monthDistance} x={cellSize * (i % 7) } fillColor={computedColor} key={calendarCellDate}
                       date={calendarCellDate} month={nowMonth} day={dataPoint} year={nowYear}
-                      logCount={0}/>
+                      logCount={0}
+                      openModal={tempStore.openModal}/>
                   );
               }
           });
