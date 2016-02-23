@@ -1,6 +1,30 @@
 language: node_js
 sudo: false
 node_js:
-  - iojs
+- iojs
 env:
 - NODE_ENV=travis
+deploy:
+- provider: s3
+  access_key_id: AKIAIEAMLPHO36E7S73Q
+  secret_access_key: &10640200
+    secure: ff7Fsa2lrMwXDncZ+WDDAR8OeDbeJetelI22y4rA79TvlszPFowN6z93bBBsewzdm95TzSdHjZwgTRDglUvohD639pHE8k5xVILGa+JjTNx0hIBhBiXZM9nm3/ysdOzI5dAT7+JxnWPywC0qdV5pVcx3onsM6TWRzzTAidFSQyJMR24L4F5nAm3vpYUvUU2I/YY0FwcuvbYuinh574GSAIKGmkeXe4vOhV6GDj59yYcWdAIvWu9R8RIShvB0hnE/Fu3Xl3vrZ0EaJPwuNU+eeYtwE26Y47UWSqNHGdYzjHf6XhiBq7ICyaYozYgbpd54sTmErkXcI+xHlrpLcjdB0Tyv4CE/atPE+j4wVfx7wQLf37Pvl7UrQPBZHaUNtuHoVFUlLZYEeNIiSyT5TawnwXQ5gpJMZFWvlh6yS1hctbYP5I8ef+yViQ/pvR+itSSwvP/7ky5EuNsKjuCFwBGdA9tbzY8+gnTsVAlAFktL4sxnFE2m3VOHeMY7jsSoOqtdH1UHR1aQsjt0+vzSGvaE3InDUCJ94dw2CAgcyUJMbA2hzH3On8zezhypF2Y3nkPpp2wxi5rVeLtDZcpO/4Vj3nkpKj6tijZo2e810mrmHXzdpgrWysjqdlL3K2NcXNlX3AOLl8UlPWQHDPZBjHvQ3PCZWN2pwCmIoOQtlz9JdXM=
+  local_dir: dpl_cd_upload
+  skip_cleanup: true
+  on: &10635860
+    repo: nbuechler/studious-display
+    branch: develop
+  bucket: studious-display-bucket
+- provider: codedeploy
+  access_key_id: AKIAIEAMLPHO36E7S73Q
+  secret_access_key: *10640200
+  bucket: studious-display-bucket
+  key: latest-sd.zip
+  bundle_type: zip
+  application: studious-display
+  deployment_group: logro-development-group
+  on: *10635860
+before_deploy:
+  - zip -r latest-sd scripts/* src/* .babelrc .eslintrc .gitignore .jshintrc .travis.yml appspec.yml index.html LICENSE package.json README.md server.js webpack.config.js
+  - mkdir -p dpl_cd_upload
+  - mv latest-sd.zip dpl_cd_upload/latest-sd.zip
