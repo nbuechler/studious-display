@@ -21,7 +21,7 @@ class Signup extends Component {
     const pswd = this.refs.password;
     const confirmPswd = this.refs.confirmPswd;
 
-    fetch(`http://localhost:3000/postRemoteSignup`, {
+    fetch(`http://52.87.224.145:3000/postRemoteSignup`, {
 
       method: 'post',
       headers: {
@@ -44,7 +44,7 @@ class Signup extends Component {
         if(data.customCode == 2001){
           localStorage.setItem('currentSession', 1);
           localStorage.setItem('credentials', data._id);
-          window.location.href = 'http://localhost:3001/#/logDisplay';
+          window.location.href = 'http://52.87.224.145:3001/#/logDisplay';
         } else if (data.customCode == 4031) {
           self.setState({showError: true});
           self.setState({message: data.errors[0].msg});

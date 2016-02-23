@@ -70,7 +70,7 @@ function fetchData(dataset) {
       credentials: localStorage.getItem('credentials')
     }
 
-    return fetch(`http://localhost:3000/${dataset}/?credentials=` + options.credentials)
+    return fetch(`http://52.87.224.145:3000/${dataset}/?credentials=` + options.credentials)
       .then(req => req.json())
       .then(json => dispatch(receiveData(dataset, json)));
   };

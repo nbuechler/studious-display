@@ -22,7 +22,7 @@ class AsyncApp extends Component {
     const input = this.refs.username;
     const pswd = this.refs.password;
 
-    fetch(`http://localhost:3000/postRemoteLogout`, {
+    fetch(`http://52.87.224.145:3000/postRemoteLogout`, {
 
       method: 'post',
       headers: {
@@ -42,7 +42,7 @@ class AsyncApp extends Component {
         if(data.customCode == 2001){
           localStorage.setItem('lastSetMsg', data.msg);
           localStorage.setItem('currentSession', 0);
-          window.location.href = 'http://localhost:3001/#/logout';
+          window.location.href = 'http://52.87.224.145:3001/#/logout';
         } else {
           console.error('Unable to logout, try again later');
         }
@@ -62,7 +62,7 @@ class AsyncApp extends Component {
        navOptions = <Nav>
                     </Nav>
        loginButton = <Nav right>
-                      <li><a href="http://localhost:2000/">log-grower</a></li>
+                      <li><a href="http://52.87.224.145:2000/">log-grower</a></li>
                       <li><Link to="/signup">Sign Up</Link></li>
                       <li><Link to="/login">Sign In</Link></li>
                      </Nav>
@@ -79,7 +79,7 @@ class AsyncApp extends Component {
                      </NavDropdown>
                    </Nav>)
        loginButton = <Nav right>
-                      <li><a href="http://localhost:2000/">log-grower</a></li>
+                      <li><a href="http://52.87.224.145:2000/">log-grower</a></li>
                       <li onClick={::this.handleLogout}><Link to="/logout">Sign out</Link></li>
                      </Nav>
      }
