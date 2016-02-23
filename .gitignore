@@ -7,3 +7,4 @@ ncp-debug.log
 npm-debug.log
 .DS_Store
 dist
+logfile.txt
