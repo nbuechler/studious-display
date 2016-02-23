@@ -1,6 +1,7 @@
 run()
 {
-    nohup node /webapps/fixed-gateway/cluster_app.js >logfile.txt 2>&1 </dev/null &
+    cd /webapps/studious-display/
+    nohup npm start >logfile.txt 2>&1 </dev/null &
     return 0
 }
 
