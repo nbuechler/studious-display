@@ -2,14 +2,21 @@ var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 
+var ip = null;
+if(process.argv[2] == 'dev'){
+  ip = '0.0.0.0';
+} else if(process.argv[2] == 'production') {
+  ip = '52.87.224.145';
+}
+
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
   hot: true,
   historyApiFallback: true
-}).listen(3001, '0.0.0.0', function (err, result) {
+}).listen(3001, ip, function (err, result) {
   if (err) {
     console.log(err);
   }
 
-  console.log('Listening at 0.0.0.0:3001');
+  console.log('Listening at ' + ip + ':3001');
 });
