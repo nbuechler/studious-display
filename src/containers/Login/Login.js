@@ -20,7 +20,9 @@ class Login extends Component {
     const input = this.refs.username;
     const pswd = this.refs.password;
 
-    fetch(`http://52.87.224.145:3000/postRemoteLogin`, {
+    var ip = window.location.hostname;
+
+    fetch(`http://` + ip + `:3000/postRemoteLogin`, {
 
       method: 'post',
       headers: {
@@ -46,7 +48,7 @@ class Login extends Component {
           localStorage.setItem('credentials', data._id);
           localStorage.setItem('focusedMonth', now.getMonth());
           localStorage.setItem('focusedYear', now.getYear());
-          window.location.href = 'http://52.87.224.145:3001/#/logDisplay';
+          window.location.href = 'http://' + ip + ':3001/#/logDisplay';
         } else if (data.customCode == 4031) {
           self.setState({showError: true});
           self.setState({message: data.errors[0].msg});

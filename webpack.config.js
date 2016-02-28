@@ -1,10 +1,17 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var ip = null;
+if(process.argv[2] == 'dev'){
+  ip = '0.0.0.0';
+} else if(process.argv[2] == 'production') {
+  ip = '52.87.224.145';
+}
+
 module.exports = {
   devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://0.0.0.0:3001',
+    'webpack-dev-server/client?http://' + ip + ':3001',
     'webpack/hot/only-dev-server',
     './src/index',
     './src/css/bootstrap.css'

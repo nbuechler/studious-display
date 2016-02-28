@@ -22,7 +22,9 @@ class AsyncApp extends Component {
     const input = this.refs.username;
     const pswd = this.refs.password;
 
-    fetch(`http://52.87.224.145:3000/postRemoteLogout`, {
+    var ip = window.location.hostname;
+
+    fetch(`http://` + ip + `:3000/postRemoteLogout`, {
 
       method: 'post',
       headers: {
@@ -42,7 +44,7 @@ class AsyncApp extends Component {
         if(data.customCode == 2001){
           localStorage.setItem('lastSetMsg', data.msg);
           localStorage.setItem('currentSession', 0);
-          window.location.href = 'http://52.87.224.145:3001/#/logout';
+          window.location.href = 'http://' + ip + ':3001/#/logout';
         } else {
           console.error('Unable to logout, try again later');
         }
@@ -56,13 +58,15 @@ class AsyncApp extends Component {
       * The are the route that get defined are in <Root>.
       * This is a component that is used as the routh path.
       */
+     var ip = window.location.hostname;
+     var loggrowerip = 'http://' + ip +':2000/';
 
      var loginButton, navOptions;
      if (localStorage.getItem('currentSession') == '0') {
        navOptions = <Nav>
                     </Nav>
        loginButton = <Nav right>
-                      <li><a href="http://52.87.224.145:2000/">log-grower</a></li>
+                      <li><a href={loggrowerip}>log-grower</a></li>
                       <li><Link to="/signup">Sign Up</Link></li>
                       <li><Link to="/login">Sign In</Link></li>
                      </Nav>
@@ -79,7 +83,7 @@ class AsyncApp extends Component {
                      </NavDropdown>
                    </Nav>)
        loginButton = <Nav right>
-                      <li><a href="http://52.87.224.145:2000/">log-grower</a></li>
+                      <li><a href={loggrowerip}>log-grower</a></li>
                       <li onClick={::this.handleLogout}><Link to="/logout">Sign out</Link></li>
                      </Nav>
      }
