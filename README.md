@@ -1,92 +1,35 @@
 # studious-display
-Displaying studious information and analytics
+A front-end that displays processed information for the Logro project. Other analytics are also shown in the form of data visualizations.
 
-##
-##Notes:
-TODO: A neo4j database connection exists in an inceptor. And, make it render data in a an overall analytical and useful manner.
+# History
+This is the User Interface to display results of the _Logro_ project.
 
-##
-Please consider sharing this software as 'copylefted' as I would appreciate respecting this license:
-##
+The purpose of _Logro_, and by association 'studious-display', is to allow other people and myself to become more skeptical about our own emotions. There is a concept of an activity, experience, and log hierarchy. Every experience is the intersection of two activities, and every experience can have a set of logs. An activity can also be associated with any number of experiences.
 
-GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007 Copyright (C) 2007 Free Software Foundation, Inc. http://fsf.org/ Everyone is permitted to copy and distribute verbatim copies of this license document, but changing it is not allowed.
+# Goals
+After users interact utilize 'log-grower', a project that creates raw data, 'studious-display' is meant to show that information in a a friendly and inviting way. By this process, the user should be able to have more introspective tools available to them.
 
+Every human needs to fulfill certain basic needs before they are able to deeply reflect on their own. In other words, self-actualization in humans tends to occur stigmergically. This self-actualization can be stifled when humans have their attention overly-focused on daily physical, emotional , analytical, cultural, ethereal tasks. Examples of these tasks are...
+* Running, gardening, singing, painting.
+* Talking, smiling, hugging, helping.
+* Learning, reading, focussing, thinking.
+* Advocating, changing, participating, making.
+* Believing, dreaming, mediating, meditating.
 
+# Tech Stack
+Instead of building visualization capabilities into the 'log-grower' application, I decided to create a separate project with makes use of the quicker response time of react.js on the view. This project also makes use of the flux architecture, specifically that of redux. It relies on communication through the 'fixed-gateway' for authentication. Ultimately, data is retrieved from 'hungry-interceptor'.
 
-#CREDITS to others sources:
-react-hot-boilerplate (https://github.com/gaearon/react-hot-boilerplate)
-Redux docs -- http://rackt.github.io/redux/docs/advanced/ExampleRedditAPI.html
-
-The MIT License (MIT)
-
-Copyright (c) 2014 Dan Abramov
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-#Below this line is the readme files from other repositories for reference.
-
-
-
-react-hot-boilerplate (https://github.com/gaearon/react-hot-boilerplate)
-=====================
-
-The minimal dev environment to enable live-editing React components.
-
-### Usage
-
+# Getting Started
+Install all node dependencies:
 ```
 npm install
+```
+
+After installing dependencies, run this command in a terminal to start the project:
+```
 npm start
-open http://localhost:3000
 ```
+A server is now running at: http://localhost:3001
 
-Now edit `src/App.js`.  
-Your changes will appear without reloading the browser like in [this video](http://vimeo.com/100010922).
-
-### Linting
-
-This boilerplate project includes React-friendly ESLint configuration.
-
-```
-npm run lint
-```
-
-### Using `0.0.0.0` as Host
-
-You may want to change the host in `server.js` and `webpack.config.js` from `localhost` to `0.0.0.0` to allow access from same WiFi network. This is not enabled by default because it is reported to cause problems on Windows. This may also be useful if you're using a VM.
-
-### Missing Features
-
-This boilerplate is purposefully simple to show the minimal configuration for React Hot Loader. For a real project, you'll want to add a separate config for production with hot reloading disabled and minification enabled. You'll also want to add a router, styles and maybe combine dev server with an existing server. This is out of scope of this boilerplate, but you may want to look into [other starter kits](https://github.com/gaearon/react-hot-loader/blob/master/docs/README.md#starter-kits).
-
-### Dependencies
-
-* React
-* Webpack
-* [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
-* [babel-loader](https://github.com/babel/babel-loader)
-* [react-hot-loader](https://github.com/gaearon/react-hot-loader)
-
-### Resources
-
-* [Demo video](http://vimeo.com/100010922)
-* [react-hot-loader on Github](https://github.com/gaearon/react-hot-loader)
-* [Integrating JSX live reload into your workflow](http://gaearon.github.io/react-hot-loader/getstarted/)
-* [Troubleshooting guide](https://github.com/gaearon/react-hot-loader/blob/master/docs/Troubleshooting.md)
-* Ping dan_abramov on Twitter or #reactjs IRC
+# License
+GPLv3
